@@ -1,6 +1,16 @@
 name: medigo-deploy-1.0.0
 
 on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Test scenario"
+        required: true
+        default: "Run Deployment"
+      home:
+        description: "User name"
+        required: false
+        default: "YHLEE9753"
   push:
     branches: [ "main" ]
 
