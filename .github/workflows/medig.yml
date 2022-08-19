@@ -28,3 +28,15 @@ jobs:
         docker push dldydgns53/medigo:${GITHUB_SHA::7}
 
 
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.AWS_SERVER_DNS }}
+        username: ec2-user
+        key: ${{ secrets.SSH_KEYGEN_PRIVATE_KEY }}
+        envs: GITHUB_SHA
+        script: |
+          docker pull dldydgns53/medigo:${GITHUB_SHA::7}
+          docker tag dldydgns53/medigo:${GITHUB_SHA::7} dldydgns53
+          docker stop server
+          docker run -d --rm --name server -p 80:8080 dldydgns53
