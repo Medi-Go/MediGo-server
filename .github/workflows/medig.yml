@@ -46,7 +46,6 @@ jobs:
         host: ${{ secrets.AWS_SERVER_DNS }}
         username: ec2-user
         key: ${{ secrets.SSH_KEYGEN_PRIVATE_KEY }}
-        envs: GITHUB_SHA
         script: |
           docker pull dldydgns53/medigo
           docker stop server
