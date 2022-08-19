@@ -2,15 +2,15 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mysqlDB:3306/kppl?serverTimezone=Asia/Seoul
-    username: admin
-    password: 1234
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   redis:
     host: redis_boot
     port: 6379
   jpa:
     database: mysql
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
