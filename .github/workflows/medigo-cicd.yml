@@ -31,7 +31,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./gradlew build -x test
 
     - name: Docker build
       run: |
@@ -49,4 +49,7 @@ jobs:
         script: |
           docker pull dldydgns53/medigo
           docker stop server
+          docker network create -d bridge test
+          docker run -d --network medigo --network-alias mysql -v  /build/DB/mysql:/var/lib/mysql --name mysqlDB -e MYSQL_DATABASE=kppl -e MYSQL_USER=admin -e MYSQL_PASSWORD=1234 -e MYSQL_ROOT_PASSWORD=1234 -p 3306:3306 mysql
+          docker run -d --network medigo --network-alias redis -v  /build/DB/redis:/var/lib/redis --name redis_boot -d -p 6379:6379 redis
           docker run -d --rm --name server -p 80:8080 dldydgns53/medigo
