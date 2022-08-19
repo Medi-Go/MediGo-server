@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/kppl?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://mysqlDB:3306/kppl?serverTimezone=Asia/Seoul
     username: admin
     password: 1234
   redis:
@@ -14,10 +14,3 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
-    defer-datasource-initialization: true
-  sql:
-    init:
-      data-locations: classpath*:sql/MEMBER.sql
-      mode: always
-  flyway:
-    enabled: false

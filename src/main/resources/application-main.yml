@@ -2,7 +2,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://mysqlDB:3306/kppl?serverTimezone=Asia/Seoul
-    username: root
+    username: admin
     password: 1234
   redis:
     host: redis_boot
