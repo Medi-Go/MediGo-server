@@ -36,7 +36,7 @@ jobs:
     - name: Docker build
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker build -t spring-cicd .
+        docker build -t dldydgns53/medigo .
         docker push dldydgns53/medigo
 
 
