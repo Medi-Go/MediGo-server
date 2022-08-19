@@ -36,7 +36,7 @@ jobs:
     - name: Docker build
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker build -t spring-cicd .
+        docker build -t dldydgns53/medigo .
         docker push dldydgns53/medigo
 
 
@@ -50,4 +50,4 @@ jobs:
         script: |
           docker pull dldydgns53/medigo
           docker stop server
-          docker run -d --rm --name server -p 80:8080 dldydgns53
+          docker run -d --rm --name server -p 80:8080 dldydgns53/medigo
