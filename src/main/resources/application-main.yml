@@ -1,11 +1,11 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://mysqlDB:3306/kppl?serverTimezone=Asia/Seoul
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mysql://localhost:3306/kppl?serverTimezone=Asia/Seoul
+    username: root
+    password: 1234
   redis:
-    host: redis_boot
+    host: localhost
     port: 6379
   jpa:
     database: mysql

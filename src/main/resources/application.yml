@@ -3,4 +3,4 @@ spring:
     active: main
     group:
       main: main, common
-      dev: dev, common
+      prod: prod, common
