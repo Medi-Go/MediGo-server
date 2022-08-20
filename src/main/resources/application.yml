@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: main
+    active: dev
     group:
       main: main, common
       dev: dev, common
