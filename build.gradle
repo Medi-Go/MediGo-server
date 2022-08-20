@@ -39,9 +39,17 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 
+	// FLYWAY
+	implementation 'org.flywaydb:flyway-core'
+	implementation 'org.flywaydb:flyway-mysql'
+	
 	// DB
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+	// SENTRY
+	implementation 'io.sentry:sentry-spring-boot-starter:6.3.0'
+	implementation 'io.sentry:sentry-logback:6.3.0'
 
 	// TEST
 	testRuntimeOnly 'com.h2database:h2'
