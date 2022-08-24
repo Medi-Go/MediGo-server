@@ -11,7 +11,7 @@ import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
-import com.capstone.medigo.domain.mydata.util.AESProperties;
+import com.capstone.medigo.global.util.AESProperties;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

@@ -1,4 +1,4 @@
-package com.capstone.medigo.domain.mydata.util;
+package com.capstone.medigo.global.util;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;

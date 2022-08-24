@@ -14,7 +14,12 @@ public enum ErrorCode {
 
 	//member
 	INVALID_EMAIL("M001", "Email is invalid", HttpStatus.BAD_REQUEST),
-	NOT_FOUND_MEMBER("M002", "Not found member", HttpStatus.BAD_REQUEST),
+	INVALID_AES("M002", "AES encrypt and decrypt are invalid", HttpStatus.BAD_REQUEST),
+	INVALID_PHONE_NUMBER("M003", "Phone number format is not invalid", HttpStatus.BAD_REQUEST),
+	NOT_FOUND_MEMBER("M004", "Not found member", HttpStatus.BAD_REQUEST),
+
+
+
 	NICKNAME_DUPLICATION("M003", "Nickname duplication", HttpStatus.BAD_REQUEST),
 	REGISTERED_MEMBER("M004", "Member is already registered", HttpStatus.BAD_REQUEST),
 	INVALID_SIGNUP("M005", "Signup time is over", HttpStatus.BAD_REQUEST),

@@ -14,14 +14,31 @@ public class MemberException extends BusinessException {
 		super(errorCode, message, cause);
 	}
 
-	public static MemberException invalidSignup() {
-		return new MemberException(ErrorCode.INVALID_SIGNUP,"회원가입 시간이 지났습니다");
-	}
 
 	public static MemberException invalidEmail(String email) {
 		return new MemberException(ErrorCode.INVALID_EMAIL,
 			MessageFormat.format("이메일이 유효하지 않습니다. (email: {0})", email));
 	}
+
+	public static MemberException invalidAES() {
+		return new MemberException(ErrorCode.INVALID_AES,"AES 암호화 복호화 과정에서 문제가 발생하였습니다.");
+	}
+
+	public static MemberException invalidPhoneNumber(String phoneNumber) {
+		return new MemberException(ErrorCode.INVALID_PHONE_NUMBER,
+			MessageFormat.format("전화번호 형태가 유효하지 않습니다 (phone number: {0})", phoneNumber));
+	}
+
+	public static MemberException invalidJumin(String jumin) {
+		return new MemberException(ErrorCode.INVALID_JUMIN,
+			MessageFormat.format("주민번호 형태가 유효하지 않습니다 (jumin : {0})", jumin));
+	}
+
+
+	public static MemberException invalidSignup() {
+		return new MemberException(ErrorCode.INVALID_SIGNUP,"회원가입 시간이 지났습니다");
+	}
+
 
 	public static MemberException notFoundMember(Long memberId) {
 		return new MemberException(ErrorCode.NOT_FOUND_MEMBER,
@@ -46,5 +63,6 @@ public class MemberException extends BusinessException {
 		return new MemberException(ErrorCode.INVALID_AUTH_TYPE,
 			MessageFormat.format("유효하지 않은 Auth 타입입니다. (provider: {0})", provider));
 	}
+
 }
 
