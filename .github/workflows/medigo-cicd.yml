@@ -63,6 +63,6 @@ jobs:
             docker pull ${{ secrets.DOCKER_REPOSITORY }}
             docker stop server
             docker network create -d bridge medinet
-            docker run -d --network medinet --network-alias mysql -v  /build/DB/mysql:/var/lib/mysql --name mysqlDB -e MYSQL_DATABASE=kppl -e MYSQL_USER=${{ secrets.RDS_USERNAME }} -e MYSQL_PASSWORD=${{ secrets.RDS_PASSWORD }} -e MYSQL_ROOT_PASSWORD=${{ secrets.RDS_PASSWORD }} -d -p 3306:3306 mysql
+            docker run -d --network medinet --network-alias mysql -v  /build/DB/mysql:/var/lib/mysql --name mysqlDB -e MYSQL_DATABASE=kppl -e MYSQL_USER=${{ secrets.RDS_USERNAME }} -e MYSQL_PASSWORD=${{ secrets.RDS_PASSWORD }} -e MYSQL_ROOT_PASSWORD=${{ secrets.RDS_PASSWORD }} -p 3306:3306 mysql
             docker run -d --network medinet --network-alias redis -v  /build/DB/redis:/var/lib/redis --name redis_boot -d -p 6379:6379 redis
             docker run -d --rm --name server --network medinet -p 80:8080 ${{ secrets.DOCKER_REPOSITORY }}
