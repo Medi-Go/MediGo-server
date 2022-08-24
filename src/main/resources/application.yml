@@ -2,5 +2,5 @@ spring:
   profiles:
     active: main
     group:
-      main: main, common
-      prod: prod, common
+      main: main, common, config
+      prod: prod, common, config

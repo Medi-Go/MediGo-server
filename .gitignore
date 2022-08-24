@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### swubmodule ###
+src/main/resources/application-config.yaml
+src/main/resources/application-config.yml

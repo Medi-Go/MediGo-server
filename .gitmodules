@@ -1,0 +1,3 @@
+[submodule "MediGo-Config"]
+	path = MediGo-Config
+	url = https://github.com/Medi-Go/MediGo-Config.git

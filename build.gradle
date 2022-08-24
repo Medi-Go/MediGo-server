@@ -50,14 +50,16 @@ dependencies {
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
+	// JASYPT
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
 
 	// FLYWAY
 	implementation 'org.flywaydb:flyway-core'
 	implementation 'org.flywaydb:flyway-mysql'
 
 	// SENTRY
-	implementation 'io.sentry:sentry-spring-boot-starter:6.3.0'
-	implementation 'io.sentry:sentry-logback:6.3.0'
+	implementation 'io.sentry:sentry-spring-boot-starter:6.4.0'
+	implementation 'io.sentry:sentry-logback:6.4.0'
 
 	// TEST
 	testRuntimeOnly 'com.h2database:h2'
@@ -75,8 +77,16 @@ tasks.named('asciidoctor') {
 	dependsOn test
 }
 
+// submodule 적용
+task copyPrivate(type: Copy) {
+	copy {
+		from './MediGo-Config'
+		include "*.yaml"
+		into 'src/main/resources'
+	}
+}
 
-//queryDSL 설정 추가
+// queryDSL 설정 추가
 def querydslDir = "$buildDir/generated/querydsl"
 
 querydsl {
