@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.capstone.medigo.domain.member.util.MemberUtil;
+import com.capstone.medigo.global.util.AES256;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -28,23 +29,42 @@ public class Member {
 	@Column(name = "email", length = 40, unique = true, nullable = false)
 	private String email;
 
+	@Column(name = "profile_image_url", length = 150)
+	private String profileImageUrl;
+
 	@Column(name = "nick_name", length = 30, unique = true, nullable = false)
 	private String nickName;
 
-	@Column(name = "profile_image_url", length = 150)
-	private String profileImageUrl;
+	@Column(name = "name", length = 30, nullable = false)
+	private String name;
+
+	@Column(name = "jumin", length = 8, nullable = false)
+	private String jumin;
+
+	@Enumerated(value = EnumType.STRING)
+	@Column(name = "carrier", length = 10, nullable = false)
+	private Carrier carrier;
+
+	@Column(name = "phone_number", length = 16, nullable = false)
+	private String phoneNumber;
 
 	@Enumerated(value = EnumType.STRING)
 	@Column(name = "member_role", length = 16, nullable = false)
 	private MemberRole memberRole;
 
 	@Builder
-	public Member(Long id, String email, String nickName, String profileImageUrl, MemberRole memberRole) {
+	public Member(Long id, String email, String profileImageUrl, String nickName, String name, String jumin,
+		Carrier carrier, String phoneNumber) {
 		MemberUtil.emailValidation(email);
+		MemberUtil.phoneValidation(phoneNumber);
 		this.id = id;
 		this.email = email;
-		this.nickName = nickName;
 		this.profileImageUrl = profileImageUrl;
-		this.memberRole = memberRole;
+		this.nickName = nickName;
+		this.name = name;
+		this.jumin = jumin;
+		this.carrier = carrier;
+		this.phoneNumber = phoneNumber;
+		this.memberRole = MemberRole.ROLE_MEMBER;
 	}
 }

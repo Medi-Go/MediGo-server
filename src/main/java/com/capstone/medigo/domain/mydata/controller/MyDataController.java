@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.medigo.domain.mydata.service.loaddata.MyDataService;
-import com.capstone.medigo.domain.mydata.util.AES256;
+import com.capstone.medigo.global.util.AES256;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
