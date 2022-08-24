@@ -29,10 +29,10 @@ public class MemberException extends BusinessException {
 			MessageFormat.format("전화번호 형태가 유효하지 않습니다 (phone number: {0})", phoneNumber));
 	}
 
-	public static MemberException invalidJumin(String jumin) {
-		return new MemberException(ErrorCode.INVALID_JUMIN,
-			MessageFormat.format("주민번호 형태가 유효하지 않습니다 (jumin : {0})", jumin));
-	}
+	// public static MemberException invalidJumin(String jumin) {
+	// 	return new MemberException(ErrorCode.INVALID_JUMIN,
+	// 		MessageFormat.format("주민번호 형태가 유효하지 않습니다 (jumin : {0})", jumin));
+	// }
 
 
 	public static MemberException invalidSignup() {
