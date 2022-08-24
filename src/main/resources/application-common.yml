@@ -7,3 +7,31 @@ spring:
       hibernate:
         default_batch_fetch_size: 500
         format_sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 804417627486-7pvaha9vpkut0lf746hva98o4rorhbt7.apps.googleusercontent.com
+            client-secret: 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
+            scope: [ profile, email ]
+            redirect-uri: http://localhost:8080/login/oauth2/code/google
+app:
+  jwt:
+    header: token
+    issuer: medigo
+    tokenSecret: 926D96C90030DD58429D2751AC1BDBBC
+    tokenExpiry: 3600000
+    refreshTokenExpiry: 172800000
+
+  cors:
+    allowed-origins: http://localhost:3000
+    allowed-methods: GET,POST,PUT,PATCH,DELETE
+    allowed-headers: '*'
+    max-age: 3600
+  # OAuth path
+  oauth:
+    domain: "https://localhost:3000"
+    signupPath: "/signup"
+    signupTime: 300
+    loginSuccessPath: "/main"

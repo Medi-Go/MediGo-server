@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysqlDB:3306/kppl?serverTimezone=Asia/Seoul
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+  redis:
+    host: redis_boot
+    port: 6379
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration,db/seed
+
+sentry:
+  enabled: true
+  dsn: https://a6e33f5ef6c245899fa3eb0314083e3b@o1369109.ingest.sentry.io/6672055
