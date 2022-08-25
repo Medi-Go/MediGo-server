@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import com.capstone.medigo.domain.member.util.MemberUtil;
-import com.capstone.medigo.global.util.AES256;
 
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -52,6 +51,18 @@ public class Member {
 	@Column(name = "member_role", length = 16, nullable = false)
 	private MemberRole memberRole;
 
+	@Column(name = "callback_error_code")
+	private String callbackErrorCode;
+
+	@Column(name = "callback_id")
+	private String callbackId;
+
+	@Column(name = "callback_type")
+	private String callBackType;
+
+	@Column(name = "callback_data")
+	private String callBackData;
+
 	@Builder
 	public Member(Long id, String email, String profileImageUrl, String nickName, String name, String jumin,
 		Carrier carrier, String phoneNumber) {
@@ -66,5 +77,12 @@ public class Member {
 		this.carrier = carrier;
 		this.phoneNumber = phoneNumber;
 		this.memberRole = MemberRole.ROLE_MEMBER;
+	}
+
+	public void setCallBack(String callbackErrorCode, String callBackId, String callBackType, String callBackData){
+		this.callbackErrorCode = callbackErrorCode;
+		this.callbackId = callBackId;
+		this.callBackType = callBackType;
+		this.callBackData = callBackData;
 	}
 }

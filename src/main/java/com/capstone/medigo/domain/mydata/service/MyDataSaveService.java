@@ -20,6 +20,10 @@ import com.capstone.medigo.domain.mydata.repository.KpicRepository;
 import com.capstone.medigo.domain.mydata.repository.MedicineInfoRepository;
 import com.capstone.medigo.domain.mydata.repository.MedicineRepository;
 import com.capstone.medigo.domain.mydata.repository.PrescriptionRepository;
+import com.capstone.medigo.global.error.exception.MemberException;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -29,7 +33,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Log4j2
-public class PrescriptionService {
+public class MyDataSaveService {
     private final DurRepository durRepository;
     private final IngredientRepository ingredientRepository;
     private final KpicRepository kpicRepository;
@@ -37,12 +41,20 @@ public class PrescriptionService {
     private final MedicineRepository medicineRepository;
     private final PrescriptionRepository prescriptionRepository;
 
-    public void save(MyDataSaveRequest saveRequest) {
-        if (!saveRequest.result().equals("SUCCESS")){
-            throw new IllegalStateException("마이데이터를 불러오는데 실패하였습니다.");
+    public void save(String myDataValue) {
+        ObjectMapper mapper = new ObjectMapper();
+        MyDataSaveRequest myDataSaveRequest = null;
+
+        try{
+            myDataSaveRequest = mapper.readValue(myDataValue, MyDataSaveRequest.class);
+        }catch (JsonProcessingException e){
+            throw MemberException.invalidJsonChanging(e.getMessage());
+        }
+        if (!myDataSaveRequest.result().equals("SUCCESS")){
+            throw MemberException.invalidMyDataLoading();
         }
 
-        DataSaveRequest dataSaveRequest = saveRequest.data();
+        DataSaveRequest dataSaveRequest = myDataSaveRequest.data();
         savePrescription(dataSaveRequest.MEDICINELIST());
     }
 
