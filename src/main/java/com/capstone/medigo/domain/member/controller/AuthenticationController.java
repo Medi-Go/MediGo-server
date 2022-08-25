@@ -77,8 +77,10 @@ public class AuthenticationController {
 	public ResponseEntity<MemberResponse> memberInfo(HttpServletRequest request) {
 		String accessToken = tokenService.resolveToken(request);
 		String refreshTokenValue = authenticationService.checkAndGetRefreshToken(accessToken);
+
 		tokenService.verifyRefreshTokenWithException(refreshTokenValue);
 		tokenService.verifyAccessTokenWithException(accessToken);
+
 		String memberId = tokenService.getUid(accessToken);
 		MemberResponse memberResponse = authenticationService.getMemberResponse(Long.parseLong(memberId));
 

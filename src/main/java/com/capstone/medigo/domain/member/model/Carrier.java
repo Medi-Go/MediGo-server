@@ -10,4 +10,8 @@ public enum Carrier {
 	Carrier(int carrierNumber) {
 		this.carrierNumber = carrierNumber;
 	}
+
+	public int getCarrierNumber() {
+		return carrierNumber;
+	}
 }
