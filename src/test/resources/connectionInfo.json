@@ -1,0 +1,11 @@
+{
+  "errCode":"0001",
+  "errMsg":"사용자 텍스트 입력 필요",
+  "result":"FAIL",
+  "data":{
+    "callbackId":"630b68c01ed7070001dc583b",
+    "callbackType":"ANY",
+    "callbackData":"",
+    "timeout":0
+  }
+}

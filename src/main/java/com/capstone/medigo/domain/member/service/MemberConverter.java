@@ -29,7 +29,7 @@ public class MemberConverter {
 			.email(member.getEmail())
 			.profileImageUrl(member.getProfileImageUrl())
 			.nickName(member.getNickName())
-			.name(member.getNickName())
+			.name(member.getName())
 			.jumin(member.getJumin())
 			.carrier(member.getCarrier().name())
 			.phoneNumber(member.getPhoneNumber())

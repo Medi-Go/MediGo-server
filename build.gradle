@@ -62,11 +62,13 @@ dependencies {
 	implementation 'io.sentry:sentry-logback:6.4.0'
 
 	// UTIL
-	implementation 'com.google.code.gson:gson:2.8.5'
+	implementation 'com.google.code.gson:gson:2.9.0'
+
 
 	// TEST
 	testRuntimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 }
 
