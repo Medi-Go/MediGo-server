@@ -1,5 +1,7 @@
 package com.capstone.medigo.domain.member.model;
 
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -51,9 +53,6 @@ public class Member {
 	@Column(name = "member_role", length = 16, nullable = false)
 	private MemberRole memberRole;
 
-	@Column(name = "callback_error_code")
-	private String callbackErrorCode;
-
 	@Column(name = "callback_id")
 	private String callbackId;
 
@@ -79,10 +78,9 @@ public class Member {
 		this.memberRole = MemberRole.ROLE_MEMBER;
 	}
 
-	public void setCallBack(String callbackErrorCode, String callBackId, String callBackType, String callBackData){
-		this.callbackErrorCode = callbackErrorCode;
-		this.callbackId = callBackId;
-		this.callBackType = callBackType;
-		this.callBackData = callBackData;
+	public void setCallBack(Map<String, Object> responseInfo) {
+		this.callbackId = String.valueOf(responseInfo.get("callbackId"));
+		this.callBackType = String.valueOf(responseInfo.get("callBackType"));
+		this.callBackData = String.valueOf(responseInfo.get("callBackData"));
 	}
 }
