@@ -1,0 +1,21 @@
+== OAuth 인증
+
+=== 회원가입
+
+operation::post-member-signup[snippets='http-request,request-headers,request-body,http-response,response-headers,response-body,response-fields']
+'''
+
+=== 로그인
+
+operation::post-login[snippets='http-request,request-headers,request-body,http-response,response-headers,response-body,response-fields']
+'''
+
+=== 로그아웃
+
+operation::post-logout[snippets='http-request,request-body,http-response,response-body']
+'''
+
+=== 유저정보
+
+operation::get-member-info[snippets='http-request,request-headers,request-body,http-response,response-headers,response-body,response-fields']
+'''

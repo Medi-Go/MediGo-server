@@ -1,0 +1,14 @@
+ifndef::snippets[]
+:snippets: ../../../build/generated-snippets
+endif::[]
+:doctype: book
+:title: Medigo API
+:toc-title: Medigo API 목차
+:toc: left
+
+[[title]]
+= Medigo API v1
+
+include::member-authentication.adoc[]
+include::member.adoc[]
+include::myData-Loading.adoc[]

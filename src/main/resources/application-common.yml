@@ -15,7 +15,7 @@ spring:
             client-id: ENC(2LAzrkyBceryYo7GJs8UjMYb77WeR6OUzR7hsbisSVDvQH/kvcV98otq2n6o9i7J9bFz/zyyJUv/rs3DcJkDGkdJkwFJnt85n6OjbyR8r+ncXq+7RElwfA==)
             client-secret: ENC(TRmqKnX2qYZ1igV8hzj3Am0xfRSAfx9e6owqC7QOgVDBZHriSlApP4LhIdWILq11)
             scope: [ profile, email ]
-            redirect-uri: http://localhost:8080/login/oauth2/code/google
+            redirect-uri: http://www.medigo.p-e.kr/login/oauth2/code/google
 app:
   jwt:
     header: token
@@ -24,10 +24,10 @@ app:
     tokenExpiry: 3600000
     refreshTokenExpiry: 172800000
   mydata:
-    token: ENC(/T1bGmFJlY/9xM1nPOxwW5eb8bogtLVE0wL5IakIj6JRZgMX2SBqPQEcZBTyCIXVlQwoznD6E6o=)
-    encspec: ENC(uOpnYGoVhnIZFWI7JBoD0Fw99KVK5ke7bkV2pzcIq008+fEXT8CyaA==)
+    encspec: ENC(NrlqiyVzuIa+tWCN/sm9Pslcq6WUYawnw9YVVkqhaio=)
     enckey: ENC(pGVuAVnTG03EzPMFR8iuCSdnvkSOUk1pQxZyh7IPylBSM6B0ZMwibS6sRuTyBV0o)
     enciv: ENC(NeJQjRk5zTblHpSGv3Y5dD5zHW85YHyp7OZjpe6rAt8=)
+    token: ENC(/T1bGmFJlY/9xM1nPOxwW5eb8bogtLVE0wL5IakIj6JRZgMX2SBqPQEcZBTyCIXVlQwoznD6E6o=)
   cors:
     allowed-origins: http://localhost:3000
     allowed-methods: GET,POST,PUT,PATCH,DELETE

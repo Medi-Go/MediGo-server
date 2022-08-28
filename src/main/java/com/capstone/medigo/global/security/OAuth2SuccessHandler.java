@@ -60,15 +60,14 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 			String temporaryMemberEmail = temporaryMember.getEmail();
 
 			String param1 = "?email=" + CoderUtil.encode(temporaryMemberEmail);
-			String param2 = "&name=" + CoderUtil.encode(name);
-			String targetUri = domain + "/signup" + param1 + param2;
+			String targetUri = domain + "/login/signup" + param1;
 
 			response.sendRedirect(targetUri);
 			return;
 		}
 		Long memberId = optionalMember.get().getId();
 
-		String targetUri = domain + "/login" + "?id=" + memberId;
+		String targetUri = domain + "/login/auth" + "?id=" + memberId;
 		response.sendRedirect(targetUri);
 
 	}

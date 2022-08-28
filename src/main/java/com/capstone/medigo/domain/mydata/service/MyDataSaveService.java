@@ -50,6 +50,7 @@ public class MyDataSaveService {
         }catch (JsonProcessingException e){
             throw MemberException.invalidJsonChanging(e.getMessage());
         }
+        System.out.println(myDataSaveRequest);
         if (!myDataSaveRequest.result().equals("SUCCESS")){
             throw MemberException.invalidMyDataLoading();
         }
@@ -59,7 +60,7 @@ public class MyDataSaveService {
     }
 
     private void savePrescription(ArrayList<PrescriptionSaveRequest> prescriptions) {
-        prescriptions.forEach((prescription) -> {
+        prescriptions.forEach(prescription -> {
                     Prescription savedPrescription = prescriptionRepository.save(
                             Prescription.builder()
                                     .treatType(prescription.TREATTYPE())
@@ -78,7 +79,7 @@ public class MyDataSaveService {
     }
 
     private void saveMedicine(ArrayList<MedicineSaveRequest> medicines, Prescription prescription) {
-        medicines.forEach((medicine) -> {
+        medicines.forEach(medicine -> {
             Medicine savedMedicine = medicineRepository.save(
                     Medicine.builder()
                             .prescription(prescription)
@@ -97,7 +98,7 @@ public class MyDataSaveService {
     }
 
     private void saveMedicineInfo(ArrayList<MedicineInfoSaveRequest> medicineInfos, Medicine medicine) {
-        medicineInfos.forEach((medicineInfo) -> {
+        medicineInfos.forEach(medicineInfo -> {
             MedicineInfo savedMedicineInfo = medicineInfoRepository.save(
                     MedicineInfo.builder()
                             .medicine(medicine)
@@ -119,7 +120,7 @@ public class MyDataSaveService {
     }
 
     private void saveDurs(ArrayList<DurSaveRequest> durs, MedicineInfo medicineInfo) {
-        durs.forEach((dur) -> {
+        durs.forEach(dur -> {
             durRepository.save(Dur.builder()
                     .medicineInfo(medicineInfo)
                     .ageTaboo(dur.AGETABOO())
@@ -131,13 +132,13 @@ public class MyDataSaveService {
     }
 
     private void saveIngredients(ArrayList<IngredientSaveRequest> ingredients, MedicineInfo medicineInfo) {
-        ingredients.forEach((ingredient) -> {
+        ingredients.forEach(ingredient -> {
             ingredientRepository.save(new Ingredient(medicineInfo, ingredient.INGREDIENTNM()));
         });
     }
 
     private void saveKPICs(ArrayList<KPISaveRequest> KPIs, MedicineInfo medicineInfo) {
-        KPIs.forEach((KPI) -> {
+        KPIs.forEach(KPI -> {
             kpicRepository.save(new Kpic(medicineInfo, KPI.KPIC()));
         });
     }

@@ -1,7 +1,7 @@
 spring:
   profiles:
     active: test
-    include: common
+    include: common, config
 
   datasource:
     driver-class-name: org.h2.Driver

@@ -8,6 +8,7 @@ public record DataSaveRequest(
         ArrayList<PrescriptionSaveRequest> MEDICINELIST,
         String ETRACK,
         String ERRMSG,
+        String ECODE,
         String ERRDOC,
         String RESULT
 ){

@@ -1,0 +1,11 @@
+== MyData 허브 연동 및 MyData 데이터 로딩
+
+=== 마이데이터 연동
+
+operation::post-connect[snippets='http-request,request-body,http-response,response-body']
+'''
+
+=== MyData 데이터 로딩
+
+operation::post-load-my-data[snippets='http-request,request-body,http-response,response-body']
+'''

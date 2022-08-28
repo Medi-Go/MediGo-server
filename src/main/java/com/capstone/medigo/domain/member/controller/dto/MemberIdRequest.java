@@ -1,9 +1,9 @@
 package com.capstone.medigo.domain.member.controller.dto;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public record MemberIdRequest (
-	@NotBlank
+	@NotNull
 	Long id
 ){
 }
