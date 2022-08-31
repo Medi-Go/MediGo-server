@@ -60,7 +60,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 			String temporaryMemberEmail = temporaryMember.getEmail();
 
 			String param1 = "?email=" + CoderUtil.encode(temporaryMemberEmail);
-			String targetUri = domain + "/login/signup" + param1;
+			String targetUri = domain + "/signup" + param1;
 
 			response.sendRedirect(targetUri);
 			return;

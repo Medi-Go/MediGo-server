@@ -34,7 +34,7 @@ app:
     allowed-headers: '*'
     max-age: 3600
   oauth:
-    domain: "https://localhost:3000"
+    domain: "http://localhost:3000"
     signupPath: "/signup"
     signupTime: 300
     loginSuccessPath: "/main"
