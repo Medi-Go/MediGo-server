@@ -92,11 +92,6 @@ public class MyDataLoadService {
 			bw.write(jsonBody.toString());
 			bw.flush();
 
-			int responseCode = conn.getResponseCode();
-			if (responseCode != 200) {
-				throw MemberException.invalidMyDataLoading();
-			}
-
 			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 			String line = "";
 			while ((line = br.readLine()) != null) {
@@ -124,8 +119,8 @@ public class MyDataLoadService {
 		jsonBody.addProperty("JUMIN", encryptJumin);
 		jsonBody.addProperty("DETAILPARSE", "3");
 		jsonBody.addProperty("CHILDPARSE", "1");
-		jsonBody.addProperty("USERNAME", member.getName());/////
-		jsonBody.addProperty("HPNUMBER", member.getPhoneNumber());/////
+		jsonBody.addProperty("USERNAME", member.getName());
+		jsonBody.addProperty("HPNUMBER", member.getPhoneNumber());
 		jsonBody.addProperty("TELECOMGUBUN", member.getCarrier().getCarrierNumber());
 		return jsonBody;
 	}

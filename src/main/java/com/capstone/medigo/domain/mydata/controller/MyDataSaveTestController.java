@@ -40,7 +40,7 @@ public class MyDataSaveTestController {
 				.build()
 		);
 
-		return String.valueOf(myId.getId());
+		return String.valueOf(myId.getId()) + myId.getName();
 	}
 
 
