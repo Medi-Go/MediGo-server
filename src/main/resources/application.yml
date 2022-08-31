@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod
+    active: main
     group:
       main: main, common, config
       prod: prod, common, config

@@ -50,7 +50,6 @@ public class MyDataSaveService {
         }catch (JsonProcessingException e){
             throw MemberException.invalidJsonChanging(e.getMessage());
         }
-        System.out.println(myDataSaveRequest);
         if (!myDataSaveRequest.result().equals("SUCCESS")){
             throw MemberException.invalidMyDataLoading();
         }
