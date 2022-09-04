@@ -4,3 +4,6 @@
 
 operation::get-my-data-detail[snippets='http-request,request-headers,request-body,http-response,response-headers,response-body,response-fields']
 '''
+
+operation::patch-my-data-detail[snippets='http-request,request-headers,request-body,http-response,response-headers,response-body,response-fields']
+'''

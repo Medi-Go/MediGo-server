@@ -1,45 +1,13 @@
 {
-  "MEDICINEINPUTLIST": [
-    {
-      "TREATTYPE": "처방조제",
-      "TREATDSNM": "이용훈",
-      "TREATDATE": "20220120",
-      "TREATMEDICALNM": "한가람약국[남동구 남동대로]",
-      "DETAILLIST": [
-        {
-          "MEDICINENM": "록사렉스캡슐75mg (LOXALEX CAP)",
-          "MEDICINEEFFECT": "소화성궤양용제",
-          "ADMINISTERCNT": "3"
-        },
-        {
-          "MEDICINENM": "티메롤8시간이알서방정 (Timerol 8 hours ER Tab.)",
-          "MEDICINEEFFECT": "해열, 진통, 소염제",
-          "ADMINISTERCNT": "3"
-        },
-        {
-          "MEDICINENM": "로스파정 (LOSPA TAB.)",
-          "MEDICINEEFFECT": "진경제",
-          "ADMINISTERCNT": "3"
-        },
-        {
-          "MEDICINENM": "미피드정 (Mipide Tab.)",
-          "MEDICINEEFFECT": "소화성궤양용제",
-          "ADMINISTERCNT": "3"
-        }
-      ]
-    },
-    {
-      "TREATTYPE": "일반외래",
-      "TREATDSNM": "이용훈",
-      "TREATDATE": "20211231",
-      "TREATMEDICALNM": "(한길의료재단)한길안과병원[부평구 부평대로]",
-      "DETAILLIST": [
-        {
-          "MEDICINENM": "트로페린점안액(1회용) (Tropherine Eye Drops(single use))",
-          "MEDICINEEFFECT": "안과용제",
-          "ADMINISTERCNT": "1"
-        }
-      ]
-    }
-  ]
+  "prescriptions" : [ {
+    "prescriptionId" : 1,
+    "administerInterval" : 1,
+    "dailyCount" : 1,
+    "totalDayCount" : 7
+  }, {
+    "prescriptionId" : 2,
+    "administerInterval" : 3,
+    "dailyCount" : 3,
+    "totalDayCount" : 15
+  }]
 }

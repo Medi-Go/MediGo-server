@@ -8,12 +8,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capstone.medigo.domain.mydata.controller.dto.DetailMonthRequest;
+import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailMonthRequest;
+import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest;
 import com.capstone.medigo.domain.mydata.service.MyDataDetailService;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailDto;
 
@@ -39,10 +40,11 @@ public class MyDataDetailController {
 			.body(myDataDetailDto);
 	}
 
-	@PostMapping
+	@PatchMapping
 	public ResponseEntity<Void> myDataDetail(
-		@AuthenticationPrincipal Long memberId
+		@Valid @RequestBody DetailRequest detailRequest
 	) {
+		myDataDetailService.updateDetailOfPrescription(detailRequest);
 
 		return ResponseEntity
 			.ok()

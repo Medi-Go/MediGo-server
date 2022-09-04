@@ -10,7 +10,6 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +24,9 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.capstone.medigo.config.TestConfig;
-import com.capstone.medigo.domain.mydata.controller.dto.DetailMonthRequest;
+import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailMonthRequest;
+import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescription;
+import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest;
 import com.capstone.medigo.domain.mydata.service.MyDataDetailService;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailDto;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailMedicine;
@@ -42,17 +43,17 @@ class MyDataDetailControllerTest extends TestConfig {
 		// given
 		DetailMonthRequest detailMonthRequest = new DetailMonthRequest(11);
 		List<MyDataDetailMedicine> medicineList1 = new ArrayList<>(
-			Arrays.asList(getMedicine(1L),getMedicine(2L))
+			Arrays.asList(makeMedicine(1L), makeMedicine(2L))
 		);
 		List<MyDataDetailMedicine> medicineList2 = new ArrayList<>(
-			Arrays.asList(getMedicine(3L),getMedicine(4L))
+			Arrays.asList(makeMedicine(3L), makeMedicine(4L))
 		);
 		List<MyDataDetailPrescription> prescriptionList = new ArrayList<>(
-			Arrays.asList(getPrescription(1L,medicineList1), getPrescription(2L,medicineList2))
+			Arrays.asList(makePrescription(1L, medicineList1), makePrescription(2L, medicineList2))
 		);
 		MyDataDetailDto myDataDetailDto = new MyDataDetailDto(prescriptionList);
 
-		given(myDataDetailService.getMyDataInfo(any(),any(),anyInt())).willReturn(myDataDetailDto);
+		given(myDataDetailService.getMyDataInfo(any(), any(), anyInt())).willReturn(myDataDetailDto);
 
 		// when
 		ResultActions resultActions = mockMvc.perform(
@@ -85,14 +86,63 @@ class MyDataDetailControllerTest extends TestConfig {
 					fieldWithPath("prescriptions.[].treatDate").type(NUMBER).description("처방 날짜"),
 					fieldWithPath("prescriptions.[].treatMedicalName").type(STRING).description("처방 병원 이름"),
 					fieldWithPath("prescriptions.[].medicineDetailList").type(ARRAY).description("처방 약물 리스트"),
-					fieldWithPath("prescriptions.[].medicineDetailList.[].medicineId").type(NUMBER).description("약물 아이디"),
-					fieldWithPath("prescriptions.[].medicineDetailList.[].medicineName").type(STRING).description("약물 이름"),
-					fieldWithPath("prescriptions.[].medicineDetailList.[].medicineEffect").type(STRING).description("약물 효과"),
-					fieldWithPath("prescriptions.[].medicineDetailList.[].administerCount").type(NUMBER).description("약물 투약일수")
+					fieldWithPath("prescriptions.[].medicineDetailList.[].medicineId").type(NUMBER)
+						.description("약물 아이디"),
+					fieldWithPath("prescriptions.[].medicineDetailList.[].medicineName").type(STRING)
+						.description("약물 이름"),
+					fieldWithPath("prescriptions.[].medicineDetailList.[].medicineEffect").type(STRING)
+						.description("약물 효과"),
+					fieldWithPath("prescriptions.[].medicineDetailList.[].administerCount").type(NUMBER)
+						.description("약물 투약일수")
 				)));
 	}
 
-	private MyDataDetailPrescription getPrescription(Long id, List<MyDataDetailMedicine> medicineList) {
+	@Test
+	@DisplayName("/api/v1/info-input 로 전달된 MyData Detail 정보를 가지고 Prescription 을 수정한다")
+	void patchMyDataDetail() throws Exception {
+		// given
+		DetailRequest detailRequest = new DetailRequest(
+			new ArrayList<>(Arrays.asList(
+				makeDetailPrescription(1L),
+				makeDetailPrescription(2L)
+			))
+		);
+
+		// when
+		ResultActions resultActions = mockMvc.perform(
+			patch("/api/v1/info-input")
+				.with(SecurityMockMvcRequestPostProcessors.csrf())
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(objectMapper.writeValueAsString(detailRequest)));
+
+		// then
+		resultActions
+			.andExpectAll(status().isOk(),
+				content().contentType(MediaType.APPLICATION_JSON))
+			.andDo(print())
+			.andDo(document(COMMON_DOCS_NAME,
+				requestHeaders(
+					headerWithName(HttpHeaders.CONTENT_TYPE).description("json 으로 전달")
+				),
+				requestFields(
+					fieldWithPath("prescriptions").type(ARRAY).description("투약 일수가 적힌 처방전 리스트"),
+					fieldWithPath("prescriptions.[].id").type(NUMBER).description("처방전 아이디"),
+					fieldWithPath("prescriptions.[].administerInterval").type(NUMBER).description("투약기간"),
+					fieldWithPath("prescriptions.[].dailyCount").type(NUMBER).description("하루 투약 횟수"),
+					fieldWithPath("prescriptions.[].totalDayCount").type(NUMBER).description("총 투약 횟수(1일 기준)")
+				)));
+	}
+
+	private DetailPrescription makeDetailPrescription(Long id) {
+		return DetailPrescription.builder()
+			.id(id)
+			.administerInterval(1)
+			.dailyCount(1)
+			.totalDayCount(7)
+			.build();
+	}
+
+	private MyDataDetailPrescription makePrescription(Long id, List<MyDataDetailMedicine> medicineList) {
 		return MyDataDetailPrescription.builder()
 			.prescriptionId(id)
 			.treatType("처방조제")
@@ -103,7 +153,7 @@ class MyDataDetailControllerTest extends TestConfig {
 			.build();
 	}
 
-	private MyDataDetailMedicine getMedicine(Long id) {
+	private MyDataDetailMedicine makeMedicine(Long id) {
 		return MyDataDetailMedicine.builder()
 			.medicineId(id)
 			.medicineName("록사렉스캡슐75mg (LOXALEX CAP)")

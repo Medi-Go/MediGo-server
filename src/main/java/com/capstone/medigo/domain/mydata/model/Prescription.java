@@ -47,6 +47,16 @@ public class Prescription extends BaseEntity {
     @Column(name = "treat_medicalnm")
     private String treatMedicalnm; //병의원(약국)명
 
+    @Column(name = "administer_interval")
+    private int administerInterval;
+
+    @Column(name = "daily_count")
+    private int dailyCount;
+
+    @Column(name = "total_day_count")
+    private int totalDayCount;
+
+
     @Builder
     public Prescription(Member member, String treatType, String visitCnt, String treatDsnm, int treatDate, String medicineCnt, String treatdsgb, String prescribeCnt, String treatMedicalnm) {
         this.member = member;
@@ -58,5 +68,11 @@ public class Prescription extends BaseEntity {
         this.treatdsgb = treatdsgb;
         this.prescribeCnt = prescribeCnt;
         this.treatMedicalnm = treatMedicalnm;
+    }
+
+    public void changeDetail(int administerInterval, int dailyCount, int totalDayCount){
+        this.administerInterval = administerInterval;
+        this.dailyCount = dailyCount;
+        this.totalDayCount = totalDayCount;
     }
 }

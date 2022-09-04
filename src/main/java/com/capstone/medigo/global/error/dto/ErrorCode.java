@@ -7,12 +7,12 @@ import lombok.Getter;
 @Getter
 public enum ErrorCode {
 
-	//common
+	// Common
 	INVALID_METHOD_ARGUMENT("C001", "Invalid method argument", HttpStatus.BAD_REQUEST),
 	UNKNOWN_SERVER_ERROR("C002", "Unknown server error", HttpStatus.INTERNAL_SERVER_ERROR),
 	METHOD_NOT_ALLOWED("C003", "Http method not allowed", HttpStatus.METHOD_NOT_ALLOWED),
 
-	//member
+	// Member
 	INVALID_EMAIL("M001", "Email is invalid", HttpStatus.BAD_REQUEST),
 	INVALID_AES("M002", "AES encrypt and decrypt are invalid", HttpStatus.BAD_REQUEST),
 	INVALID_PHONE_NUMBER("M003", "Phone number format is not invalid", HttpStatus.BAD_REQUEST),
@@ -25,7 +25,10 @@ public enum ErrorCode {
 	REGISTERED_MEMBER("M010", "Member is already registered", HttpStatus.BAD_REQUEST),
 	INVALID_AUTH_TYPE("M011", "AUTH type is invalid", HttpStatus.BAD_REQUEST),
 
-	//Token Expiration
+	// Prescription
+	NOT_FOUND_PRESCRIPTION("P001", "Not found prescription", HttpStatus.BAD_REQUEST),
+
+	// Token Expiration
 	ACCESS_TOKEN_EXPIRATION("T001", "Access token is expired", HttpStatus.BAD_REQUEST),
 	REFRESH_TOKEN_EXPIRATION("T002", "Refresh token is expired", HttpStatus.BAD_REQUEST);
 

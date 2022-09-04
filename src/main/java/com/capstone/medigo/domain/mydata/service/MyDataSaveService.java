@@ -33,6 +33,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -46,6 +47,7 @@ public class MyDataSaveService {
 	private final MedicineRepository medicineRepository;
 	private final PrescriptionRepository prescriptionRepository;
 
+	@Transactional
 	public void save(String myDataValue, Long memberId) {
 		ObjectMapper mapper = new ObjectMapper();
 		MyDataSaveRequest myDataSaveRequest = null;
