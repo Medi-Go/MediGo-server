@@ -1,0 +1,6 @@
+== MyData 투약 일수 추가 입력
+
+=== 최근 추가된 처방데이터
+
+operation::get-my-data-detail[snippets='http-request,request-headers,request-body,http-response,response-headers,response-body,response-fields']
+'''

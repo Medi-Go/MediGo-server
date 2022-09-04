@@ -1,4 +1,4 @@
-package com.capstone.medigo.domain.mydata.controller.dto;
+package com.capstone.medigo.domain.mydata.controller.dto.save;
 
 public record DurSaveRequest(
         String AGETABOO,

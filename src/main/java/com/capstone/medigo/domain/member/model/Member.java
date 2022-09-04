@@ -1,5 +1,6 @@
 package com.capstone.medigo.domain.member.model;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import javax.persistence.Column;
@@ -62,6 +63,12 @@ public class Member {
 	@Column(name = "callback_data")
 	private String callBackData;
 
+	@Column(name = "my_data_update_time")
+	private LocalDateTime myDataUpdateTime;
+
+	@Column(name = "my_data_detail_update_time")
+	private LocalDateTime myDataDetailUpdateTime;
+
 	@Builder
 	public Member(Long id, String email, String profileImageUrl, String nickName, String name, String jumin,
 		Carrier carrier, String phoneNumber) {
@@ -82,5 +89,13 @@ public class Member {
 		this.callbackId = String.valueOf(responseInfo.get("callbackId"));
 		this.callBackType = String.valueOf(responseInfo.get("callBackType"));
 		this.callBackData = String.valueOf(responseInfo.get("callBackData"));
+	}
+
+	public void changeMyDataUpdateTime(LocalDateTime time){
+		this.myDataUpdateTime = time;
+	}
+
+	public void changeMyDataDetailUpdateTime(LocalDateTime time){
+		this.myDataDetailUpdateTime = time;
 	}
 }

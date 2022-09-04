@@ -33,7 +33,7 @@ public class Prescription extends BaseEntity {
     private String treatDsnm; // 진료대상자명
 
     @Column(name = "treat_date")
-    private String treatDate; // 진료개시일
+    private int treatDate; // 진료개시일
 
     @Column(name = "medicine_count")
     private String medicineCnt; // 투약(요양)횟수
@@ -48,8 +48,7 @@ public class Prescription extends BaseEntity {
     private String treatMedicalnm; //병의원(약국)명
 
     @Builder
-
-    public Prescription(Member member, String treatType, String visitCnt, String treatDsnm, String treatDate, String medicineCnt, String treatdsgb, String prescribeCnt, String treatMedicalnm) {
+    public Prescription(Member member, String treatType, String visitCnt, String treatDsnm, int treatDate, String medicineCnt, String treatdsgb, String prescribeCnt, String treatMedicalnm) {
         this.member = member;
         this.treatType = treatType;
         this.visitCnt = visitCnt;
