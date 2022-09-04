@@ -18,6 +18,7 @@ import com.capstone.medigo.domain.mydata.repository.prescription.PrescriptionRep
 import com.capstone.medigo.domain.mydata.util.LocalDateTimeUtil;
 
 @SpringBootTest
+@Transactional
 public abstract class ServiceTestConfig {
 
 	@Autowired
