@@ -8,4 +8,7 @@ import com.capstone.medigo.domain.mydata.model.Prescription;
 public interface CustomPrescriptionRepository {
 
 	List<Prescription> findPrescriptionAfterTime(int time, Member member);
+
+	List<Prescription> findByMemberAndEndDate(Member member, int now);
+
 }

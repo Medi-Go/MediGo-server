@@ -22,9 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 public class MyDataSaveController {
 	private final MyDataLoadService myDataLoadService;
 	private final MyDataSaveService myDataSaveService;
-	
+
 	@PostMapping
-	public ResponseEntity<Void> connect(@AuthenticationPrincipal Long memberId) {
+	public ResponseEntity<Void> connect(
+		@AuthenticationPrincipal Long memberId
+	) {
 		Map<String, Object> responseInfo = myDataLoadService.connectToMyData(memberId);
 		myDataLoadService.changeMember(memberId, responseInfo);
 
@@ -35,7 +37,9 @@ public class MyDataSaveController {
 	}
 
 	@PostMapping("/data")
-	public ResponseEntity<Void> loadMyData(@AuthenticationPrincipal Long memberId) {
+	public ResponseEntity<Void> loadMyData(
+		@AuthenticationPrincipal Long memberId
+	) {
 		String memberMyData = myDataLoadService.getMemberMyData(memberId);
 		myDataSaveService.save(memberMyData, memberId);
 

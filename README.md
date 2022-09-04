@@ -38,6 +38,7 @@ Spring Rest Docs : http://www.medigo.p-e.kr/
 ![JWT](https://img.shields.io/badge/JWT-black?style=Plastic&logo=JSON%20web%20tokens)
 ![Flyway](https://img.shields.io/badge/flyway-white.svg?style=Plastic&logo=Flyway&logoColor=red)
 ![querydsl](https://img.shields.io/badge/querydsl-black.svg?style=Plastic&logo=Elastic&logoColor=white)
+![JUnit5](https://img.shields.io/badge/JUnit5-white?style=Plastic&logo=JUnit5)
 
 ![Spring_Boot_2](https://img.shields.io/badge/Spring_Boot_2.7.3-%236DB33F.svg?style=Plastic&logo=SpringBoot&logoColor=white)
 ![Spring_Web](https://img.shields.io/badge/Spring_Web-%236DB33F.svg?style=Plastic&logo=spring&logoColor=white)
@@ -46,10 +47,6 @@ Spring Rest Docs : http://www.medigo.p-e.kr/
 ![Spring_Security](https://img.shields.io/badge/Spring_Security-%236DB33F.svg?style=Plastic&logo=springsecurity&logoColor=white)
 ![Spring_Security](https://img.shields.io/badge/Spring_OAuth2_Client-%236DB33F.svg?style=Plastic&logo=springsecurity&logoColor=white)
 ![Spring_Rest_Docs](https://img.shields.io/badge/Spring_Rest--Docs-%236DB33F.svg?style=Plastic&logo=Asciidoctor&logoColor=white)
-
-![JUnit5](https://img.shields.io/badge/JUnit5-white?style=Plastic&logo=JUnit5)
-![Postman](https://img.shields.io/badge/postman-white?style=Plastic&logo=postman)
-## DB
 
 ![MySQL](https://img.shields.io/badge/mysql-%23121011.svg?style=Plastic&logo=mysql&logoColor=white)
 ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=Plastic&logo=redis&logoColor=white)
@@ -69,8 +66,9 @@ Spring Rest Docs : http://www.medigo.p-e.kr/
 
 
 ## 스프린트
-[dev1] 220814 - 220828 : 프로젝트 세팅, security 설정, JWT 인가, Docker CICD 배포, 구글 OAuth, MyData 연동 및 데이터 로딩, 인증 및 MyData 관련 API 작성
-[dev2] 220829 - 220905 : MyData 데이터 연동 및 저장 완료, 
+[dev1] 220817 - 220831 : 프로젝트 세팅, security 설정, JWT 인가, Docker CICD 배포, 구글 OAuth, MyData 연동 및 데이터 로딩, 인증 및 MyData 관련 API 작성<br>
+[dev2] 220831 - 220907 : MyData 데이터 연동 및 저장 완료, MyData 투약 일수 Update API 작성, 메인페이지 화면 API 구현, (중복 약물 체크 로직 및 API 구현)<br>
+
 
 ## 전략
 git 전략 : gitlab flow

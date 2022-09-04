@@ -38,7 +38,7 @@ class MyDataDetailControllerTest extends TestConfig {
 	MyDataDetailService myDataDetailService;
 
 	@Test
-	@DisplayName("/api/v1/info-input 로 MyData 투약 정보 입력에 필요한 리스트 dto 전달")
+	@DisplayName("/api/v1/info-input 로 MyData 투약 정보 입력에 필요한 리스트 dto 전달한다")
 	void getMyDataDetail() throws Exception {
 		// given
 		DetailMonthRequest detailMonthRequest = new DetailMonthRequest(11);

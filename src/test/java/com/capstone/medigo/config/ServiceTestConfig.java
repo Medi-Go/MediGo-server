@@ -94,7 +94,7 @@ public abstract class ServiceTestConfig {
 			.treatType("처방조제")
 			.visitCnt("1")
 			.treatDsnm("김철수")
-			.treatDate(LocalDateTimeUtil.change8format(time))
+			.treatDate(LocalDateTimeUtil.localTo8format(time))
 			.medicineCnt("3")
 			.treatdsgb("1")
 			.prescribeCnt("1")
