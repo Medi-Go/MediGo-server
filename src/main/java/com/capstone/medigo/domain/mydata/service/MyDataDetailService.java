@@ -36,7 +36,7 @@ public class MyDataDetailService {
 			throw MemberException.notFoundMember(memberId);
 		});
 
-		int beforeTime = LocalDateTimeUtil.change8format(time.minusMonths(month));
+		int beforeTime = LocalDateTimeUtil.localTo8format(time.minusMonths(month));
 		List<Prescription> prescriptions = prescriptionRepository.findPrescriptionAfterTime(beforeTime,member);
 
 		List<MyDataDetailPrescription> myDataDetailPrescriptionList = new ArrayList<>();

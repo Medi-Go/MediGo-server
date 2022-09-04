@@ -1,0 +1,6 @@
+== MyData 메인 페이지
+
+=== 메인페이지 데이터
+
+operation::get-my-data-main[snippets='http-request,request-headers,request-body,http-response,response-headers,response-body,response-fields']
+'''

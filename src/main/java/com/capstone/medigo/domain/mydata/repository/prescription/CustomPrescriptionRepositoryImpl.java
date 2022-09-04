@@ -27,4 +27,14 @@ public class CustomPrescriptionRepositoryImpl implements CustomPrescriptionRepos
 			)
 			.fetch();
 	}
+
+	@Override
+	public List<Prescription> findByMemberAndEndDate(Member member, int now) {
+		return jpaQueryFactory
+			.selectFrom(prescription)
+			.where(
+				prescription.member.eq(member),
+				prescription.endDate.goe(now))
+			.fetch();
+	}
 }

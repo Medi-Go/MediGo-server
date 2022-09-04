@@ -7,4 +7,5 @@ import com.capstone.medigo.domain.mydata.model.Prescription;
 
 public interface CustomMedicineRepository {
 	List<Medicine> findByPrescription(Prescription prescription);
+
 }
