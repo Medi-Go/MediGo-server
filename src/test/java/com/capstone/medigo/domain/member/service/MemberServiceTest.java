@@ -21,7 +21,7 @@ class MemberServiceTest {
 	@Autowired
 	MemberService memberService;
 
-	String email = "test1@gmail.com";
+	String email = "test999@gmail.com";
 	Member member;
 
 	@BeforeEach
@@ -31,7 +31,7 @@ class MemberServiceTest {
 			Member.builder()
 				.email(email)
 				.profileImageUrl("www.s31.com")
-				.nickName("test1")
+				.nickName("test999")
 				.name("김철수")
 				.jumin("19971107")
 				.carrier(Carrier.LG)

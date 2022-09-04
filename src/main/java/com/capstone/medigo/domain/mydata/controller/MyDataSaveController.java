@@ -37,7 +37,7 @@ public class MyDataSaveController {
 	@PostMapping("/data")
 	public ResponseEntity<Void> loadMyData(@AuthenticationPrincipal Long memberId) {
 		String memberMyData = myDataLoadService.getMemberMyData(memberId);
-		myDataSaveService.save(memberMyData);
+		myDataSaveService.save(memberMyData, memberId);
 
 		return ResponseEntity
 			.ok()

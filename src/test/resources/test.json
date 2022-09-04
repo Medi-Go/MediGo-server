@@ -1,0 +1,13 @@
+{
+  "prescriptions" : [ {
+    "prescriptionId" : 1,
+    "administerInterval" : 1,
+    "dailyCount" : 1,
+    "totalDayCount" : 7
+  }, {
+    "prescriptionId" : 2,
+    "administerInterval" : 3,
+    "dailyCount" : 3,
+    "totalDayCount" : 15
+  }]
+}

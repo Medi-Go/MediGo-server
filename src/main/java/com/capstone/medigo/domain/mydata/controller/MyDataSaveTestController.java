@@ -58,7 +58,7 @@ public class MyDataSaveTestController {
 	@GetMapping("/test2")
 	public String test2() {
 		String memberMyData = myDataLoadService.getMemberMyData(1L);
-		myDataSaveService.save(memberMyData);
+		myDataSaveService.save(memberMyData, 1L);
 
 		return memberMyData;
 	}

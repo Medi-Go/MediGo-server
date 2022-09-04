@@ -11,4 +11,5 @@ endif::[]
 
 include::member-authentication.adoc[]
 include::member.adoc[]
-include::myData-Loading.adoc[]
+include::myData-loading.adoc[]
+include::myData-detail.adoc[]
