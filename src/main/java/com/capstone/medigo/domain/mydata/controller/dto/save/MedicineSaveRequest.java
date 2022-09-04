@@ -1,4 +1,4 @@
-package com.capstone.medigo.domain.mydata.controller.dto;
+package com.capstone.medigo.domain.mydata.controller.dto.save;
 
 import lombok.Builder;
 
@@ -6,13 +6,11 @@ import java.util.ArrayList;
 public record MedicineSaveRequest(
         String TREATTYPE,
         String MEDICINENM,
-        String TREATDATE,
+        int TREATDATE,
         String MEDICINEEFFECT,
         String PRESCRIBECNT,
-        String ADMINISTERCNT,
+        int ADMINISTERCNT,
         ArrayList<MedicineInfoSaveRequest> DRUGINFOLIST
-
-
 ){
     @Builder
     public MedicineSaveRequest {

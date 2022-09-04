@@ -1,4 +1,4 @@
-package com.capstone.medigo.domain.mydata.controller.dto;
+package com.capstone.medigo.domain.mydata.controller.dto.save;
 
 import lombok.Builder;
 
@@ -7,7 +7,7 @@ public record PrescriptionSaveRequest(
     String TREATTYPE,
     String VISITCNT,
     String TREATDSNM,
-    String TREATDATE,
+    int TREATDATE,
     String MEDICINECNT,
     String TREATDSGB,
     String PRESCRIBECNT,
