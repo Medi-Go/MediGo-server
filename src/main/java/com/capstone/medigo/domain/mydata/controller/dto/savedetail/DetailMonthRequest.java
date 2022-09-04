@@ -1,4 +1,4 @@
-package com.capstone.medigo.domain.mydata.controller.dto;
+package com.capstone.medigo.domain.mydata.controller.dto.savedetail;
 
 import javax.validation.constraints.NotNull;
 

@@ -30,7 +30,7 @@ class AuthenticationServiceTest {
 	void testSignupMember() {
 		// given
 		MemberSaveRequest memberSaveRequest = MemberSaveRequest.builder()
-			.email("test@test.com")
+			.email("test1234@test.com")
 			.name("홍길동")
 			.phoneNumber("01012345678")
 			.jumin("19971107")
@@ -38,22 +38,22 @@ class AuthenticationServiceTest {
 			.build();
 
 		TemporaryMember temporaryMember = TemporaryMember.builder()
-			.email("test@test.com")
+			.email("test1234@test.com")
 			.imageUrl("test.s3.com")
-			.nickname("test")
+			.nickname("test1234")
 			.expiration(500000L)
 			.build();
 
-		given(temporaryMemberRepository.findById("test@test.com")).willReturn(Optional.of(temporaryMember));
+		given(temporaryMemberRepository.findById("test1234@test.com")).willReturn(Optional.of(temporaryMember));
 		// when
 		MemberResponse memberResponse = authenticationService.signupMember(memberSaveRequest);
 
 		// then
 		assertAll(
 			() -> assertThat(memberResponse.id()).isNotNull(),
-			() -> assertThat(memberResponse.email()).isEqualTo("test@test.com"),
+			() -> assertThat(memberResponse.email()).isEqualTo("test1234@test.com"),
 			() -> assertThat(memberResponse.profileImageUrl()).isEqualTo("test.s3.com"),
-			() -> assertThat(memberResponse.nickName()).isEqualTo("test"),
+			() -> assertThat(memberResponse.nickName()).isEqualTo("test1234"),
 			() -> assertThat(memberResponse.name()).isEqualTo("홍길동"),
 			() -> assertThat(memberResponse.jumin()).isEqualTo("19971107"),
 			() -> assertThat(memberResponse.carrier()).isEqualTo("LG"),
