@@ -1,7 +1,6 @@
 package com.capstone.medigo.domain.mydata.controller;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.validation.Valid;
 
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.medigo.domain.mydata.controller.dto.DetailMonthRequest;
 import com.capstone.medigo.domain.mydata.service.MyDataDetailService;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailTreatment;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,19 +28,19 @@ public class MyDataDetailController {
 	private final MyDataDetailService myDataDetailService;
 
 	@GetMapping
-	public ResponseEntity<List<MyDataDetailTreatment>> simpleMyDataInfo(
+	public ResponseEntity<MyDataDetailDto> myDataDetail(
 		@AuthenticationPrincipal Long memberId,
 		@Valid @RequestBody DetailMonthRequest detailMonthRequest
 	) {
-		List<MyDataDetailTreatment> myDataInfo = myDataDetailService.getMyDataInfo(memberId, LocalDateTime.now(), detailMonthRequest.month());
+		MyDataDetailDto myDataDetailDto = myDataDetailService.getMyDataInfo(memberId, LocalDateTime.now(), detailMonthRequest.month());
 
 		return ResponseEntity
 			.ok()
-			.body(myDataInfo);
+			.body(myDataDetailDto);
 	}
 
 	@PostMapping
-	public ResponseEntity<Void> inputMyDataInfo(
+	public ResponseEntity<Void> myDataDetail(
 		@AuthenticationPrincipal Long memberId
 	) {
 

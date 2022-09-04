@@ -4,7 +4,7 @@ import java.util.List;
 
 import lombok.Builder;
 
-public record MyDataDetailTreatment(
+public record MyDataDetailPrescription(
 	Long prescriptionId,
 	String treatType,
 	String treatName,
@@ -13,6 +13,6 @@ public record MyDataDetailTreatment(
 	List<MyDataDetailMedicine> medicineDetailList
 ){
 	@Builder
-	public MyDataDetailTreatment {
+	public MyDataDetailPrescription {
 	}
 }

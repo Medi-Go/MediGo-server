@@ -5,7 +5,7 @@ import java.util.List;
 import com.capstone.medigo.domain.mydata.model.Medicine;
 import com.capstone.medigo.domain.mydata.model.Prescription;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailTreatment;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailPrescription;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -22,8 +22,8 @@ public class MyDataConverter {
 			.build();
 	}
 
-	public static MyDataDetailTreatment toMyDataTreat(Prescription prescription, List<MyDataDetailMedicine> detailList) {
-		return MyDataDetailTreatment.builder()
+	public static MyDataDetailPrescription toMyDataTreat(Prescription prescription, List<MyDataDetailMedicine> detailList) {
+		return MyDataDetailPrescription.builder()
 			.prescriptionId(prescription.getId())
 			.treatType(prescription.getTreatType())
 			.treatName(prescription.getTreatDsnm())
