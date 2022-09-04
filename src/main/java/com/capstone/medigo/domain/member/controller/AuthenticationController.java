@@ -33,7 +33,9 @@ public class AuthenticationController {
 	private final AuthenticationService authenticationService;
 
 	@PostMapping("/signup")
-	public ResponseEntity<MemberSignupResponse> singUp(@Valid @RequestBody MemberSaveRequest memberSaveRequest) {
+	public ResponseEntity<MemberSignupResponse> singUp(
+		@Valid @RequestBody MemberSaveRequest memberSaveRequest
+	) {
 		MemberResponse memberResponse = authenticationService.signupMember(memberSaveRequest);
 		Long memberId = memberResponse.id();
 
@@ -48,7 +50,9 @@ public class AuthenticationController {
 	}
 
 	@PostMapping("/login")
-	public ResponseEntity<MemberSignupResponse> login(@Valid @RequestBody MemberIdRequest memberIdRequest) {
+	public ResponseEntity<MemberSignupResponse> login(
+		@Valid @RequestBody MemberIdRequest memberIdRequest
+	) {
 		Long memberId = memberIdRequest.id();
 		Tokens tokens = tokenService.generateTokens(memberId.toString(), MemberRole.ROLE_MEMBER.name());
 		authenticationService.saveRefreshToken(memberId, tokens, tokenService.getRefreshTokenPeriod());

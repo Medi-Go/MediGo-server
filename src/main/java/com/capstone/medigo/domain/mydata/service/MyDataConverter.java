@@ -6,6 +6,7 @@ import com.capstone.medigo.domain.mydata.model.Medicine;
 import com.capstone.medigo.domain.mydata.model.Prescription;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailMedicine;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailPrescription;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataMainMedicine;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,15 @@ public class MyDataConverter {
 			.treatDate(prescription.getTreatDate())
 			.treatMedicalName(prescription.getTreatMedicalnm())
 			.medicineDetailList(detailList)
+			.build();
+	}
+
+	public static MyDataMainMedicine toMyDataMainMedicine(Medicine medicine, int remainCount) {
+		return MyDataMainMedicine.builder()
+			.id(medicine.getId())
+			.medicineName(medicine.getMedicineNm())
+			.treatDate(medicine.getTreatDate())
+			.remainCount(remainCount)
 			.build();
 	}
 }

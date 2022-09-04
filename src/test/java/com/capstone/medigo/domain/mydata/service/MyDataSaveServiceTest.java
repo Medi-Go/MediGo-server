@@ -43,7 +43,5 @@ class MyDataSaveServiceTest {
 
 		// then
 		System.out.println(result);
-
 	}
-
 }

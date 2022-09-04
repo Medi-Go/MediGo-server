@@ -29,8 +29,8 @@ class MyDataDetailServiceTest extends ServiceTestConfig {
 	PrescriptionRepository prescriptionRepository;
 
 	@Test
-	void testGetMyDataInfo () {
-	    // given
+	void testGetMyDataInfo() {
+		// given
 		LocalDateTime now = LocalDateTime.now();
 
 		// when
@@ -44,7 +44,7 @@ class MyDataDetailServiceTest extends ServiceTestConfig {
 			() -> assertThat(prescription.prescriptionId()).isNotNull(),
 			() -> assertThat(prescription.treatType()).isEqualTo("처방조제"),
 			() -> assertThat(prescription.treatName()).isEqualTo("김철수"),
-			() -> assertThat(prescription.treatDate()).isEqualTo(LocalDateTimeUtil.change8format(now.minusDays(5))),
+			() -> assertThat(prescription.treatDate()).isEqualTo(LocalDateTimeUtil.localTo8format(now.minusDays(5))),
 			() -> assertThat(prescription.treatMedicalName()).isEqualTo("한가람약국[남동구 남동대로]"),
 			() -> assertThat(prescription.medicineDetailList()).isNotNull()
 		);
@@ -59,30 +59,36 @@ class MyDataDetailServiceTest extends ServiceTestConfig {
 	}
 
 	@Test
-	void testUpdateDetailOfPrescription () {
-	    // given
+	void testUpdateDetailOfPrescription() {
+		// given
 		DetailRequest detailRequest = new DetailRequest(
 			new ArrayList<>(Arrays.asList(
-				makeDetailPrescription(prescriptionBefore5day.getId(), 1,2,3),
-				makeDetailPrescription(prescriptionBefore4Month.getId(),4,5,6)
+				makeDetailPrescription(prescriptionBefore5day.getId(), 1, 2, 3),
+				makeDetailPrescription(prescriptionBefore4Month.getId(), 4, 5, 6)
 			))
 		);
 
-	    // when
+		// when
 		myDataDetailService.updateDetailOfPrescription(detailRequest);
 
-	    // then
+		// then
 		Prescription prescription1 = prescriptionRepository.findById(prescriptionBefore5day.getId()).get();
 		assertAll(
 			() -> assertThat(prescription1.getAdministerInterval()).isEqualTo(1),
 			() -> assertThat(prescription1.getDailyCount()).isEqualTo(2),
-			() -> assertThat(prescription1.getTotalDayCount()).isEqualTo(3)
+			() -> assertThat(prescription1.getTotalDayCount()).isEqualTo(3),
+			() -> assertThat(prescription1.getEndDate()).isEqualTo(
+				LocalDateTimeUtil.localTo8format(LocalDateTime.now().minusDays(5).plusDays(1 * 3))
+			)
 		);
 		Prescription prescription2 = prescriptionRepository.findById(prescriptionBefore4Month.getId()).get();
 		assertAll(
 			() -> assertThat(prescription2.getAdministerInterval()).isEqualTo(4),
 			() -> assertThat(prescription2.getDailyCount()).isEqualTo(5),
-			() -> assertThat(prescription2.getTotalDayCount()).isEqualTo(6)
+			() -> assertThat(prescription2.getTotalDayCount()).isEqualTo(6),
+			() -> assertThat(prescription2.getEndDate()).isEqualTo(
+				LocalDateTimeUtil.localTo8format(LocalDateTime.now().minusMonths(4).plusDays(4 * 6))
+			)
 		);
 	}
 
