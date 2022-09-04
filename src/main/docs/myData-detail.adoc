@@ -2,8 +2,10 @@
 
 === 최근 추가된 처방데이터
 
-operation::get-my-data-detail[snippets='http-request,request-headers,request-body,http-response,response-headers,response-body,response-fields']
+operation::get-my-data-detail[snippets='http-request,request-headers,request-body,request-fields,http-response,response-headers,response-body,response-fields']
 '''
 
-operation::patch-my-data-detail[snippets='http-request,request-headers,request-body,http-response,response-headers,response-body,response-fields']
+=== Prescription 투약일수 정보 업데이트
+
+operation::patch-my-data-detail[snippets='http-request,request-headers,request-body,request-fields,http-response,response-headers,response-body,response-fields']
 '''
