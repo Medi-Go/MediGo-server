@@ -20,7 +20,7 @@ public class MyDataMainController {
 	private final MyDataMainService myDataMainService;
 
 	@GetMapping
-	public ResponseEntity<MyDataMainDto> myDataDetail(
+	public ResponseEntity<MyDataMainDto> myDataMain(
 		@AuthenticationPrincipal Long memberId
 	) {
 		MyDataMainDto myDataMainDto = myDataMainService.findMedicinesInUse(memberId);
