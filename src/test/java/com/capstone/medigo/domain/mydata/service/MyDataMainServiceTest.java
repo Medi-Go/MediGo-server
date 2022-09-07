@@ -16,6 +16,7 @@ import com.capstone.medigo.domain.member.model.Member;
 import com.capstone.medigo.domain.mydata.model.Medicine;
 import com.capstone.medigo.domain.mydata.model.Prescription;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataMainDto;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataMainInfoDto;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataMainMedicines;
 import com.capstone.medigo.domain.mydata.util.LocalDateTimeUtil;
 
@@ -35,10 +36,10 @@ class MyDataMainServiceTest extends ServiceTestConfig {
 		makeAndSaveMedicine(inValidPrescription, LocalDateTime.now().minusDays(20));
 
 		// when
-		MyDataMainDto medicinesInUse = myDataMainService.findMedicinesInUse(newMember.getId());
+		MyDataMainDto myDataMainDto = myDataMainService.findMedicinesInUse(newMember.getId());
 
 		// then
-		List<MyDataMainMedicines> myDataMainMedicines = medicinesInUse.effectField();
+		List<MyDataMainMedicines> myDataMainMedicines = myDataMainDto.myDataMainInfoDto().effectField();
 		assertThat(myDataMainMedicines.size()).isEqualTo(1);
 	}
 
