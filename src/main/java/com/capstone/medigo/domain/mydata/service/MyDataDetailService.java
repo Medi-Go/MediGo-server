@@ -32,12 +32,12 @@ public class MyDataDetailService {
 
 	@Transactional(readOnly = true)
 	public MyDataDetailDto getMyDataInfo(Long memberId, LocalDateTime time, int month) {
-		Member member = memberRepository.findMemberById(memberId).orElseThrow(() -> {
+		Member member = memberRepository.findById(memberId).orElseThrow(() -> {
 			throw MemberException.notFoundMember(memberId);
 		});
 
 		int beforeTime = LocalDateTimeUtil.localTo8format(time.minusMonths(month));
-		List<Prescription> prescriptions = prescriptionRepository.findPrescriptionAfterTime(beforeTime,member);
+		List<Prescription> prescriptions = prescriptionRepository.findPrescriptionByMemberAfterTime(beforeTime,member);
 
 		List<MyDataDetailPrescription> myDataDetailPrescriptionList = new ArrayList<>();
 		for (Prescription prescription : prescriptions) {

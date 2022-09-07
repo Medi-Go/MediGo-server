@@ -6,8 +6,6 @@ import com.capstone.medigo.domain.member.model.Member;
 
 public interface CustomMemberRepository {
 
-	Optional<Member> findMemberById(Long memberId);
-
 	Optional<Member> findMemberByEmail(String email);
 
 	Optional<Member> findMemberByNickName(String nickname);

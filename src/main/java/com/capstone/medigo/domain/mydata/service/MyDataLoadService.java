@@ -32,7 +32,7 @@ public class MyDataLoadService {
 	private final AES256Service aes256Service;
 
 	public Map<String, Object> connectToMyData(Long memberId) {
-		Member member = memberRepository.findMemberById(memberId)
+		Member member = memberRepository.findById(memberId)
 			.orElseThrow(() -> MemberException.notFoundMember(memberId));
 		String encryptJumin = aes256Service.encrypt(member.getJumin());
 
@@ -73,7 +73,7 @@ public class MyDataLoadService {
 	}
 
 	public String getMemberMyData(Long memberId) {
-		Member member = memberRepository.findMemberById(memberId)
+		Member member = memberRepository.findById(memberId)
 			.orElseThrow(() -> MemberException.notFoundMember(memberId));
 
 		String reqURL = "https://datahub-dev.scraping.co.kr/scrap/captcha";
@@ -108,7 +108,7 @@ public class MyDataLoadService {
 
 	@Transactional
 	public void changeMember(Long memberId, Map<String, Object> responseInfo) {
-		Member member = memberRepository.findMemberById(memberId)
+		Member member = memberRepository.findById(memberId)
 			.orElseThrow(() -> MemberException.notFoundMember(memberId));
 		member.setCallBack(responseInfo);
 	}

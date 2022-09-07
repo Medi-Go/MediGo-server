@@ -24,7 +24,6 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.capstone.medigo.config.TestConfig;
-import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailMonthRequest;
 import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescription;
 import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest;
 import com.capstone.medigo.domain.mydata.service.MyDataDetailService;
@@ -41,7 +40,6 @@ class MyDataDetailControllerTest extends TestConfig {
 	@DisplayName("/api/v1/info-input 로 MyData 투약 정보 입력에 필요한 리스트 dto 전달한다")
 	void getMyDataDetail() throws Exception {
 		// given
-		DetailMonthRequest detailMonthRequest = new DetailMonthRequest(11);
 		List<MyDataDetailMedicine> medicineList1 = new ArrayList<>(
 			Arrays.asList(makeMedicine(1L), makeMedicine(2L))
 		);
@@ -57,10 +55,9 @@ class MyDataDetailControllerTest extends TestConfig {
 
 		// when
 		ResultActions resultActions = mockMvc.perform(
-			get("/api/v1/info-input")
+			get("/api/v1/info-input/{month}", 1)
 				.with(SecurityMockMvcRequestPostProcessors.csrf())
-				.contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(detailMonthRequest)));
+				.contentType(MediaType.APPLICATION_JSON));
 
 		// then
 		resultActions
@@ -71,9 +68,6 @@ class MyDataDetailControllerTest extends TestConfig {
 			.andDo(document(COMMON_DOCS_NAME,
 				requestHeaders(
 					headerWithName(HttpHeaders.CONTENT_TYPE).description("json 으로 전달")
-				),
-				requestFields(
-					fieldWithPath("month").type(NUMBER).description("최근 몇달까지의 데이터를 받을지 표시")
 				),
 				responseHeaders(
 					headerWithName(HttpHeaders.CONTENT_TYPE).description("json 으로 전달")
