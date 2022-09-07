@@ -33,8 +33,9 @@ public class CustomPrescriptionRepositoryImpl implements CustomPrescriptionRepos
 		return jpaQueryFactory
 			.selectFrom(prescription)
 			.where(
-				prescription.member.eq(member),
-				prescription.endDate.goe(now))
+				prescription.member.eq(member)
+				// prescription.endDate.goe(now)
+			)
 			.fetch();
 	}
 }
