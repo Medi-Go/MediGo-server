@@ -49,7 +49,7 @@ public class Prescription extends BaseEntity {
 	private String treatMedicalnm; //병의원(약국)명
 
 	@Column(name = "administer_interval")
-	private int administerInterval; //투약기간(3일에 1번 / 1일에 1번)
+	private int administerInterval; // 투약기간(3일에 1번 / 1일에 1번)
 
 	@Column(name = "daily_count")
 	private int dailyCount; // 하루 복용 횟수
