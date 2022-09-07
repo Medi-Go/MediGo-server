@@ -25,7 +25,7 @@ class MyDataMainServiceTest extends ServiceTestConfig {
 	MyDataMainService myDataMainService;
 
 	@Test
-	@DisplayName("main 화면에 데이터를 보여주는데 end date 기준으로 유무가 나윈다.")
+	@DisplayName("main 화면에 데이터를 보여주는데 end date 기준으로 유무가 나뉜다")
 	void testFindMedicinesInUse () {
 	    // given
 		Member newMember = makeAndSaveMember();
