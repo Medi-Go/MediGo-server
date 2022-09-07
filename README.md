@@ -66,9 +66,9 @@ Spring Rest Docs : http://www.medigo.p-e.kr/
 
 
 ## 스프린트
-[dev1] 220817 - 220831 : 프로젝트 세팅, security 설정, JWT 인가, Docker CICD 배포, 구글 OAuth, MyData 연동 및 데이터 로딩, 인증 및 MyData 관련 API 작성<br>
-[dev2] 220831 - 220907 : MyData 데이터 연동 및 저장 완료, MyData 투약 일수 Update API 작성, 메인페이지 화면 API 구현, (중복 약물 체크 로직 및 API 구현)<br>
-
+**[dev1] 220817 - 220831** : 프로젝트 세팅, security 설정, JWT 인가, Docker CICD 배포, 구글 OAuth, MyData 연동 및 데이터 로딩, 인증 및 MyData 관련 API 작성<br>
+**[dev2] 220831 - 220907** : MyData 데이터 연동 및 저장 완료, MyData 투약 일수 Update API 작성, 메인페이지 화면 API 구현, 중복 약물 체크 로직 및 API 구현, 약물 상세 정보 API 구현<br>
+**[dev3] 220908 - 220914** : [캘린더 정보 전달], [그래프 정보 전달]
 
 ## 전략
 git 전략 : gitlab flow

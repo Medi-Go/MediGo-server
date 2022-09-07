@@ -26,7 +26,10 @@ public enum ErrorCode {
 	INVALID_AUTH_TYPE("M011", "AUTH type is invalid", HttpStatus.BAD_REQUEST),
 
 	// Prescription
-	NOT_FOUND_PRESCRIPTION("P001", "Not found prescription", HttpStatus.BAD_REQUEST),
+	NOT_FOUND_PRESCRIPTION("DP001", "Not found prescription", HttpStatus.BAD_REQUEST),
+
+	// Medicine
+	NOT_FOUND_MEDICINE("DM001", "Not found medicine", HttpStatus.BAD_REQUEST),
 
 	// Token Expiration
 	ACCESS_TOKEN_EXPIRATION("T001", "Access token is expired", HttpStatus.BAD_REQUEST),
