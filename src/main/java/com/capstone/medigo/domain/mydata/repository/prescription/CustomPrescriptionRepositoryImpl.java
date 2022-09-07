@@ -4,7 +4,6 @@ package com.capstone.medigo.domain.mydata.repository.prescription;
 import static com.capstone.medigo.domain.mydata.model.QPrescription.*;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.capstone.medigo.domain.member.model.Member;
 import com.capstone.medigo.domain.mydata.model.Prescription;
@@ -18,7 +17,7 @@ public class CustomPrescriptionRepositoryImpl implements CustomPrescriptionRepos
 	private final JPAQueryFactory jpaQueryFactory;
 
 	@Override
-	public List<Prescription> findPrescriptionAfterTime(int time, Member member) {
+	public List<Prescription> findPrescriptionByMemberAfterTime(int time, Member member) {
 		return jpaQueryFactory
 			.selectFrom(prescription)
 			.where(
@@ -34,7 +33,9 @@ public class CustomPrescriptionRepositoryImpl implements CustomPrescriptionRepos
 			.selectFrom(prescription)
 			.where(
 				prescription.member.eq(member),
-				prescription.endDate.goe(now))
+				prescription.endDate.goe(now)
+			)
 			.fetch();
 	}
+
 }

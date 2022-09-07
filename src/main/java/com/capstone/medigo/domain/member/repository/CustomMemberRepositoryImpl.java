@@ -6,7 +6,6 @@ import static com.capstone.medigo.domain.member.model.QMember.*;
 import java.util.Optional;
 
 import com.capstone.medigo.domain.member.model.Member;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
@@ -15,16 +14,6 @@ import lombok.RequiredArgsConstructor;
 public class CustomMemberRepositoryImpl implements CustomMemberRepository {
 
 	private final JPAQueryFactory jpaQueryFactory;
-
-	@Override
-	public Optional<Member> findMemberById(Long memberId) {
-		return Optional.ofNullable(
-			jpaQueryFactory
-				.selectFrom(member)
-				.where(member.id.eq(memberId))
-				.fetchOne()
-		);
-	}
 
 	@Override
 	public Optional<Member> findMemberByEmail(String email) {

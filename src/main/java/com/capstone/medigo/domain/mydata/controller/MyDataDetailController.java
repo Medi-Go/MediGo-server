@@ -9,11 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailMonthRequest;
 import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest;
 import com.capstone.medigo.domain.mydata.service.MyDataDetailService;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailDto;
@@ -28,12 +28,12 @@ import lombok.extern.slf4j.Slf4j;
 public class MyDataDetailController {
 	private final MyDataDetailService myDataDetailService;
 
-	@GetMapping
+	@GetMapping("/{month}")
 	public ResponseEntity<MyDataDetailDto> myDataDetail(
-		@AuthenticationPrincipal Long memberId,
-		@Valid @RequestBody DetailMonthRequest detailMonthRequest
+		@PathVariable int month,
+		@AuthenticationPrincipal Long memberId
 	) {
-		MyDataDetailDto myDataDetailDto = myDataDetailService.getMyDataInfo(memberId, LocalDateTime.now(), detailMonthRequest.month());
+		MyDataDetailDto myDataDetailDto = myDataDetailService.getMyDataInfo(memberId, LocalDateTime.now(), month);
 
 		return ResponseEntity
 			.ok()
