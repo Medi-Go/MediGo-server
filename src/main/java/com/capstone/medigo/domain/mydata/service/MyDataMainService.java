@@ -48,9 +48,9 @@ public class MyDataMainService {
 			}
 		}
 
-
 		Iterator<String> iterator = medicineEffect.iterator();
 		List<MyDataMainMedicines> myDataMainMedicines = new ArrayList<>();
+
 		while(iterator.hasNext()){
 			String effectName = iterator.next();
 			List<MyDataMainMedicine> medicines = new ArrayList<>();
