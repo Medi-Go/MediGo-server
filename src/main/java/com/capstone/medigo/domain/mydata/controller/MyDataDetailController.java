@@ -30,8 +30,8 @@ public class MyDataDetailController {
 
 	@GetMapping("/{month}")
 	public ResponseEntity<MyDataDetailDto> myDataDetail(
-		@AuthenticationPrincipal Long memberId,
-		@PathVariable int month
+		@PathVariable int month,
+		@AuthenticationPrincipal Long memberId
 	) {
 		MyDataDetailDto myDataDetailDto = myDataDetailService.getMyDataInfo(memberId, LocalDateTime.now(), month);
 

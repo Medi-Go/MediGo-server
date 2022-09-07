@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.capstone.medigo.domain.member.model.Member;
 import com.capstone.medigo.domain.member.repository.MemberRepository;
@@ -29,9 +30,10 @@ public class MyDataMainService {
 	private final MemberRepository memberRepository;
 	private final PrescriptionRepository prescriptionRepository;
 	private final MedicineRepository medicineRepository;
-	
+
+	@Transactional(readOnly = true)
 	public MyDataMainDto findMedicinesInUse(Long memberId) {
-		Member member = memberRepository.findMemberById(memberId).orElseThrow(() -> {
+		Member member = memberRepository.findById(memberId).orElseThrow(() -> {
 			throw MemberException.notFoundMember(memberId);
 		});
 
@@ -58,8 +60,7 @@ public class MyDataMainService {
 				if(medicine.getMedicineEffect().equals(effectName)){
 					// 남은 횟수 구하는 로직
 					Prescription prescription = medicine.getPrescription();
-					prescription.getEndDate();
-					int remainCount = (now - prescription.getTreatDate())/prescription.getAdministerInterval();
+					int remainCount = (int) Math.ceil((prescription.getEndDate() - now)/prescription.getAdministerInterval());
 
 					medicines.add(MyDataConverter.toMyDataMainMedicine(medicine, remainCount));
 				}

@@ -28,10 +28,10 @@ public class MyDataTestController {
 	@GetMapping("/1004")
 	public String testData() throws IOException {
 		Member save = memberRepository.save(Member.builder()
-			.email("test2@gmail.com")
+			.email("dldydgns530@gmail.com")
 			.profileImageUrl("www.s32.com")
 			.nickName("test2")
-			.name("김영희")
+			.name("이용훈")
 			.jumin("19971107")
 			.carrier(Carrier.LG)
 			.phoneNumber("01011113333")
