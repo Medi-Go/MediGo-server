@@ -86,3 +86,5 @@ Docker CICD 배포
 ![img_1.png](image/cicd.png)
 
 ## ⚙ ERD
+
+![img.png](image/erd_v1.png)
