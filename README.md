@@ -1,5 +1,10 @@
-# Medigo-server
+# 💊 Medigo-server
 마이데이터(데이터 허브)를 활용한 약물 관리 및 중복약물 체크 웹 어플리케이션
+
+- 구글 OAuth, JWT 를 통해 회원가입 로그인 로그아웃 기능
+- 입력한 개인 정보를 바탕으로 마이데이터 허브와 연동을 통해 개인 약물 데이터 저장
+- 완료된 기능 : 현재 복용중인 약물을 보여주며 남은 약물 횟수, 약물 상세 정보(성분, KPIC, DUR, 제조회사 등), 처방전 정보(처방날짜, 처방병원), 현재 복용중인 약물중에 중복약물이 존재하는지 체크 
+- 개발중 : 캘린더를 통해 날짜별 복용 현황 및 진료 현황, 그래프를 통한 데이터 시각화
 
 ## 👬 팀 소개
 
@@ -26,8 +31,9 @@
   </tr>
 </table>
 
-## 링크
+## 🔗 링크
 프론트엔드 배포 링크 : <br>
+프론트엔드 깃허브 레포 : https://github.com/Medi-Go/MediGo-Frontend <br>
 마이데이터 연동 사이트 : https://dataapi.co.kr/ <br>
 Spring Rest Docs : http://www.medigo.p-e.kr/
 
@@ -52,12 +58,12 @@ Spring Rest Docs : http://www.medigo.p-e.kr/
 ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?style=Plastic&logo=redis&logoColor=white)
 ![h2](https://img.shields.io/badge/H2-darkblue.svg?style=Plastic&logo=h2&logoColor=red)
 
-## 인프라
+## 🔍 인프라
 ![AWS](https://img.shields.io/badge/EC2-%23FF9900.svg?style=Plastic&logo=amazon-aws&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-4A154B?style=flat&logo=Docker&logoColor=#4A154B)
 ![GitHub_Actions](https://img.shields.io/badge/GitHub_Actions-%23121011.svg?style=Plastic&logo=GitHubActions&logoColor=white)
 
-## 협업
+## 🧤 협업
 
 ![git](https://img.shields.io/badge/git-F05032?style=flat&logo=Git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=Plastic&logo=github&logoColor=white)
@@ -65,15 +71,21 @@ Spring Rest Docs : http://www.medigo.p-e.kr/
 ![Notion](https://img.shields.io/badge/Notion-000000?style=Plastic&logo=Notion&logoColor=white)
 
 
-## 스프린트
+## 📜 스프린트
 **[dev1] 220817 - 220831** : 프로젝트 세팅, security 설정, JWT 인가, Docker CICD 배포, 구글 OAuth, MyData 연동 및 데이터 로딩, 인증 및 MyData 관련 API 작성<br>
 **[dev2] 220831 - 220907** : MyData 데이터 연동 및 저장 완료, MyData 투약 일수 Update API 작성, 메인페이지 화면 API 구현, 중복 약물 체크 로직 및 API 구현, 약물 상세 정보 API 구현<br>
 **[dev3] 220908 - 220914** : [캘린더 정보 전달], [그래프 정보 전달]
 
-## 전략
+## 📝 전략
 git 전략 : gitlab flow
 
-## 구성도
+![img.png](image/gitstrategy.png)
+
+## 🛠 구성도
 Docker CICD 배포
 
-## ERD
+![img_1.png](image/cicd.png)
+
+## ⚙ ERD
+
+![img.png](image/erd_v1.png)
