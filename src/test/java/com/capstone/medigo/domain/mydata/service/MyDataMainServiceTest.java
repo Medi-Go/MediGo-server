@@ -16,7 +16,7 @@ import com.capstone.medigo.domain.member.model.Member;
 import com.capstone.medigo.domain.mydata.model.Medicine;
 import com.capstone.medigo.domain.mydata.model.Prescription;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataMain;
-import com.capstone.medigo.domain.mydata.service.dto.MedicineEffect;
+import com.capstone.medigo.domain.mydata.service.dto.main.MedicineEffect;
 import com.capstone.medigo.domain.mydata.util.LocalDateTimeUtil;
 
 @SpringBootTest
@@ -29,10 +29,16 @@ class MyDataMainServiceTest extends ServiceTestConfig {
 	void testFindMedicinesInUse () {
 	    // given
 		Member newMember = makeAndSaveMember();
-		Prescription prescription = makeAndSavePrescription(newMember, LocalDateTime.now());
-		makeAndSaveMedicine(prescription, LocalDateTime.now());
-		Prescription inValidPrescription = makeAndSavePrescription(newMember, LocalDateTime.now().minusDays(20));
-		makeAndSaveMedicine(inValidPrescription, LocalDateTime.now().minusDays(20));
+		Prescription validPrescription = makeAndSavePrescription(newMember, LocalDateTime.now());
+		validPrescription.changeDetail(1,1,1);
+		makeAndSaveMedicine(validPrescription, LocalDateTime.now());
+
+		Prescription inValidPrescription1 = makeAndSavePrescription(newMember, LocalDateTime.now());
+		makeAndSaveMedicine(inValidPrescription1, LocalDateTime.now());
+
+		Prescription inValidPrescription2 = makeAndSavePrescription(newMember, LocalDateTime.now().minusDays(20));
+		inValidPrescription2.changeDetail(1,1,1);
+		makeAndSaveMedicine(inValidPrescription2, LocalDateTime.now().minusDays(20));
 
 		// when
 		MyDataMain myDataMain = myDataMainService.findMedicinesInUse(newMember.getId());
@@ -68,9 +74,6 @@ class MyDataMainServiceTest extends ServiceTestConfig {
 			.treatdsgb("1")
 			.prescribeCnt("1")
 			.treatMedicalnm("한가람약국[남동구 남동대로]")
-			.administerInterval(3)
-			.totalDayCount(2)
-			.endDate(LocalDateTimeUtil.localTo8format(time) + 10)
 			.build());
 	}
 

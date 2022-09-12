@@ -23,11 +23,11 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.capstone.medigo.config.TestConfig;
 import com.capstone.medigo.domain.mydata.service.MyDataMainService;
-import com.capstone.medigo.domain.mydata.service.dto.DuplicatedMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.DuplicatedMedicineCase;
+import com.capstone.medigo.domain.mydata.service.dto.main.DuplicatedMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.main.DuplicatedMedicineCase;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataMain;
-import com.capstone.medigo.domain.mydata.service.dto.MainMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.MedicineEffect;
+import com.capstone.medigo.domain.mydata.service.dto.main.MainMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.main.MedicineEffect;
 
 @WebMvcTest(controllers = MyDataMainController.class)
 class MyDataMainControllerTest extends TestConfig {

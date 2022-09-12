@@ -21,7 +21,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.capstone.medigo.config.TestConfig;
@@ -29,8 +28,8 @@ import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescri
 import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest;
 import com.capstone.medigo.domain.mydata.service.MyDataDetailService;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetail;
-import com.capstone.medigo.domain.mydata.service.dto.DetailMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.DetailPrescriptionCase;
+import com.capstone.medigo.domain.mydata.service.dto.main.DetailMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.main.DetailPrescriptionCase;
 
 @WebMvcTest(controllers = MyDataDetailController.class)
 class MyDataDetailControllerTest extends TestConfig {

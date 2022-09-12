@@ -17,8 +17,8 @@ import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest
 import com.capstone.medigo.domain.mydata.model.Prescription;
 import com.capstone.medigo.domain.mydata.repository.prescription.PrescriptionRepository;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetail;
-import com.capstone.medigo.domain.mydata.service.dto.DetailMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.DetailPrescriptionCase;
+import com.capstone.medigo.domain.mydata.service.dto.main.DetailMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.main.DetailPrescriptionCase;
 import com.capstone.medigo.domain.mydata.util.LocalDateTimeUtil;
 
 @SpringBootTest
@@ -69,7 +69,7 @@ class MyDataDetailServiceTest extends ServiceTestConfig {
 		);
 
 		// when
-		myDataDetailService.updateDetailOfPrescription(detailRequest);
+		myDataDetailService.updateDetailOfPrescription(detailRequest, 1L);
 
 		// then
 		Prescription prescription1 = prescriptionRepository.findById(prescriptionBefore5day.getId()).get();

@@ -60,10 +60,12 @@ public class Prescription extends BaseEntity {
 	@Column(name = "end_date")
 	private int endDate; // 복용 종료 일자
 
+	@Column(name = "is_update")
+	private boolean isUpdate; // 투약 횟수 입력이 되었는지 안되었는지 확인
+
 	@Builder
 	public Prescription(Long id, Member member, String treatType, String visitCnt, String treatDsnm, int treatDate,
-		String medicineCnt, String treatdsgb, String prescribeCnt, String treatMedicalnm, int administerInterval,
-		int dailyCount, int totalDayCount, int endDate) {
+		String medicineCnt, String treatdsgb, String prescribeCnt, String treatMedicalnm) {
 		this.id = id;
 		this.member = member;
 		this.treatType = treatType;
@@ -74,10 +76,11 @@ public class Prescription extends BaseEntity {
 		this.treatdsgb = treatdsgb;
 		this.prescribeCnt = prescribeCnt;
 		this.treatMedicalnm = treatMedicalnm;
-		this.administerInterval = administerInterval;
-		this.dailyCount = dailyCount;
-		this.totalDayCount = totalDayCount;
-		this.endDate = endDate;
+		this.administerInterval = 0;
+		this.dailyCount = 0;
+		this.totalDayCount = 0;
+		this.endDate = 0;
+		isUpdate = false;
 	}
 
 	public void changeDetail(int administerInterval, int dailyCount, int totalDayCount) {
@@ -86,5 +89,6 @@ public class Prescription extends BaseEntity {
 		this.totalDayCount = totalDayCount;
 		this.endDate = LocalDateTimeUtil.localTo8format(
 			LocalDateTimeUtil.eightToLocalFormat(this.treatDate).plusDays((long)administerInterval * totalDayCount));
+		this.isUpdate = true;
 	}
 }
