@@ -1,5 +1,7 @@
 package com.capstone.medigo.domain.member.service.dto;
 
+import java.time.LocalDateTime;
+
 import lombok.Builder;
 
 public record MemberResponse (
@@ -10,7 +12,9 @@ public record MemberResponse (
 	String name,
 	String jumin,
 	String carrier,
-	String phoneNumber
+	String phoneNumber,
+	LocalDateTime lastMyDataLoadUpdateTime,
+	LocalDateTime lastMyDataDetailUpdateTime
 ){
 	@Builder
 	public MemberResponse {

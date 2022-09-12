@@ -33,6 +33,8 @@ public class MemberConverter {
 			.jumin(member.getJumin())
 			.carrier(member.getCarrier().name())
 			.phoneNumber(member.getPhoneNumber())
+			.lastMyDataLoadUpdateTime(member.getMyDataLoadUpdateTime())
+			.lastMyDataDetailUpdateTime(member.getMyDataDetailUpdateTime())
 			.build();
 	}
 }

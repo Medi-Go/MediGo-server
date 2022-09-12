@@ -22,6 +22,7 @@ import com.capstone.medigo.domain.mydata.repository.kpic.KpicRepository;
 import com.capstone.medigo.domain.mydata.repository.medicineinfo.MedicineInfoRepository;
 import com.capstone.medigo.domain.mydata.repository.medicine.MedicineRepository;
 import com.capstone.medigo.domain.mydata.repository.prescription.PrescriptionRepository;
+import com.capstone.medigo.domain.mydata.util.LocalDateTimeUtil;
 import com.capstone.medigo.global.error.exception.MemberException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -69,25 +70,30 @@ public class MyDataSaveService {
 		Member member = memberRepository.findById(memberId).orElseThrow(() -> {
 			throw MemberException.notFoundMember(memberId);
 		});
+		int lastUpdateTime = LocalDateTimeUtil.localTo8format(member.getMyDataLoadUpdateTime());
 		member.changeMyDataLoadUpdateTime(LocalDateTime.now());
 
-		prescriptions.forEach(prescription -> {
-				Prescription savedPrescription = prescriptionRepository.save(
-					Prescription.builder()
-						.member(member)
-						.treatType(prescription.TREATTYPE())
-						.visitCnt(prescription.VISITCNT())
-						.treatDsnm(prescription.TREATDSNM())
-						.treatDate(prescription.TREATDATE())
-						.medicineCnt(prescription.MEDICINECNT())
-						.treatdsgb(prescription.TREATDSGB())
-						.prescribeCnt(prescription.PRESCRIBECNT())
-						.treatMedicalnm(prescription.TREATMEDICALNM())
-						.build()
-				);
-				saveMedicine(prescription.DETAILLIST(), savedPrescription);
-			}
-		);
+		prescriptions.stream()
+			.filter(prescriptionSaveRequest ->
+				prescriptionSaveRequest.TREATDATE() > lastUpdateTime
+			)
+			.forEach(prescription -> {
+					Prescription savedPrescription = prescriptionRepository.save(
+						Prescription.builder()
+							.member(member)
+							.treatType(prescription.TREATTYPE())
+							.visitCnt(prescription.VISITCNT())
+							.treatDsnm(prescription.TREATDSNM())
+							.treatDate(prescription.TREATDATE())
+							.medicineCnt(prescription.MEDICINECNT())
+							.treatdsgb(prescription.TREATDSGB())
+							.prescribeCnt(prescription.PRESCRIBECNT())
+							.treatMedicalnm(prescription.TREATMEDICALNM())
+							.build()
+					);
+					saveMedicine(prescription.DETAILLIST(), savedPrescription);
+				}
+			);
 	}
 
 	private void saveMedicine(ArrayList<MedicineSaveRequest> medicines, Prescription prescription) {

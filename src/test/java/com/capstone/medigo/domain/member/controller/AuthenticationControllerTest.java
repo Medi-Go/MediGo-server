@@ -9,6 +9,8 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.time.LocalDateTime;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -93,6 +95,8 @@ class AuthenticationControllerTest extends TestConfig {
 					fieldWithPath("memberResponse.jumin").type(STRING).description("주민번호"),
 					fieldWithPath("memberResponse.carrier").type(STRING).description("통신사"),
 					fieldWithPath("memberResponse.phoneNumber").type(STRING).description("핸드폰 번호"),
+					fieldWithPath("memberResponse.lastMyDataLoadUpdateTime").type(STRING).description("마지막으로 마이데이터 불러온 날짜"),
+					fieldWithPath("memberResponse.lastMyDataDetailUpdateTime").type(STRING).description("마지막으로 마이데이터 투약횟수 업데이트한 날짜"),
 					fieldWithPath("accessToken").type(STRING).description("access 토큰값")
 				)));
 	}
@@ -142,6 +146,8 @@ class AuthenticationControllerTest extends TestConfig {
 					fieldWithPath("memberResponse.jumin").type(STRING).description("주민번호"),
 					fieldWithPath("memberResponse.carrier").type(STRING).description("통신사"),
 					fieldWithPath("memberResponse.phoneNumber").type(STRING).description("핸드폰 번호"),
+					fieldWithPath("memberResponse.lastMyDataLoadUpdateTime").type(STRING).description("마지막으로 마이데이터 불러온 날짜"),
+					fieldWithPath("memberResponse.lastMyDataDetailUpdateTime").type(STRING).description("마지막으로 마이데이터 투약횟수 업데이트한 날짜"),
 					fieldWithPath("accessToken").type(STRING).description("access 토큰값")
 				)));
 	}
@@ -206,7 +212,9 @@ class AuthenticationControllerTest extends TestConfig {
 					fieldWithPath("name").type(STRING).description("이름"),
 					fieldWithPath("jumin").type(STRING).description("주민번호"),
 					fieldWithPath("carrier").type(STRING).description("통신사"),
-					fieldWithPath("phoneNumber").type(STRING).description("핸드폰 번호")
+					fieldWithPath("phoneNumber").type(STRING).description("핸드폰 번호"),
+					fieldWithPath("lastMyDataLoadUpdateTime").type(STRING).description("마지막으로 마이데이터 불러온 날짜"),
+					fieldWithPath("lastMyDataDetailUpdateTime").type(STRING).description("마지막으로 마이데이터 투약횟수 업데이트한 날짜")
 				)));
 	}
 
@@ -221,6 +229,8 @@ class AuthenticationControllerTest extends TestConfig {
 			.jumin("19971107")
 			.carrier("LG")
 			.phoneNumber("01012345678")
+			.lastMyDataDetailUpdateTime(LocalDateTime.now())
+			.lastMyDataLoadUpdateTime(LocalDateTime.now())
 			.build();
 		return memberResponse;
 	}

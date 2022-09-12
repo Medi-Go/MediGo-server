@@ -552,7 +552,7 @@ Host: medigo.p-e.kr
             <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 292
+Content-Length: 424
 
 {
   &quot;memberResponse&quot; : {
@@ -563,7 +563,9 @@ Content-Length: 292
     &quot;name&quot; : &quot;홍길동&quot;,
     &quot;jumin&quot; : &quot;19971107&quot;,
     &quot;carrier&quot; : &quot;LG&quot;,
-    &quot;phoneNumber&quot; : &quot;01012345678&quot;
+    &quot;phoneNumber&quot; : &quot;01012345678&quot;,
+    &quot;lastMyDataLoadUpdateTime&quot; : &quot;2022-09-13T00:57:42.3450807&quot;,
+    &quot;lastMyDataDetailUpdateTime&quot; : &quot;2022-09-13T00:57:42.3450807&quot;
   },
   &quot;accessToken&quot; : &quot;accessToken&quot;
 }</code></pre>
@@ -604,7 +606,9 @@ Content-Length: 292
     &quot;name&quot; : &quot;홍길동&quot;,
     &quot;jumin&quot; : &quot;19971107&quot;,
     &quot;carrier&quot; : &quot;LG&quot;,
-    &quot;phoneNumber&quot; : &quot;01012345678&quot;
+    &quot;phoneNumber&quot; : &quot;01012345678&quot;,
+    &quot;lastMyDataLoadUpdateTime&quot; : &quot;2022-09-13T00:57:42.3450807&quot;,
+    &quot;lastMyDataDetailUpdateTime&quot; : &quot;2022-09-13T00:57:42.3450807&quot;
   },
   &quot;accessToken&quot; : &quot;accessToken&quot;
 }</code></pre>
@@ -673,6 +677,16 @@ Content-Length: 292
               <td class="tableblock halign-left valign-top"><p class="tableblock">핸드폰 번호</p></td>
             </tr>
             <tr>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>memberResponse.lastMyDataLoadUpdateTime</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock">마지막으로 마이데이터 불러온 날짜</p></td>
+            </tr>
+            <tr>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>memberResponse.lastMyDataDetailUpdateTime</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock">마지막으로 마이데이터 투약횟수 업데이트한 날짜</p></td>
+            </tr>
+            <tr>
               <td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessToken</code></p></td>
               <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
               <td class="tableblock halign-left valign-top"><p class="tableblock">access 토큰값</p></td>
@@ -736,7 +750,7 @@ Host: medigo.p-e.kr
             <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 292
+Content-Length: 424
 
 {
   &quot;memberResponse&quot; : {
@@ -747,7 +761,9 @@ Content-Length: 292
     &quot;name&quot; : &quot;홍길동&quot;,
     &quot;jumin&quot; : &quot;19971107&quot;,
     &quot;carrier&quot; : &quot;LG&quot;,
-    &quot;phoneNumber&quot; : &quot;01012345678&quot;
+    &quot;phoneNumber&quot; : &quot;01012345678&quot;,
+    &quot;lastMyDataLoadUpdateTime&quot; : &quot;2022-09-13T00:57:42.6960829&quot;,
+    &quot;lastMyDataDetailUpdateTime&quot; : &quot;2022-09-13T00:57:42.6960829&quot;
   },
   &quot;accessToken&quot; : &quot;accessToken&quot;
 }</code></pre>
@@ -788,7 +804,9 @@ Content-Length: 292
     &quot;name&quot; : &quot;홍길동&quot;,
     &quot;jumin&quot; : &quot;19971107&quot;,
     &quot;carrier&quot; : &quot;LG&quot;,
-    &quot;phoneNumber&quot; : &quot;01012345678&quot;
+    &quot;phoneNumber&quot; : &quot;01012345678&quot;,
+    &quot;lastMyDataLoadUpdateTime&quot; : &quot;2022-09-13T00:57:42.6960829&quot;,
+    &quot;lastMyDataDetailUpdateTime&quot; : &quot;2022-09-13T00:57:42.6960829&quot;
   },
   &quot;accessToken&quot; : &quot;accessToken&quot;
 }</code></pre>
@@ -855,6 +873,16 @@ Content-Length: 292
               <td class="tableblock halign-left valign-top"><p class="tableblock"><code>memberResponse.phoneNumber</code></p></td>
               <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
               <td class="tableblock halign-left valign-top"><p class="tableblock">핸드폰 번호</p></td>
+            </tr>
+            <tr>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>memberResponse.lastMyDataLoadUpdateTime</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock">마지막으로 마이데이터 불러온 날짜</p></td>
+            </tr>
+            <tr>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>memberResponse.lastMyDataDetailUpdateTime</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock">마지막으로 마이데이터 투약횟수 업데이트한 날짜</p></td>
             </tr>
             <tr>
               <td class="tableblock halign-left valign-top"><p class="tableblock"><code>accessToken</code></p></td>
@@ -928,7 +956,7 @@ Host: medigo.p-e.kr</code></pre>
             <div class="content">
 <pre class="CodeRay highlight nowrap"><code data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json
-Content-Length: 213
+Content-Length: 341
 
 {
   &quot;id&quot; : 1,
@@ -938,7 +966,9 @@ Content-Length: 213
   &quot;name&quot; : &quot;홍길동&quot;,
   &quot;jumin&quot; : &quot;19971107&quot;,
   &quot;carrier&quot; : &quot;LG&quot;,
-  &quot;phoneNumber&quot; : &quot;01012345678&quot;
+  &quot;phoneNumber&quot; : &quot;01012345678&quot;,
+  &quot;lastMyDataLoadUpdateTime&quot; : &quot;2022-09-13T00:57:41.9140086&quot;,
+  &quot;lastMyDataDetailUpdateTime&quot; : &quot;2022-09-13T00:57:41.9140086&quot;
 }</code></pre>
             </div>
           </div>
@@ -976,7 +1006,9 @@ Content-Length: 213
   &quot;name&quot; : &quot;홍길동&quot;,
   &quot;jumin&quot; : &quot;19971107&quot;,
   &quot;carrier&quot; : &quot;LG&quot;,
-  &quot;phoneNumber&quot; : &quot;01012345678&quot;
+  &quot;phoneNumber&quot; : &quot;01012345678&quot;,
+  &quot;lastMyDataLoadUpdateTime&quot; : &quot;2022-09-13T00:57:41.9140086&quot;,
+  &quot;lastMyDataDetailUpdateTime&quot; : &quot;2022-09-13T00:57:41.9140086&quot;
 }</code></pre>
             </div>
           </div>
@@ -1036,6 +1068,16 @@ Content-Length: 213
               <td class="tableblock halign-left valign-top"><p class="tableblock"><code>phoneNumber</code></p></td>
               <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
               <td class="tableblock halign-left valign-top"><p class="tableblock">핸드폰 번호</p></td>
+            </tr>
+            <tr>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lastMyDataLoadUpdateTime</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock">마지막으로 마이데이터 불러온 날짜</p></td>
+            </tr>
+            <tr>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>lastMyDataDetailUpdateTime</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+              <td class="tableblock halign-left valign-top"><p class="tableblock">마지막으로 마이데이터 투약횟수 업데이트한 날짜</p></td>
             </tr>
             </tbody>
           </table>

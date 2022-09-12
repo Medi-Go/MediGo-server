@@ -65,7 +65,7 @@ public class Member {
 	private String callBackData;
 
 	@Column(name = "my_data_update_time")
-	private LocalDateTime myDataUpdateTime;
+	private LocalDateTime myDataLoadUpdateTime;
 
 	@Column(name = "my_data_detail_update_time")
 	private LocalDateTime myDataDetailUpdateTime;
@@ -93,7 +93,7 @@ public class Member {
 	}
 
 	public void changeMyDataLoadUpdateTime(LocalDateTime time){
-		this.myDataUpdateTime = time;
+		this.myDataLoadUpdateTime = time;
 	}
 
 	public void changeMyDataDetailUpdateTime(LocalDateTime time){
