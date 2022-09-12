@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.capstone.medigo.domain.member.controller.dto.MemberUpdateRequest;
 import com.capstone.medigo.domain.member.util.MemberUtil;
 
 import lombok.AccessLevel;
@@ -34,7 +35,7 @@ public class Member {
 	@Column(name = "profile_image_url", length = 150)
 	private String profileImageUrl;
 
-	@Column(name = "nick_name", length = 30, unique = true, nullable = false)
+	@Column(name = "nick_name", length = 30, nullable = false)
 	private String nickName;
 
 	@Column(name = "name", length = 30, nullable = false)
@@ -97,5 +98,15 @@ public class Member {
 
 	public void changeMyDataDetailUpdateTime(LocalDateTime time){
 		this.myDataDetailUpdateTime = time;
+	}
+
+	public void changeMemberInfo(MemberUpdateRequest memberUpdateRequest) {
+		MemberUtil.emailValidation(email);
+		MemberUtil.phoneValidation(phoneNumber);
+		this.email = memberUpdateRequest.email();
+		this.name = memberUpdateRequest.name();
+		this.phoneNumber = memberUpdateRequest.phoneNumber();
+		this.jumin = memberUpdateRequest.jumin();
+		this.carrier = Carrier.valueOf(memberUpdateRequest.carrier());
 	}
 }
