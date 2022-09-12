@@ -6,7 +6,7 @@ import lombok.Builder;
 
 public record DetailPrescription (
 	@NotNull
-	Long id,
+	Long prescriptionId,
 	@NotNull
 	int administerInterval,
 	@NotNull

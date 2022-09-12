@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.capstone.medigo.config.ServiceTestConfig;
+import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescription;
 import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest;
 import com.capstone.medigo.domain.mydata.model.Prescription;
 import com.capstone.medigo.domain.mydata.repository.prescription.PrescriptionRepository;
@@ -91,9 +92,9 @@ class MyDataDetailServiceTest extends ServiceTestConfig {
 		);
 	}
 
-	private com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescription makeDetailPrescription(Long id, int interval, int dailyCount, int totalCount) {
-		return com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescription.builder()
-			.id(id)
+	private DetailPrescription makeDetailPrescription(Long id, int interval, int dailyCount, int totalCount) {
+		return DetailPrescription.builder()
+			.prescriptionId(id)
 			.administerInterval(interval)
 			.dailyCount(dailyCount)
 			.totalDayCount(totalCount)

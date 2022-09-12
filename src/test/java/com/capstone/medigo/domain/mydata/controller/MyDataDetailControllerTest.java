@@ -25,6 +25,7 @@ import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequ
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.capstone.medigo.config.TestConfig;
+import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescription;
 import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest;
 import com.capstone.medigo.domain.mydata.service.MyDataDetailService;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetail;
@@ -40,17 +41,7 @@ class MyDataDetailControllerTest extends TestConfig {
 	@DisplayName("/api/v1/info-input/{month} 로 MyData 투약 정보 입력에 필요한 리스트 dto 전달한다")
 	void getMyDataDetail() throws Exception {
 		// given
-		List<DetailMedicine> medicineList1 = new ArrayList<>(
-			Arrays.asList(makeMedicine(1L), makeMedicine(2L))
-		);
-		List<DetailMedicine> medicineList2 = new ArrayList<>(
-			Arrays.asList(makeMedicine(3L), makeMedicine(4L))
-		);
-		List<DetailPrescriptionCase> prescriptionList = new ArrayList<>(
-			Arrays.asList(makePrescription(1L, medicineList1), makePrescription(2L, medicineList2))
-		);
-		MyDataDetail myDataDetail = new MyDataDetail(prescriptionList);
-
+		MyDataDetail myDataDetail = makeMyDataDetail();
 		given(myDataDetailService.getMyDataInfo(any(), any(), anyInt())).willReturn(myDataDetail);
 
 		// when
@@ -121,16 +112,31 @@ class MyDataDetailControllerTest extends TestConfig {
 				),
 				requestFields(
 					fieldWithPath("prescriptions").type(ARRAY).description("투약 일수가 적힌 처방전 배열"),
-					fieldWithPath("prescriptions.[].id").type(NUMBER).description("처방전 아이디"),
+					fieldWithPath("prescriptions.[].prescriptionId").type(NUMBER).description("처방전 아이디"),
 					fieldWithPath("prescriptions.[].administerInterval").type(NUMBER).description("투약기간"),
 					fieldWithPath("prescriptions.[].dailyCount").type(NUMBER).description("하루 투약 횟수"),
 					fieldWithPath("prescriptions.[].totalDayCount").type(NUMBER).description("총 투약 횟수(1일 기준)")
 				)));
 	}
 
-	private com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescription makeDetailPrescription(Long id) {
-		return com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescription.builder()
-			.id(id)
+	private MyDataDetail makeMyDataDetail() {
+		List<DetailMedicine> medicineList1 = new ArrayList<>(
+			Arrays.asList(makeMedicine(1L), makeMedicine(2L))
+		);
+		List<DetailMedicine> medicineList2 = new ArrayList<>(
+			Arrays.asList(makeMedicine(3L), makeMedicine(4L))
+		);
+		List<DetailPrescriptionCase> prescriptionList = new ArrayList<>(
+			Arrays.asList(makePrescription(1L, medicineList1), makePrescription(2L, medicineList2))
+		);
+		MyDataDetail myDataDetail = new MyDataDetail(prescriptionList);
+
+		return myDataDetail;
+	}
+
+	private DetailPrescription makeDetailPrescription(Long id) {
+		return DetailPrescription.builder()
+			.prescriptionId(id)
 			.administerInterval(1)
 			.dailyCount(1)
 			.totalDayCount(7)

@@ -56,7 +56,7 @@ public class MyDataDetailService {
 	public void updateDetailOfPrescription(DetailRequest detailRequest) {
 		List<DetailPrescription> prescriptions = detailRequest.prescriptions();
 		for (DetailPrescription prescription : prescriptions) {
-			Long prescriptionId = prescription.id();
+			Long prescriptionId = prescription.prescriptionId();
 			Prescription prescriptionById = prescriptionRepository.findById(prescriptionId).orElseThrow(() -> {
 				throw PrescriptionException.notFoundPrescription(prescriptionId);
 			});

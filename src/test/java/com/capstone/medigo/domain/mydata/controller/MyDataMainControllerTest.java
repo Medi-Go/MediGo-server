@@ -38,36 +38,7 @@ class MyDataMainControllerTest extends TestConfig {
 	@DisplayName("/api/v1/main 로 MyData 를 전달한다")
 	void getMyDataMain() throws Exception {
 		// given
-		MyDataMain myDataMain = new MyDataMain(
-			new ArrayList<>(
-				Arrays.asList(new MedicineEffect("소화성궤양용제", new ArrayList<MainMedicine>(
-						Arrays.asList(
-							new MainMedicine(1L, "약이름1", 3, 20220901),
-							new MainMedicine(2L, "약이름2", 2, 20220901),
-							new MainMedicine(3L, "약이름3", 1, 20220827)
-						))),
-					new MedicineEffect("해열, 진통, 소염제", new ArrayList<MainMedicine>(
-						Arrays.asList(
-							new MainMedicine(4L, "약이름1", 3, 20220901),
-							new MainMedicine(5L, "약이름5", 2, 20220901),
-							new MainMedicine(6L, "약이름6", 1, 20220827)
-						)))
-				)
-			),
-			new ArrayList<>(
-				Arrays.asList(
-					new DuplicatedMedicine(1L, "약이름1",
-						new ArrayList<>(
-							Arrays.asList(
-								new DuplicatedMedicineCase(20220901, "한길병원", 3, 2, 1),
-								new DuplicatedMedicineCase(20220901, "다른동네 병원", 3, 2, 1)
-							)
-						)
-					)
-				)
-			)
-		);
-
+		MyDataMain myDataMain = makeMyDataMain();
 		given(myDataMainService.findMedicinesInUse(any())).willReturn(myDataMain);
 
 		// when
@@ -105,7 +76,39 @@ class MyDataMainControllerTest extends TestConfig {
 					fieldWithPath("duplicatedMedicines.[].duplicatedMedicineCases.[].administerInterval").type(NUMBER).description("투약기간"),
 					fieldWithPath("duplicatedMedicines.[].duplicatedMedicineCases.[].dailyCount").type(NUMBER).description("하루 복용 횟수"),
 					fieldWithPath("duplicatedMedicines.[].duplicatedMedicineCases.[].totalDayCount").type(NUMBER).description("하루기준 총 투약 횟수")
-
 				)));
+	}
+
+	private MyDataMain makeMyDataMain() {
+		MyDataMain myDataMain = new MyDataMain(
+			new ArrayList<>(
+				Arrays.asList(new MedicineEffect("소화성궤양용제", new ArrayList<MainMedicine>(
+						Arrays.asList(
+							new MainMedicine(1L, "약이름1", 3, 20220901),
+							new MainMedicine(2L, "약이름2", 2, 20220901),
+							new MainMedicine(3L, "약이름3", 1, 20220827)
+						))),
+					new MedicineEffect("해열, 진통, 소염제", new ArrayList<MainMedicine>(
+						Arrays.asList(
+							new MainMedicine(4L, "약이름1", 3, 20220901),
+							new MainMedicine(5L, "약이름5", 2, 20220901),
+							new MainMedicine(6L, "약이름6", 1, 20220827)
+						)))
+				)
+			),
+			new ArrayList<>(
+				Arrays.asList(
+					new DuplicatedMedicine(1L, "약이름1",
+						new ArrayList<>(
+							Arrays.asList(
+								new DuplicatedMedicineCase(20220901, "한길병원", 3, 2, 1),
+								new DuplicatedMedicineCase(20220901, "다른동네 병원", 3, 2, 1)
+							)
+						)
+					)
+				)
+			)
+		);
+		return myDataMain;
 	}
 }
