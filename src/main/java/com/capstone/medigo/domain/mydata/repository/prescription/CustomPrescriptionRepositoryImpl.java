@@ -17,12 +17,13 @@ public class CustomPrescriptionRepositoryImpl implements CustomPrescriptionRepos
 	private final JPAQueryFactory jpaQueryFactory;
 
 	@Override
-	public List<Prescription> findPrescriptionByMemberAfterTime(int time, Member member) {
+	public List<Prescription> findByMemberAfterTime(Member member, int time) {
 		return jpaQueryFactory
 			.selectFrom(prescription)
 			.where(
 				prescription.treatDate.goe(time),
-				prescription.member.eq(member)
+				prescription.member.eq(member),
+				prescription.isUpdate.eq(true)
 			)
 			.fetch();
 	}
@@ -33,7 +34,34 @@ public class CustomPrescriptionRepositoryImpl implements CustomPrescriptionRepos
 			.selectFrom(prescription)
 			.where(
 				prescription.member.eq(member),
-				prescription.endDate.goe(now)
+				prescription.endDate.goe(now),
+				prescription.isUpdate.eq(true)
+			)
+			.fetch();
+	}
+
+	@Override
+	public List<Prescription> findTreatmentByMemberAndTimeInterval(Member member, int start, int end) {
+		return jpaQueryFactory
+			.selectFrom(prescription)
+			.where(
+				prescription.member.eq(member),
+				prescription.treatDate.between(start, end),
+				prescription.isUpdate.eq(true),
+				prescription.treatType.ne("처방조제")
+			)
+			.fetch();
+	}
+
+	@Override
+	public List<Prescription> findByEndDateWhichBiggerThanDate(Member member, int date) {
+		return jpaQueryFactory
+			.selectFrom(prescription)
+			.where(
+				prescription.member.eq(member),
+				prescription.isUpdate.eq(true),
+				prescription.treatType.eq("처방조제"),
+				prescription.endDate.goe(date)
 			)
 			.fetch();
 	}

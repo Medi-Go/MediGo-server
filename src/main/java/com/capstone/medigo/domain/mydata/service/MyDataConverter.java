@@ -6,13 +6,18 @@ import java.util.Map;
 
 import com.capstone.medigo.domain.mydata.model.Medicine;
 import com.capstone.medigo.domain.mydata.model.Prescription;
-import com.capstone.medigo.domain.mydata.service.dto.DetailMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.DetailPrescriptionCase;
-import com.capstone.medigo.domain.mydata.service.dto.DuplicatedMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.DuplicatedMedicineCase;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataCalendarPrescription;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.CalendarPrescription;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.CalendarTreatment;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataCalendarTreatment;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.Treatment;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DetailMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DetailPrescriptionCase;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DuplicatedMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DuplicatedMedicineCase;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataMain;
-import com.capstone.medigo.domain.mydata.service.dto.MainMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.MedicineEffect;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.MainMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.MedicineEffect;
 import com.capstone.medigo.domain.mydata.service.dto.PrescriptionAndMedicine;
 
 import lombok.AccessLevel;
@@ -77,5 +82,35 @@ public class MyDataConverter {
 			}
 		}
 		return new MyDataMain(medicineEffects, duplicatedMedicines);
+	}
+
+	public static Treatment toTreatment(Prescription prescription) {
+		return new Treatment(
+			prescription.getTreatType(),
+			prescription.getTreatDsnm(),
+			prescription.getTreatMedicalnm()
+		);
+	}
+
+	public static MyDataCalendarTreatment toMyDataCalendarTreatment(Map<Integer, List<Treatment>> dateMap) {
+		List<CalendarTreatment> calendarTreatments = new ArrayList<>();
+
+		for (Integer date : dateMap.keySet()) {
+			List<Treatment> treatments = dateMap.get(date);
+			CalendarTreatment calendarTreatment = new CalendarTreatment(date, treatments);
+			calendarTreatments.add(calendarTreatment);
+		}
+		return new MyDataCalendarTreatment(calendarTreatments);
+	}
+
+	public static MyDataCalendarPrescription toMyDataCalendarPrescription(Map<Integer, List<DetailPrescriptionCase>> dateMap) {
+		List<CalendarPrescription> calendarPrescriptions = new ArrayList<>();
+
+		for (Integer date : dateMap.keySet()) {
+			List<DetailPrescriptionCase> detailPrescriptions = dateMap.get(date);
+			CalendarPrescription calendarPrescription = new CalendarPrescription(date, detailPrescriptions);
+			calendarPrescriptions.add(calendarPrescription);
+		}
+		return new MyDataCalendarPrescription(calendarPrescriptions);
 	}
 }

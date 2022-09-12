@@ -91,7 +91,7 @@ public class Member {
 		this.callBackData = String.valueOf(responseInfo.get("callBackData"));
 	}
 
-	public void changeMyDataUpdateTime(LocalDateTime time){
+	public void changeMyDataLoadUpdateTime(LocalDateTime time){
 		this.myDataUpdateTime = time;
 	}
 

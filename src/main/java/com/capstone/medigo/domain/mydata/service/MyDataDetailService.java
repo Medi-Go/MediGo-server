@@ -15,8 +15,8 @@ import com.capstone.medigo.domain.mydata.model.Prescription;
 import com.capstone.medigo.domain.mydata.repository.medicine.MedicineRepository;
 import com.capstone.medigo.domain.mydata.repository.prescription.PrescriptionRepository;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetail;
-import com.capstone.medigo.domain.mydata.service.dto.DetailMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.DetailPrescriptionCase;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DetailMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DetailPrescriptionCase;
 import com.capstone.medigo.domain.mydata.util.LocalDateTimeUtil;
 import com.capstone.medigo.global.error.exception.MemberException;
 import com.capstone.medigo.global.error.exception.PrescriptionException;
@@ -37,7 +37,7 @@ public class MyDataDetailService {
 		});
 
 		int beforeTime = LocalDateTimeUtil.localTo8format(time.minusMonths(month));
-		List<Prescription> prescriptions = prescriptionRepository.findPrescriptionByMemberAfterTime(beforeTime,member);
+		List<Prescription> prescriptions = prescriptionRepository.findByMemberAfterTime(member, beforeTime);
 
 		List<DetailPrescriptionCase> detailPrescriptionCaseList = new ArrayList<>();
 		for (Prescription prescription : prescriptions) {
@@ -53,7 +53,12 @@ public class MyDataDetailService {
 	}
 
 	@Transactional
-	public void updateDetailOfPrescription(DetailRequest detailRequest) {
+	public void updateDetailOfPrescription(DetailRequest detailRequest, Long memberId) {
+		Member member = memberRepository.findById(memberId).orElseThrow(() -> {
+			throw MemberException.notFoundMember(memberId);
+		});
+		member.changeMyDataDetailUpdateTime(LocalDateTime.now());
+
 		List<DetailPrescription> prescriptions = detailRequest.prescriptions();
 		for (DetailPrescription prescription : prescriptions) {
 			Long prescriptionId = prescription.prescriptionId();

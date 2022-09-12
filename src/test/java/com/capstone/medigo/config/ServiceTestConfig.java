@@ -50,7 +50,7 @@ public abstract class ServiceTestConfig {
 				.phoneNumber("01012345678")
 				.build()
 		);
-		savePrescription(this.member);
+		savePrescription(LocalDateTime.now(), this.member, "처방조제");
 
 		this.otherMember = memberRepository.save(
 			Member.builder()
@@ -65,13 +65,12 @@ public abstract class ServiceTestConfig {
 		);
 	}
 
-	private void savePrescription(Member member) {
-		LocalDateTime now = LocalDateTime.now();
-		prescriptionBefore5day = prescriptionRepository.save(makePrescription(member, now.minusDays(5)));
+	protected void savePrescription(LocalDateTime now, Member member, String treatType) {
+		prescriptionBefore5day = prescriptionRepository.save(makePrescription(member, now.minusDays(5),treatType));
 
 		medicineRepository.save(makeMedicine(prescriptionBefore5day, prescriptionBefore5day.getTreatDate()));
 
-		prescriptionBefore4Month = prescriptionRepository.save(makePrescription(member, now.minusMonths(4)));
+		prescriptionBefore4Month = prescriptionRepository.save(makePrescription(member, now.minusMonths(4),treatType));
 
 		medicineRepository.save(makeMedicine(prescriptionBefore4Month, prescriptionBefore4Month.getTreatDate()));
 	}
@@ -88,10 +87,10 @@ public abstract class ServiceTestConfig {
 			.build();
 	}
 
-	private Prescription makePrescription(Member member, LocalDateTime time) {
-		return Prescription.builder()
+	private Prescription makePrescription(Member member, LocalDateTime time, String treatType) {
+		Prescription prescription = Prescription.builder()
 			.member(member)
-			.treatType("처방조제")
+			.treatType(treatType)
 			.visitCnt("1")
 			.treatDsnm("김철수")
 			.treatDate(LocalDateTimeUtil.localTo8format(time))
@@ -100,5 +99,8 @@ public abstract class ServiceTestConfig {
 			.prescribeCnt("1")
 			.treatMedicalnm("한가람약국[남동구 남동대로]")
 			.build();
+		prescription.changeDetail(3,3,15);
+
+		return prescription;
 	}
 }

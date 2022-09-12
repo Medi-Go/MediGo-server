@@ -42,9 +42,10 @@ public class MyDataDetailController {
 
 	@PatchMapping
 	public ResponseEntity<Void> myDataDetail(
-		@Valid @RequestBody DetailRequest detailRequest
+		@Valid @RequestBody DetailRequest detailRequest,
+		@AuthenticationPrincipal Long memberId
 	) {
-		myDataDetailService.updateDetailOfPrescription(detailRequest);
+		myDataDetailService.updateDetailOfPrescription(detailRequest,memberId);
 
 		return ResponseEntity
 			.ok()

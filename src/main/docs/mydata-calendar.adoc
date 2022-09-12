@@ -1,0 +1,11 @@
+== MyData Calendar
+
+=== 달력 진료 데이터
+
+operation::get-calendar-treatments[snippets='http-request,path-parameters,http-response,response-headers,response-body,response-fields']
+'''
+
+=== 달력 처방 데이터
+
+operation::get-calendar-prescriptions[snippets='http-request,path-parameters,http-response,response-headers,response-body,response-fields']
+'''
