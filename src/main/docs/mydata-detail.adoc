@@ -7,5 +7,5 @@ operation::get-my-data-detail[snippets='http-request,request-headers,path-parame
 
 === Prescription 투약일수 정보 업데이트
 
-operation::patch-my-data-detail[snippets='http-request,request-headers,request-body,request-fields,http-response,response-headers']
+operation::patch-my-data-detail[snippets='http-request,request-headers,request-body,request-fields,http-response']
 '''
