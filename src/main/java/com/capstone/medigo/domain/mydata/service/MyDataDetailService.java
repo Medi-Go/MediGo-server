@@ -14,9 +14,9 @@ import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest
 import com.capstone.medigo.domain.mydata.model.Prescription;
 import com.capstone.medigo.domain.mydata.repository.medicine.MedicineRepository;
 import com.capstone.medigo.domain.mydata.repository.prescription.PrescriptionRepository;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailDto;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailPrescription;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataDetail;
+import com.capstone.medigo.domain.mydata.service.dto.DetailMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.DetailPrescriptionCase;
 import com.capstone.medigo.domain.mydata.util.LocalDateTimeUtil;
 import com.capstone.medigo.global.error.exception.MemberException;
 import com.capstone.medigo.global.error.exception.PrescriptionException;
@@ -31,7 +31,7 @@ public class MyDataDetailService {
 	private final MemberRepository memberRepository;
 
 	@Transactional(readOnly = true)
-	public MyDataDetailDto getMyDataInfo(Long memberId, LocalDateTime time, int month) {
+	public MyDataDetail getMyDataInfo(Long memberId, LocalDateTime time, int month) {
 		Member member = memberRepository.findById(memberId).orElseThrow(() -> {
 			throw MemberException.notFoundMember(memberId);
 		});
@@ -39,17 +39,17 @@ public class MyDataDetailService {
 		int beforeTime = LocalDateTimeUtil.localTo8format(time.minusMonths(month));
 		List<Prescription> prescriptions = prescriptionRepository.findPrescriptionByMemberAfterTime(beforeTime,member);
 
-		List<MyDataDetailPrescription> myDataDetailPrescriptionList = new ArrayList<>();
+		List<DetailPrescriptionCase> detailPrescriptionCaseList = new ArrayList<>();
 		for (Prescription prescription : prescriptions) {
-			List<MyDataDetailMedicine> detailList = medicineRepository.findByPrescription(prescription).stream()
-				.map((MyDataConverter::toMyDataDetail))
+			List<DetailMedicine> detailList = medicineRepository.findByPrescription(prescription).stream()
+				.map((MyDataConverter::toDetailMedicine))
 				.toList();
 			if(!detailList.isEmpty()){
-				MyDataDetailPrescription myDataDetailPrescription = MyDataConverter.toMyDataTreat(prescription,detailList);
-				myDataDetailPrescriptionList.add(myDataDetailPrescription);
+				DetailPrescriptionCase detailPrescriptionCase = MyDataConverter.toDetailPrescription(prescription,detailList);
+				detailPrescriptionCaseList.add(detailPrescriptionCase);
 			}
 		}
-		return new MyDataDetailDto(myDataDetailPrescriptionList);
+		return new MyDataDetail(detailPrescriptionCaseList);
 	}
 
 	@Transactional
@@ -60,6 +60,7 @@ public class MyDataDetailService {
 			Prescription prescriptionById = prescriptionRepository.findById(prescriptionId).orElseThrow(() -> {
 				throw PrescriptionException.notFoundPrescription(prescriptionId);
 			});
+
 			prescriptionById.changeDetail(prescription.administerInterval(), prescription.dailyCount(), prescription.totalDayCount());
 		}
 	}

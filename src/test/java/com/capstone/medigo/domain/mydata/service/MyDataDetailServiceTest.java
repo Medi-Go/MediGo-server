@@ -12,13 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.capstone.medigo.config.ServiceTestConfig;
-import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescription;
 import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest;
 import com.capstone.medigo.domain.mydata.model.Prescription;
 import com.capstone.medigo.domain.mydata.repository.prescription.PrescriptionRepository;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailDto;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailPrescription;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataDetail;
+import com.capstone.medigo.domain.mydata.service.dto.DetailMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.DetailPrescriptionCase;
 import com.capstone.medigo.domain.mydata.util.LocalDateTimeUtil;
 
 @SpringBootTest
@@ -34,22 +33,22 @@ class MyDataDetailServiceTest extends ServiceTestConfig {
 		LocalDateTime now = LocalDateTime.now();
 
 		// when
-		MyDataDetailDto myDataInfo = myDataDetailService.getMyDataInfo(member.getId(), LocalDateTime.now(), 2);
+		MyDataDetail myDataInfo = myDataDetailService.getMyDataInfo(member.getId(), LocalDateTime.now(), 2);
 
 		// then
 		assertThat(myDataInfo.prescriptions().size()).isEqualTo(1);
 
-		MyDataDetailPrescription prescription = myDataInfo.prescriptions().get(0);
+		DetailPrescriptionCase prescription = myDataInfo.prescriptions().get(0);
 		assertAll(
 			() -> assertThat(prescription.prescriptionId()).isNotNull(),
 			() -> assertThat(prescription.treatType()).isEqualTo("처방조제"),
 			() -> assertThat(prescription.treatName()).isEqualTo("김철수"),
 			() -> assertThat(prescription.treatDate()).isEqualTo(LocalDateTimeUtil.localTo8format(now.minusDays(5))),
 			() -> assertThat(prescription.treatMedicalName()).isEqualTo("한가람약국[남동구 남동대로]"),
-			() -> assertThat(prescription.medicineDetailList()).isNotNull()
+			() -> assertThat(prescription.medicineDetails()).isNotNull()
 		);
 
-		MyDataDetailMedicine medicine = prescription.medicineDetailList().get(0);
+		DetailMedicine medicine = prescription.medicineDetails().get(0);
 		assertAll(
 			() -> assertThat(medicine.medicineId()).isNotNull(),
 			() -> assertThat(medicine.medicineName()).isEqualTo("록사렉스캡슐75mg (LOXALEX CAP)"),
@@ -92,8 +91,8 @@ class MyDataDetailServiceTest extends ServiceTestConfig {
 		);
 	}
 
-	private DetailPrescription makeDetailPrescription(Long id, int interval, int dailyCount, int totalCount) {
-		return DetailPrescription.builder()
+	private com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescription makeDetailPrescription(Long id, int interval, int dailyCount, int totalCount) {
+		return com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescription.builder()
 			.id(id)
 			.administerInterval(interval)
 			.dailyCount(dailyCount)

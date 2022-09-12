@@ -61,7 +61,6 @@ class AuthenticationControllerTest extends TestConfig {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			post("/api/v1/signup")
-				.with(SecurityMockMvcRequestPostProcessors.csrf())
 				.content(objectMapper.writeValueAsString(memberSaveRequest))
 				.contentType(MediaType.APPLICATION_JSON));
 
@@ -115,7 +114,6 @@ class AuthenticationControllerTest extends TestConfig {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			post("/api/v1/login")
-				.with(SecurityMockMvcRequestPostProcessors.csrf())
 				.content(objectMapper.writeValueAsString(memberIdRequest))
 				.contentType(MediaType.APPLICATION_JSON));
 
@@ -161,7 +159,6 @@ class AuthenticationControllerTest extends TestConfig {
 		// when // then
 		ResultActions resultActions = mockMvc.perform(
 				post("/api/v1/logout")
-					.with(SecurityMockMvcRequestPostProcessors.csrf())
 					.contentType(MediaType.APPLICATION_JSON));
 
 		resultActions
@@ -187,7 +184,6 @@ class AuthenticationControllerTest extends TestConfig {
 		// when
 		ResultActions resultActions = mockMvc.perform(
 			get("/api/v1/auth")
-				.with(SecurityMockMvcRequestPostProcessors.csrf())
 				.contentType(MediaType.APPLICATION_JSON));
 
 		// then

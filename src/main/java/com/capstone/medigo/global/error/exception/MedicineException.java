@@ -16,6 +16,6 @@ public class MedicineException  extends BusinessException {
 
 	public static MemberException notFoundMedicine(Long medicineId) {
 		return new MemberException(ErrorCode.NOT_FOUND_MEDICINE,
-			MessageFormat.format("약물을 찾을 수 없습니다. (id: {0})", medicineId));
+			MessageFormat.format("약물을 찾을 수 없습니다. (medicineId: {0})", medicineId));
 	}
 }

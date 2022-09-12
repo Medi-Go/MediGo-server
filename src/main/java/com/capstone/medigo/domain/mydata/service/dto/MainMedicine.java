@@ -2,14 +2,14 @@ package com.capstone.medigo.domain.mydata.service.dto;
 
 import lombok.Builder;
 
-public record MyDataMainMedicine(
-	Long id,
+public record MainMedicine(
+	Long medicineId,
 	String medicineName,
 	int remainCount,
 	int treatDate
 ) {
 
 	@Builder
-	public MyDataMainMedicine {
+	public MainMedicine {
 	}
 }

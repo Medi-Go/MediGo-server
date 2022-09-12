@@ -48,7 +48,7 @@ public class MemberException extends BusinessException {
 
 	public static MemberException notFoundMember(Long memberId) {
 		return new MemberException(ErrorCode.NOT_FOUND_MEMBER,
-			MessageFormat.format("회원을 찾을 수 없습니다. (id: {0})", memberId));
+			MessageFormat.format("회원을 찾을 수 없습니다. (medicineId: {0})", memberId));
 	}
 
 	public static MemberException blacklistDetection() {

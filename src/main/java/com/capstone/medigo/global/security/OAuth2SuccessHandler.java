@@ -67,7 +67,7 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
 		}
 		Long memberId = optionalMember.get().getId();
 
-		String targetUri = domain + "/login/auth" + "?id=" + memberId;
+		String targetUri = domain + "/login/auth" + "?medicineId=" + memberId;
 		response.sendRedirect(targetUri);
 
 	}
