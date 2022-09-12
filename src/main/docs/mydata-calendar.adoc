@@ -1,0 +1,6 @@
+== MyData Calendar
+
+=== 진료 데이터
+
+operation::get-calendar-treatment[snippets='http-request,path-parameters,http-response,response-headers,response-body,response-fields']
+'''

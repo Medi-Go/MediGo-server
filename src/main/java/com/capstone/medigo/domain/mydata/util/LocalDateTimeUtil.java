@@ -20,4 +20,21 @@ public class LocalDateTimeUtil {
 		return LocalDateTime.of(year, month, day, 00, 00, 00);
 	}
 
+	public static int getStartDate(Long date) {
+		return (int)(date * 100);
+	}
+
+	public static int getEndDate(Long date) {
+		long year = date / 100;
+		long month = date - year * 100;
+
+		if (month == 12) {
+			year += 1;
+			month = 1;
+		} else {
+			month += 1;
+		}
+
+		return (int)((year * 100 + month) * 100);
+	}
 }

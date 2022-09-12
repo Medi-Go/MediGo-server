@@ -50,7 +50,7 @@ public class MyDataSaveService {
 	@Transactional
 	public void save(String myDataValue, Long memberId) {
 		ObjectMapper mapper = new ObjectMapper();
-		MyDataSaveRequest myDataSaveRequest = null;
+		MyDataSaveRequest myDataSaveRequest;
 
 		try {
 			myDataSaveRequest = mapper.readValue(myDataValue, MyDataSaveRequest.class);
@@ -69,7 +69,7 @@ public class MyDataSaveService {
 		Member member = memberRepository.findById(memberId).orElseThrow(() -> {
 			throw MemberException.notFoundMember(memberId);
 		});
-		member.changeMyDataUpdateTime(LocalDateTime.now());
+		member.changeMyDataLoadUpdateTime(LocalDateTime.now());
 
 		prescriptions.forEach(prescription -> {
 				Prescription savedPrescription = prescriptionRepository.save(

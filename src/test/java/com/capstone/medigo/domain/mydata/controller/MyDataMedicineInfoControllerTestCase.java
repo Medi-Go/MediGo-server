@@ -20,15 +20,14 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.capstone.medigo.config.TestConfig;
 import com.capstone.medigo.domain.mydata.service.MyDataMedicineInfoService;
-import com.capstone.medigo.domain.mydata.service.dto.IngredientInfo;
-import com.capstone.medigo.domain.mydata.service.dto.MedicineInfoCase;
-import com.capstone.medigo.domain.mydata.service.dto.DurInfo;
-import com.capstone.medigo.domain.mydata.service.dto.KpicInfo;
+import com.capstone.medigo.domain.mydata.service.dto.main.IngredientInfo;
+import com.capstone.medigo.domain.mydata.service.dto.main.MedicineInfoCase;
+import com.capstone.medigo.domain.mydata.service.dto.main.DurInfo;
+import com.capstone.medigo.domain.mydata.service.dto.main.KpicInfo;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataMedicineInfo;
 
 @WebMvcTest(controllers = MyDataMedicineInfoController.class)

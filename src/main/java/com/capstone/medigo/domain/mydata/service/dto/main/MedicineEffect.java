@@ -1,4 +1,4 @@
-package com.capstone.medigo.domain.mydata.service.dto;
+package com.capstone.medigo.domain.mydata.service.dto.main;
 
 import java.util.List;
 
