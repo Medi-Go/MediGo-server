@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.medigo.domain.mydata.service.MyDataMainService;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataMainDto;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataMain;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,13 +20,13 @@ public class MyDataMainController {
 	private final MyDataMainService myDataMainService;
 
 	@GetMapping
-	public ResponseEntity<MyDataMainDto> myDataMain(
+	public ResponseEntity<MyDataMain> myDataMain(
 		@AuthenticationPrincipal Long memberId
 	) {
-		MyDataMainDto myDataMainDto = myDataMainService.findMedicinesInUse(memberId);
+		MyDataMain myDataMain = myDataMainService.findMedicinesInUse(memberId);
 
 		return ResponseEntity
 			.ok()
-			.body(myDataMainDto);
+			.body(myDataMain);
 	}
 }

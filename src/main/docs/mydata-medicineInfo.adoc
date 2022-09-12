@@ -1,0 +1,6 @@
+== MyData 약물 상세 설명
+
+=== 약물 상세 설명
+
+operation::get-medicine-info[snippets='http-request,request-headers,path-parameters,http-response,response-headers,response-body,response-fields']
+'''

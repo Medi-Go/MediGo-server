@@ -12,10 +12,10 @@ operation::post-login[snippets='http-request,request-headers,request-body,http-r
 
 === 로그아웃
 
-operation::post-logout[snippets='http-request,request-body,http-response,response-body']
+operation::post-logout[snippets='http-request,http-response']
 '''
 
 === 유저정보
 
-operation::get-member-info[snippets='http-request,request-headers,request-body,http-response,response-headers,response-body,response-fields']
+operation::get-member-info[snippets='http-request,request-headers,http-response,response-headers,response-body,response-fields']
 '''

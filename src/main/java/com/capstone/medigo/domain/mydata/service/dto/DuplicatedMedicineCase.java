@@ -2,7 +2,7 @@ package com.capstone.medigo.domain.mydata.service.dto;
 
 import lombok.Builder;
 
-public record MyDataDuplicationPrescriptionDto(
+public record DuplicatedMedicineCase(
 	int treatDate,
 	String treatMedicalName,
 	int administerInterval,
@@ -10,6 +10,6 @@ public record MyDataDuplicationPrescriptionDto(
 	int totalDayCount
 ) {
 	@Builder
-	public MyDataDuplicationPrescriptionDto {
+	public DuplicatedMedicineCase {
 	}
 }

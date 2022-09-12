@@ -16,11 +16,11 @@ import com.capstone.medigo.domain.mydata.repository.ingredient.IngredientReposit
 import com.capstone.medigo.domain.mydata.repository.kpic.KpicRepository;
 import com.capstone.medigo.domain.mydata.repository.medicineinfo.MedicineInfoRepository;
 import com.capstone.medigo.domain.mydata.repository.medicine.MedicineRepository;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataInfoDurDto;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataInfoIngredientDto;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataInfoKpicDto;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataInfoMedicineDto;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataInfoMedicineInfoDto;
+import com.capstone.medigo.domain.mydata.service.dto.KpicInfo;
+import com.capstone.medigo.domain.mydata.service.dto.MedicineInfoCase;
+import com.capstone.medigo.domain.mydata.service.dto.DurInfo;
+import com.capstone.medigo.domain.mydata.service.dto.IngredientInfo;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataMedicineInfo;
 import com.capstone.medigo.global.error.exception.MedicineException;
 
 import lombok.RequiredArgsConstructor;
@@ -35,85 +35,84 @@ public class MyDataMedicineInfoService {
 	private final DurRepository durRepository;
 
 	@Transactional(readOnly = true)
-	public MyDataInfoMedicineDto findMedicineInfo(Long medicineId) {
+	public MyDataMedicineInfo findMedicineInfo(Long medicineId) {
 		Medicine medicine = medicineRepository.findById(medicineId).orElseThrow(() -> {
 			throw MedicineException.notFoundMedicine(medicineId);
 		});
 
-		List<MyDataInfoMedicineInfoDto> myDataInfoMedicineInfoDtoList = new ArrayList<>();
-		List<MedicineInfo> medicineInfos = medicineInfoRepository.findByMedicine(medicine);
+		List<MedicineInfoCase> medicineInfoCases = new ArrayList<>();
+		List<MedicineInfo> medicineInfos = medicineInfoRepository.findByMedicine(
+			medicine);
 
 		for (MedicineInfo medicineInfo : medicineInfos) {
-			List<MyDataInfoIngredientDto> myDataInfoIngredientDtos = makeIngredientDtos(medicineInfo);
-			List<MyDataInfoKpicDto> myDataInfoKpicDtos = makeKpicDtos(medicineInfo);
-			List<MyDataInfoDurDto> myDataInfoDurDtos = makeDurDtos(medicineInfo);
+			List<IngredientInfo> ingredientInfos = makeIngredients(medicineInfo);
+			List<KpicInfo> kpicInfos = makeKpics(medicineInfo);
+			List<DurInfo> durInfos = makeDurs(medicineInfo);
 
-			makeMyDataInfoMedicineInfoDtoList(myDataInfoMedicineInfoDtoList, medicineInfo, myDataInfoIngredientDtos, myDataInfoKpicDtos,
-				myDataInfoDurDtos);
+			makeMedicineInfos(medicineInfoCases, medicineInfo, ingredientInfos, kpicInfos, durInfos);
 		}
 
-		return makeMyDataInfoMedicineDto(medicineId, medicine, myDataInfoMedicineInfoDtoList);
+		return makeMyDataMedicineInfo(medicineId, medicine, medicineInfoCases);
 	}
 
-	private List<MyDataInfoDurDto> makeDurDtos(MedicineInfo medicineInfo) {
-		List<MyDataInfoDurDto> myDataInfoDurDtos = new ArrayList<>();
+	private List<DurInfo> makeDurs(MedicineInfo medicineInfo) {
+		List<DurInfo> durInfos = new ArrayList<>();
 		List<Dur> durs = durRepository.findByMedicineInfo(medicineInfo);
 		for (Dur dur : durs) {
-			myDataInfoDurDtos.add(new MyDataInfoDurDto(dur.getAgeTaboo(), dur.getPregnantTaboo(), dur.getCombinedTaboo()));
+			durInfos.add(new DurInfo(dur.getAgeTaboo(), dur.getPregnantTaboo(), dur.getCombinedTaboo()));
 		}
 
-		return myDataInfoDurDtos;
+		return durInfos;
 	}
 
-	private List<MyDataInfoKpicDto> makeKpicDtos(MedicineInfo medicineInfo) {
-		List<MyDataInfoKpicDto> myDataInfoKpicDtos = new ArrayList<>();
+	private List<KpicInfo> makeKpics(MedicineInfo medicineInfo) {
+		List<KpicInfo> kpicInfos = new ArrayList<>();
 		List<Kpic> kpics = kpicRepository.findByMedicineInfo(medicineInfo);
 		for (Kpic kpic : kpics) {
-			myDataInfoKpicDtos.add(new MyDataInfoKpicDto(kpic.getKpic()));
+			kpicInfos.add(new KpicInfo(kpic.getKpic()));
 		}
 
-		return myDataInfoKpicDtos;
+		return kpicInfos;
 	}
 
-	private List<MyDataInfoIngredientDto> makeIngredientDtos(MedicineInfo medicineInfo) {
+	private List<IngredientInfo> makeIngredients(MedicineInfo medicineInfo) {
 		List<Ingredient> ingredients = ingredientRepository.findByMedicineInfo(medicineInfo);
-		List<MyDataInfoIngredientDto> myDataInfoIngredientDtos = new ArrayList<>();
+		List<IngredientInfo> ingredientInfos = new ArrayList<>();
 		for (Ingredient ingredient : ingredients) {
-			myDataInfoIngredientDtos.add(new MyDataInfoIngredientDto(ingredient.getIngredientName()));
+			ingredientInfos.add(new IngredientInfo(ingredient.getIngredientName()));
 		}
 
-		return myDataInfoIngredientDtos;
+		return ingredientInfos;
 	}
 
-	private MyDataInfoMedicineDto makeMyDataInfoMedicineDto(Long medicineId, Medicine medicine,
-		List<MyDataInfoMedicineInfoDto> myDataInfoMedicineInfoDtoList) {
+	private MyDataMedicineInfo makeMyDataMedicineInfo(Long medicineId, Medicine medicine,
+		List<MedicineInfoCase> medicineInfoCases) {
 
-		return MyDataInfoMedicineDto.builder()
+		return MyDataMedicineInfo.builder()
 			.medicineId(medicineId)
 			.medicineName(medicine.getMedicineNm())
 			.medicineEffect(medicine.getMedicineEffect())
-			.myDataInfoMedicineInfoDtoList(myDataInfoMedicineInfoDtoList)
+			.medicineInfoCases(medicineInfoCases)
 			.build();
 	}
 
-	private void makeMyDataInfoMedicineInfoDtoList(List<MyDataInfoMedicineInfoDto> myDataInfoMedicineInfoDtoList, MedicineInfo medicineInfo,
-		List<MyDataInfoIngredientDto> myDataInfoIngredientDtos, List<MyDataInfoKpicDto> myDataInfoKpicDtos,
-		List<MyDataInfoDurDto> myDataInfoDurDtos) {
-		myDataInfoMedicineInfoDtoList.add(
-			MyDataInfoMedicineInfoDto.builder()
-			.makingCompany(medicineInfo.getMakingCompany())
-			.productName(medicineInfo.getProductNm())
-			.medicineGroup(medicineInfo.getMedicineGroup())
-			.salesCompany(medicineInfo.getSalesCompany())
-			.payInfo(medicineInfo.getPayInfo())
-			.administerPath(medicineInfo.getAdministerPath())
-			.shape(medicineInfo.getShape())
-			.singleYN(medicineInfo.getSingleYn())
-			.specialYN(medicineInfo.getSpecialYn())
-			.myDataInfoDurDtos(myDataInfoDurDtos)
-			.myDataInfoIngredientDtos(myDataInfoIngredientDtos)
-			.myDataInfoKpicDtos(myDataInfoKpicDtos)
-			.build()
+	private void makeMedicineInfos(List<MedicineInfoCase> medicineInfoCases, MedicineInfo medicineInfo,
+		List<IngredientInfo> ingredientInfos, List<KpicInfo> kpicInfos, List<DurInfo> durInfos) {
+		medicineInfoCases.add(
+			MedicineInfoCase.builder()
+				.makingCompany(medicineInfo.getMakingCompany())
+				.productName(medicineInfo.getProductNm())
+				.medicineGroup(medicineInfo.getMedicineGroup())
+				.salesCompany(medicineInfo.getSalesCompany())
+				.payInfo(medicineInfo.getPayInfo())
+				.administerPath(medicineInfo.getAdministerPath())
+				.shape(medicineInfo.getShape())
+				.singleYN(medicineInfo.getSingleYn())
+				.specialYN(medicineInfo.getSpecialYn())
+				.durInfos(durInfos)
+				.ingredientInfos(ingredientInfos)
+				.kpicInfos(kpicInfos)
+				.build()
 		);
 	}
 }
