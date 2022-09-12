@@ -1,7 +1,9 @@
 package com.capstone.medigo.domain.mydata.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,6 +26,7 @@ public class MyDataTestController {
 
 
 	@GetMapping("/1004")
+	@Transactional
 	public String testData() throws IOException {
 		Member save = memberRepository.save(Member.builder()
 			.email("dldydgns530@gmail.com")
@@ -34,6 +37,10 @@ public class MyDataTestController {
 			.carrier(Carrier.LG)
 			.phoneNumber("01011113333")
 			.build());
+
+		save.changeMyDataLoadUpdateTime(LocalDateTime.of(1970,01,01,00,00,00));
+		save.changeMyDataDetailUpdateTime(LocalDateTime.of(1970,01,01,00,00,00));
+
 
 		String result = "{\n"
 			+ "  \"errCode\": \"0000\",\n"
