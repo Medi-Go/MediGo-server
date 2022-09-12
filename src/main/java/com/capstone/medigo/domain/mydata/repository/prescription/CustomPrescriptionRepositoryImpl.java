@@ -23,7 +23,7 @@ public class CustomPrescriptionRepositoryImpl implements CustomPrescriptionRepos
 			.where(
 				prescription.treatDate.goe(time),
 				prescription.member.eq(member),
-				prescription.isUpdate.eq(true)
+				prescription.isUpdate.eq(false)
 			)
 			.fetch();
 	}

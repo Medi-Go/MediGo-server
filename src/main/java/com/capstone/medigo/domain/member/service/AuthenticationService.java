@@ -1,5 +1,6 @@
 package com.capstone.medigo.domain.member.service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -39,6 +40,9 @@ public class AuthenticationService {
 		TemporaryMember temporaryMember = optionalMember.get();
 		checkDuplicatedEmail(memberSaveRequest.email());
 		Member member = memberRepository.save(MemberConverter.toMember(memberSaveRequest, temporaryMember));
+
+		member.changeMyDataLoadUpdateTime(LocalDateTime.of(1970,01,01,00,00,00));
+		member.changeMyDataDetailUpdateTime(LocalDateTime.of(1970,01,01,00,00,00));
 
 		return MemberConverter.toMemberResponse(member);
 	}
