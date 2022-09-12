@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
@@ -13,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.capstone.medigo.domain.member.controller.dto.MemberSaveRequest;
+import com.capstone.medigo.domain.member.repository.MemberRepository;
 import com.capstone.medigo.domain.member.service.dto.MemberResponse;
 import com.capstone.medigo.global.cache.model.TemporaryMember;
 import com.capstone.medigo.global.cache.repository.TemporaryMemberRepository;
@@ -57,7 +59,9 @@ class AuthenticationServiceTest {
 			() -> assertThat(memberResponse.name()).isEqualTo("홍길동"),
 			() -> assertThat(memberResponse.jumin()).isEqualTo("19971107"),
 			() -> assertThat(memberResponse.carrier()).isEqualTo("LG"),
-			() -> assertThat(memberResponse.phoneNumber()).isEqualTo("01012345678")
+			() -> assertThat(memberResponse.phoneNumber()).isEqualTo("01012345678"),
+			() -> assertThat(memberResponse.lastMyDataLoadUpdateTime().getYear()).isEqualTo(1970),
+			() -> assertThat(memberResponse.lastMyDataDetailUpdateTime().getYear()).isEqualTo(1970)
 		);
 	}
 
