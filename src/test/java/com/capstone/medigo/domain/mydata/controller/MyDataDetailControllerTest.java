@@ -28,8 +28,8 @@ import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailPrescri
 import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest;
 import com.capstone.medigo.domain.mydata.service.MyDataDetailService;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetail;
-import com.capstone.medigo.domain.mydata.service.dto.main.DetailMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.main.DetailPrescriptionCase;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DetailMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DetailPrescriptionCase;
 
 @WebMvcTest(controllers = MyDataDetailController.class)
 class MyDataDetailControllerTest extends TestConfig {
@@ -67,7 +67,7 @@ class MyDataDetailControllerTest extends TestConfig {
 				responseFields(
 					fieldWithPath("prescriptions").type(ARRAY).description("처방전 배열"),
 					fieldWithPath("prescriptions.[].prescriptionId").type(NUMBER).description("처방전 아이디"),
-					fieldWithPath("prescriptions.[].treatType").type(STRING).description("처방 타입"),
+					fieldWithPath("prescriptions.[].treatType").type(STRING).description("처방 진료 형태"),
 					fieldWithPath("prescriptions.[].treatName").type(STRING).description("환자 이름"),
 					fieldWithPath("prescriptions.[].treatDate").type(NUMBER).description("처방 날짜"),
 					fieldWithPath("prescriptions.[].treatMedicalName").type(STRING).description("처방 병원 이름"),

@@ -17,8 +17,8 @@ import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest
 import com.capstone.medigo.domain.mydata.model.Prescription;
 import com.capstone.medigo.domain.mydata.repository.prescription.PrescriptionRepository;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataDetail;
-import com.capstone.medigo.domain.mydata.service.dto.main.DetailMedicine;
-import com.capstone.medigo.domain.mydata.service.dto.main.DetailPrescriptionCase;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DetailMedicine;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DetailPrescriptionCase;
 import com.capstone.medigo.domain.mydata.util.LocalDateTimeUtil;
 
 @SpringBootTest
@@ -78,7 +78,7 @@ class MyDataDetailServiceTest extends ServiceTestConfig {
 			() -> assertThat(prescription1.getDailyCount()).isEqualTo(2),
 			() -> assertThat(prescription1.getTotalDayCount()).isEqualTo(3),
 			() -> assertThat(prescription1.getEndDate()).isEqualTo(
-				LocalDateTimeUtil.localTo8format(LocalDateTime.now().minusDays(5).plusDays(1 * 3))
+				LocalDateTimeUtil.localTo8format(LocalDateTime.now().minusDays(5).plusDays(3))
 			)
 		);
 		Prescription prescription2 = prescriptionRepository.findById(prescriptionBefore4Month.getId()).get();
@@ -87,7 +87,7 @@ class MyDataDetailServiceTest extends ServiceTestConfig {
 			() -> assertThat(prescription2.getDailyCount()).isEqualTo(5),
 			() -> assertThat(prescription2.getTotalDayCount()).isEqualTo(6),
 			() -> assertThat(prescription2.getEndDate()).isEqualTo(
-				LocalDateTimeUtil.localTo8format(LocalDateTime.now().minusMonths(4).plusDays(4 * 6))
+				LocalDateTimeUtil.localTo8format(LocalDateTime.now().minusMonths(4).plusDays(6))
 			)
 		);
 	}

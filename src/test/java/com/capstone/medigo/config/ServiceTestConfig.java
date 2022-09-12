@@ -50,7 +50,7 @@ public abstract class ServiceTestConfig {
 				.phoneNumber("01012345678")
 				.build()
 		);
-		savePrescription(this.member, "처방조제");
+		savePrescription(LocalDateTime.now(), this.member, "처방조제");
 
 		this.otherMember = memberRepository.save(
 			Member.builder()
@@ -65,8 +65,7 @@ public abstract class ServiceTestConfig {
 		);
 	}
 
-	protected void savePrescription(Member member, String treatType) {
-		LocalDateTime now = LocalDateTime.now();
+	protected void savePrescription(LocalDateTime now, Member member, String treatType) {
 		prescriptionBefore5day = prescriptionRepository.save(makePrescription(member, now.minusDays(5),treatType));
 
 		medicineRepository.save(makeMedicine(prescriptionBefore5day, prescriptionBefore5day.getTreatDate()));

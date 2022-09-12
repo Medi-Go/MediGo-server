@@ -88,7 +88,7 @@ public class Prescription extends BaseEntity {
 		this.dailyCount = dailyCount;
 		this.totalDayCount = totalDayCount;
 		this.endDate = LocalDateTimeUtil.localTo8format(
-			LocalDateTimeUtil.eightToLocalFormat(this.treatDate).plusDays((long)administerInterval * totalDayCount));
+			LocalDateTimeUtil.eightToLocalFormat(this.treatDate).plusDays(totalDayCount));
 		this.isUpdate = true;
 	}
 }

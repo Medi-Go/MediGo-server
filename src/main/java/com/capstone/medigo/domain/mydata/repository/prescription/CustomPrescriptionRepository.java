@@ -13,4 +13,6 @@ public interface CustomPrescriptionRepository {
 
 	List<Prescription> findTreatmentByMemberAndTimeInterval(Member member, int start, int end);
 
+	List<Prescription> findByEndDateWhichBiggerThanDate(Member member, int date);
+
 }

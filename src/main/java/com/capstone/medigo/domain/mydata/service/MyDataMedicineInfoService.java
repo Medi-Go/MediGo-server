@@ -16,10 +16,10 @@ import com.capstone.medigo.domain.mydata.repository.ingredient.IngredientReposit
 import com.capstone.medigo.domain.mydata.repository.kpic.KpicRepository;
 import com.capstone.medigo.domain.mydata.repository.medicineinfo.MedicineInfoRepository;
 import com.capstone.medigo.domain.mydata.repository.medicine.MedicineRepository;
-import com.capstone.medigo.domain.mydata.service.dto.main.KpicInfo;
-import com.capstone.medigo.domain.mydata.service.dto.main.MedicineInfoCase;
-import com.capstone.medigo.domain.mydata.service.dto.main.DurInfo;
-import com.capstone.medigo.domain.mydata.service.dto.main.IngredientInfo;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.KpicInfo;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.MedicineInfoCase;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DurInfo;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.IngredientInfo;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataMedicineInfo;
 import com.capstone.medigo.global.error.exception.MedicineException;
 

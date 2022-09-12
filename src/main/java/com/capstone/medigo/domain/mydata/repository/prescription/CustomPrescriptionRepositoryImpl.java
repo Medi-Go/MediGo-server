@@ -53,4 +53,17 @@ public class CustomPrescriptionRepositoryImpl implements CustomPrescriptionRepos
 			.fetch();
 	}
 
+	@Override
+	public List<Prescription> findByEndDateWhichBiggerThanDate(Member member, int date) {
+		return jpaQueryFactory
+			.selectFrom(prescription)
+			.where(
+				prescription.member.eq(member),
+				prescription.isUpdate.eq(true),
+				prescription.treatType.eq("처방조제"),
+				prescription.endDate.goe(date)
+			)
+			.fetch();
+	}
+
 }
