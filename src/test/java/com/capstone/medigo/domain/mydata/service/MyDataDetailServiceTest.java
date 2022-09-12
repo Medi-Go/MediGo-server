@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,7 +31,8 @@ class MyDataDetailServiceTest extends ServiceTestConfig {
 	PrescriptionRepository prescriptionRepository;
 
 	@Test
-	void testGetMyDataInfo() {
+	@DisplayName("처방전 isUpdate 가 true 인 경우 데이터를 가지고 오지 않는다.")
+	void testInvalidGetMyDataInfo() {
 		// given
 		LocalDateTime now = LocalDateTime.now();
 
@@ -37,25 +40,25 @@ class MyDataDetailServiceTest extends ServiceTestConfig {
 		MyDataDetail myDataInfo = myDataDetailService.getMyDataInfo(member.getId(), LocalDateTime.now(), 2);
 
 		// then
-		assertThat(myDataInfo.prescriptions().size()).isEqualTo(1);
+		assertThat(myDataInfo.prescriptions().size()).isZero();
 
-		DetailPrescriptionCase prescription = myDataInfo.prescriptions().get(0);
-		assertAll(
-			() -> assertThat(prescription.prescriptionId()).isNotNull(),
-			() -> assertThat(prescription.treatType()).isEqualTo("처방조제"),
-			() -> assertThat(prescription.treatName()).isEqualTo("김철수"),
-			() -> assertThat(prescription.treatDate()).isEqualTo(LocalDateTimeUtil.localTo8format(now.minusDays(5))),
-			() -> assertThat(prescription.treatMedicalName()).isEqualTo("한가람약국[남동구 남동대로]"),
-			() -> assertThat(prescription.medicineDetails()).isNotNull()
-		);
-
-		DetailMedicine medicine = prescription.medicineDetails().get(0);
-		assertAll(
-			() -> assertThat(medicine.medicineId()).isNotNull(),
-			() -> assertThat(medicine.medicineName()).isEqualTo("록사렉스캡슐75mg (LOXALEX CAP)"),
-			() -> assertThat(medicine.medicineEffect()).isEqualTo("소화성궤양용제"),
-			() -> assertThat(medicine.administerCount()).isEqualTo(3)
-		);
+		// DetailPrescriptionCase prescription = myDataInfo.prescriptions().get(0);
+		// assertAll(
+		// 	() -> assertThat(prescription.prescriptionId()).isNotNull(),
+		// 	() -> assertThat(prescription.treatType()).isEqualTo("처방조제"),
+		// 	() -> assertThat(prescription.treatName()).isEqualTo("김철수"),
+		// 	() -> assertThat(prescription.treatDate()).isEqualTo(LocalDateTimeUtil.localTo8format(now.minusDays(5))),
+		// 	() -> assertThat(prescription.treatMedicalName()).isEqualTo("한가람약국[남동구 남동대로]"),
+		// 	() -> assertThat(prescription.medicineDetails()).isNotNull()
+		// );
+		//
+		// DetailMedicine medicine = prescription.medicineDetails().get(0);
+		// assertAll(
+		// 	() -> assertThat(medicine.medicineId()).isNotNull(),
+		// 	() -> assertThat(medicine.medicineName()).isEqualTo("록사렉스캡슐75mg (LOXALEX CAP)"),
+		// 	() -> assertThat(medicine.medicineEffect()).isEqualTo("소화성궤양용제"),
+		// 	() -> assertThat(medicine.administerCount()).isEqualTo(3)
+		// );
 	}
 
 	@Test
