@@ -16,7 +16,7 @@ import com.capstone.medigo.domain.member.model.Member;
 import com.capstone.medigo.domain.mydata.model.Medicine;
 import com.capstone.medigo.domain.mydata.model.Prescription;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataMain;
-import com.capstone.medigo.domain.mydata.service.dto.main.MedicineEffect;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.MedicineEffect;
 import com.capstone.medigo.domain.mydata.util.LocalDateTimeUtil;
 
 @SpringBootTest

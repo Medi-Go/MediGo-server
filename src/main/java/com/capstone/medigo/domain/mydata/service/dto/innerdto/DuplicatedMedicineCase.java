@@ -1,4 +1,4 @@
-package com.capstone.medigo.domain.mydata.service.dto.main;
+package com.capstone.medigo.domain.mydata.service.dto.innerdto;
 
 import lombok.Builder;
 

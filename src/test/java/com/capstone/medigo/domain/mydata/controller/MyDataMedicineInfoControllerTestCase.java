@@ -24,10 +24,10 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.capstone.medigo.config.TestConfig;
 import com.capstone.medigo.domain.mydata.service.MyDataMedicineInfoService;
-import com.capstone.medigo.domain.mydata.service.dto.main.IngredientInfo;
-import com.capstone.medigo.domain.mydata.service.dto.main.MedicineInfoCase;
-import com.capstone.medigo.domain.mydata.service.dto.main.DurInfo;
-import com.capstone.medigo.domain.mydata.service.dto.main.KpicInfo;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.IngredientInfo;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.MedicineInfoCase;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.DurInfo;
+import com.capstone.medigo.domain.mydata.service.dto.innerdto.KpicInfo;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataMedicineInfo;
 
 @WebMvcTest(controllers = MyDataMedicineInfoController.class)

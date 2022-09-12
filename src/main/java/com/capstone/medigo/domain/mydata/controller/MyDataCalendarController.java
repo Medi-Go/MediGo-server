@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.medigo.domain.mydata.service.MyDataCalendarService;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataCalendarPrescription;
 import com.capstone.medigo.domain.mydata.service.dto.MyDataCalendarTreatment;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataDetail;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -34,12 +34,14 @@ public class MyDataCalendarController {
 	}
 
 	@GetMapping("/prescriptions/{date}")
-	public ResponseEntity<MyDataDetail> calendarPrescriptions(
+	public ResponseEntity<MyDataCalendarPrescription> calendarPrescriptions(
 		@AuthenticationPrincipal Long memberId,
 		@PathVariable Long date
 	) {
+		MyDataCalendarPrescription calendarMedicines = myDataCalendarService.getCalendarMedicines(memberId, date);
+
 		return ResponseEntity
 			.ok()
-			.body(null);
+			.body(calendarMedicines);
 	}
 }
