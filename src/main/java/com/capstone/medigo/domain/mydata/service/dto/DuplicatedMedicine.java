@@ -2,9 +2,9 @@ package com.capstone.medigo.domain.mydata.service.dto;
 
 import java.util.List;
 
-public record MyDataDuplicationCase(
+public record DuplicatedMedicine(
 	Long medicineId,
 	String medicineName,
-	List<MyDataDuplicationPrescriptionDto> myDateDuplicationMedicineDto
+	List<DuplicatedMedicineCase> duplicatedMedicineCases
 ) {
 }

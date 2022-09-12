@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-public class PrescriptionAndMedicineData {
+public class PrescriptionAndMedicine {
 	private int treatDate;
 	private String treatMedicalName;
 	private int administerInterval;
@@ -15,7 +15,7 @@ public class PrescriptionAndMedicineData {
 	private Medicine medicine;
 
 	@Builder
-	public PrescriptionAndMedicineData(int treatDate, String treatMedicalName, int administerInterval,
+	public PrescriptionAndMedicine(int treatDate, String treatMedicalName, int administerInterval,
 		int dailyCount,
 		int totalDayCount, Medicine medicine) {
 		this.treatDate = treatDate;

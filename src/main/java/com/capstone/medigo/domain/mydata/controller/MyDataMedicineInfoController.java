@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.medigo.domain.mydata.service.MyDataMedicineInfoService;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataInfoMedicineDto;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataMedicineInfo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,10 +20,10 @@ public class MyDataMedicineInfoController {
 	private final MyDataMedicineInfoService myDataMedicineInfoService;
 
 	@GetMapping("/{medicineId}")
-	public ResponseEntity<MyDataInfoMedicineDto> medicineInfo(
+	public ResponseEntity<MyDataMedicineInfo> medicineInfo(
 		@PathVariable Long medicineId
 	) {
-		MyDataInfoMedicineDto medicineInfo = myDataMedicineInfoService.findMedicineInfo(medicineId);
+		MyDataMedicineInfo medicineInfo = myDataMedicineInfoService.findMedicineInfo(medicineId);
 
 		return ResponseEntity
 			.ok()

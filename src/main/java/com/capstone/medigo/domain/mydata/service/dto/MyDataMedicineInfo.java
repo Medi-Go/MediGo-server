@@ -1,14 +1,16 @@
 package com.capstone.medigo.domain.mydata.service.dto;
 
+import java.util.List;
+
 import lombok.Builder;
 
-public record MyDataDetailMedicine(
+public record MyDataMedicineInfo(
 	Long medicineId,
 	String medicineName,
 	String medicineEffect,
-	int administerCount
-) {
+	List<MedicineInfoCase> medicineInfoCases
+){
 	@Builder
-	public MyDataDetailMedicine {
+	public MyDataMedicineInfo {
 	}
 }

@@ -4,15 +4,15 @@ import java.util.List;
 
 import lombok.Builder;
 
-public record MyDataDetailPrescription(
+public record DetailPrescriptionCase(
 	Long prescriptionId,
 	String treatType,
 	String treatName,
 	int treatDate,
 	String treatMedicalName,
-	List<MyDataDetailMedicine> medicineDetailList
+	List<DetailMedicine> medicineDetails
 ){
 	@Builder
-	public MyDataDetailPrescription {
+	public DetailPrescriptionCase {
 	}
 }

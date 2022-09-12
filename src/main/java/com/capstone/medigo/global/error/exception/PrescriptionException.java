@@ -21,6 +21,6 @@ public class PrescriptionException extends BusinessException {
 
 	public static PrescriptionException notFoundPrescription(Long prescriptionId) {
 		return new PrescriptionException(ErrorCode.NOT_FOUND_PRESCRIPTION,
-			MessageFormat.format("처방전을 찾을 수 없습니다. (id: {0})", prescriptionId));
+			MessageFormat.format("처방전을 찾을 수 없습니다. (medicineId: {0})", prescriptionId));
 	}
 }

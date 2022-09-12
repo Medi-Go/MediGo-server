@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.medigo.domain.mydata.controller.dto.savedetail.DetailRequest;
 import com.capstone.medigo.domain.mydata.service.MyDataDetailService;
-import com.capstone.medigo.domain.mydata.service.dto.MyDataDetailDto;
+import com.capstone.medigo.domain.mydata.service.dto.MyDataDetail;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,15 +29,15 @@ public class MyDataDetailController {
 	private final MyDataDetailService myDataDetailService;
 
 	@GetMapping("/{month}")
-	public ResponseEntity<MyDataDetailDto> myDataDetail(
+	public ResponseEntity<MyDataDetail> myDataDetail(
 		@PathVariable int month,
 		@AuthenticationPrincipal Long memberId
 	) {
-		MyDataDetailDto myDataDetailDto = myDataDetailService.getMyDataInfo(memberId, LocalDateTime.now(), month);
+		MyDataDetail myDataDetail = myDataDetailService.getMyDataInfo(memberId, LocalDateTime.now(), month);
 
 		return ResponseEntity
 			.ok()
-			.body(myDataDetailDto);
+			.body(myDataDetail);
 	}
 
 	@PatchMapping

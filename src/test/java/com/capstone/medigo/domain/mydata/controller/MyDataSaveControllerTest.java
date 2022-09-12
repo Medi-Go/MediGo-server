@@ -34,7 +34,6 @@ class MyDataSaveControllerTest extends TestConfig {
 		// given // when // then
 		ResultActions resultActions = mockMvc.perform(
 			post("/api/v1/connection")
-				.with(SecurityMockMvcRequestPostProcessors.csrf())
 				.contentType(MediaType.APPLICATION_JSON));
 
 		resultActions
@@ -52,7 +51,6 @@ class MyDataSaveControllerTest extends TestConfig {
 		// when // then
 		ResultActions resultActions = mockMvc.perform(
 			post("/api/v1/connection/data")
-				.with(SecurityMockMvcRequestPostProcessors.csrf())
 				.contentType(MediaType.APPLICATION_JSON));
 
 		resultActions

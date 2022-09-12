@@ -4,7 +4,7 @@ import java.util.List;
 
 import lombok.Builder;
 
-public record MyDataInfoMedicineInfoDto(
+public record MedicineInfoCase(
 	String makingCompany,
 	String productName,
 	String medicineGroup,
@@ -14,11 +14,11 @@ public record MyDataInfoMedicineInfoDto(
 	String shape,
 	String singleYN,
 	String specialYN,
-	List<MyDataInfoIngredientDto> myDataInfoIngredientDtos,
-	List<MyDataInfoKpicDto> myDataInfoKpicDtos,
-	List<MyDataInfoDurDto> myDataInfoDurDtos
+	List<IngredientInfo> ingredientInfos,
+	List<KpicInfo> kpicInfos,
+	List<DurInfo> durInfos
 ) {
 	@Builder
-	public MyDataInfoMedicineInfoDto {
+	public MedicineInfoCase {
 	}
 }
