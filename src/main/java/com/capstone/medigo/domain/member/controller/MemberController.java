@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.medigo.domain.member.controller.dto.MemberUpdateRequest;
 import com.capstone.medigo.domain.member.service.MemberService;
+import com.capstone.medigo.domain.member.service.dto.MemberResponse;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,22 +24,21 @@ public class MemberController {
 	private final MemberService memberService;
 
 	@PatchMapping
-	public ResponseEntity<Void> member(
+	public ResponseEntity<MemberResponse> member(
 		@Valid @RequestBody MemberUpdateRequest memberUpdateRequest,
 		@AuthenticationPrincipal Long memberId
 	) {
-		memberService.updateMember(memberId, memberUpdateRequest);
+		MemberResponse memberResponse = memberService.updateMember(memberId, memberUpdateRequest);
 
 		return ResponseEntity.ok()
 			.contentType(MediaType.APPLICATION_JSON)
-			.build();
+			.body(memberResponse);
 	}
 
 	@PostMapping
 	public ResponseEntity<Void> updateMemberMyData(
 		@AuthenticationPrincipal Long memberId
 	){
-
 
 		return ResponseEntity.ok()
 			.contentType(MediaType.APPLICATION_JSON)
