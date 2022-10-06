@@ -2,5 +2,5 @@
 
 === Member 정보 수정
 
-operation::patch-member[snippets='http-request,request-headers,request-body,request-fields,http-response']
+operation::patch-member[snippets='http-request,request-headers,request-body,request-fields,http-response,response-headers,response-body,response-fields']
 '''

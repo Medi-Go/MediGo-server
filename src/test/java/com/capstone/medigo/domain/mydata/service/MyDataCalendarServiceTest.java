@@ -65,7 +65,7 @@ class MyDataCalendarServiceTest extends ServiceTestConfig {
 	void testGetCalendarPrescriptions() {
 		// given
 		Member member = saveMember("test77@test.com", "test77");
-		LocalDateTime time = LocalDateTime.of(2022, 9, 10, 00, 00);
+		LocalDateTime time = LocalDateTime.now();
 		savePrescription(time, member, "처방조제");
 		savePrescription(time, member, "외래진료");
 		int now = LocalDateTimeUtil.localTo8format(LocalDateTime.now().minusDays(5));
@@ -77,9 +77,9 @@ class MyDataCalendarServiceTest extends ServiceTestConfig {
 
 		// then
 		List<CalendarPrescription> calendarPrescriptions = calendarPrescription.calendarPrescriptions();
-		for (CalendarPrescription prescription : calendarPrescriptions) {
-			System.out.println(prescription.date());
-		}
+		// for (CalendarPrescription prescription : calendarPrescriptions) {
+		// 	System.out.println(prescription.date());
+		// }
 
 		assertThat(calendarPrescriptions.size()).isEqualTo(6);
 
