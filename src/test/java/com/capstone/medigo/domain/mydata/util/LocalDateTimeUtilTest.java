@@ -2,6 +2,10 @@ package com.capstone.medigo.domain.mydata.util;
 
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.SQLDataException;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;

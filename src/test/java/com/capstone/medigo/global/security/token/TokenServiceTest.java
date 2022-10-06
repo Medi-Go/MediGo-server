@@ -16,7 +16,10 @@ class TokenServiceTest {
 	@DisplayName("test 용도의 토큰을 생성한다.")
 	void makeTestToken () {
 		Tokens tokens = tokenService.generateTokens("1", MemberRole.ROLE_MEMBER.name());
+		System.out.println("accessToken");
 		System.out.println(tokens.accessToken());
+		System.out.println("refreshToken");
 		System.out.println(tokens.refreshToken());
+		System.out.println("======================");
 	}
 }
