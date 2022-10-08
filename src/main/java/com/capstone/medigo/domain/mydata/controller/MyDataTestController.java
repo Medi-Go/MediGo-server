@@ -744,6 +744,7 @@ public class MyDataTestController {
 		Member save = memberRepository.findById(1L).get();
 
 
+
 		String result = "{\n"
 			+ "  \"errCode\": \"0000\",\n"
 			+ "  \"errMsg\": \"success\",\n"
