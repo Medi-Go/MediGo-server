@@ -30,7 +30,7 @@ public class MyDataTestController {
 	public String testData() throws IOException {
 		Member save = memberRepository.save(Member.builder()
 			.email("dldydgns530@gmail.com")
-			.profileImageUrl("www.s32.com")
+			.profileImageUrl("https://lh3.googleusercontent.com/a-/AFdZucoPyEGN6Umu-dn2dwpvbdX_FMg6hzK0p3yVN_acNw=s96-c")
 			.nickName("test2")
 			.name("이용훈")
 			.jumin("19971107")
