@@ -1,5 +1,7 @@
 package com.capstone.medigo.domain.mydata.service;
 
+import static com.capstone.medigo.domain.mydata.util.StringFormatUtil.*;
+
 import com.capstone.medigo.domain.member.model.Member;
 import com.capstone.medigo.domain.member.repository.MemberRepository;
 import com.capstone.medigo.domain.mydata.controller.dto.save.DataSaveRequest;
@@ -81,14 +83,14 @@ public class MyDataSaveService {
 					Prescription savedPrescription = prescriptionRepository.save(
 						Prescription.builder()
 							.member(member)
-							.treatType(prescription.TREATTYPE())
+							.treatType(changeStringBracket(prescription.TREATTYPE()))
 							.visitCnt(prescription.VISITCNT())
 							.treatDsnm(prescription.TREATDSNM())
 							.treatDate(prescription.TREATDATE())
 							.medicineCnt(prescription.MEDICINECNT())
 							.treatdsgb(prescription.TREATDSGB())
 							.prescribeCnt(prescription.PRESCRIBECNT())
-							.treatMedicalnm(prescription.TREATMEDICALNM())
+							.treatMedicalnm(changeStringBracket(prescription.TREATMEDICALNM()))
 							.build()
 					);
 					saveMedicine(prescription.DETAILLIST(), savedPrescription);
@@ -102,7 +104,7 @@ public class MyDataSaveService {
 				Medicine.builder()
 					.prescription(prescription)
 					.treatType(medicine.TREATTYPE())
-					.medicineNm(medicine.MEDICINENM())
+					.medicineNm(changeStringBracket(medicine.MEDICINENM()))
 					.treatDate(medicine.TREATDATE())
 					.medicineEffect(medicine.MEDICINEEFFECT())
 					.prescribeCnt(medicine.PRESCRIBECNT())
@@ -120,7 +122,7 @@ public class MyDataSaveService {
 				MedicineInfo.builder()
 					.medicine(medicine)
 					.makingCompany(medicineInfo.MAKINGCOMPANY())
-					.productNm(medicineInfo.PRODUCTNM())
+					.productNm(changeStringBracket(medicineInfo.PRODUCTNM()))
 					.medicineGroup(medicineInfo.MEDICINEGROUP())
 					.salesCompany(medicineInfo.SALESCOMPANY())
 					.payInfo(medicineInfo.ADMINISTERPATH())
@@ -141,7 +143,7 @@ public class MyDataSaveService {
 			durRepository.save(Dur.builder()
 				.medicineInfo(medicineInfo)
 				.ageTaboo(dur.AGETABOO())
-				.pregnantTaboo(dur.PREGNANTTABOO())
+				.pregnantTaboo(changePregnantInfo(changeDURStringBracket(dur.PREGNANTTABOO())))
 				.combinedTaboo(dur.COMBINEDTABOO())
 				.build()
 			);
@@ -150,13 +152,13 @@ public class MyDataSaveService {
 
 	private void saveIngredients(ArrayList<IngredientSaveRequest> ingredients, MedicineInfo medicineInfo) {
 		ingredients.forEach(ingredient -> {
-			ingredientRepository.save(new Ingredient(medicineInfo, ingredient.INGREDIENTNM()));
+			ingredientRepository.save(new Ingredient(medicineInfo, changeStringBracket((ingredient.INGREDIENTNM()))));
 		});
 	}
 
 	private void saveKPICs(ArrayList<KPISaveRequest> KPIs, MedicineInfo medicineInfo) {
 		KPIs.forEach(KPI -> {
-			kpicRepository.save(new Kpic(medicineInfo, KPI.KPIC()));
+			kpicRepository.save(new Kpic(medicineInfo, changeStringBracket(KPI.KPIC())));
 		});
 	}
 }
