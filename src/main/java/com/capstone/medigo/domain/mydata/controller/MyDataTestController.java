@@ -52,12 +52,9 @@ public class MyDataTestController {
 	@Transactional
 	public String testData2() throws IOException {
 		Member save = memberRepository.findById(1L).get();
-		log.info("시작");
-
-		String result = getResult("20221009");
+		String result = getResult("20221015");
 
 		myDataSaveService.save(result, save.getId());
-		log.info("????? 된건가");
 
 
 		return "success!!!";

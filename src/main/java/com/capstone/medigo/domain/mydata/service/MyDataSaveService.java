@@ -41,6 +41,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Log4j2
+@Transactional
 public class MyDataSaveService {
 	private final DurRepository durRepository;
 	private final MemberRepository memberRepository;
@@ -54,7 +55,6 @@ public class MyDataSaveService {
 	public void save(String myDataValue, Long memberId) {
 		ObjectMapper mapper = new ObjectMapper();
 		MyDataSaveRequest myDataSaveRequest;
-		log.info("save 시작");
 
 		try {
 			myDataSaveRequest = mapper.readValue(myDataValue, MyDataSaveRequest.class);
@@ -73,12 +73,6 @@ public class MyDataSaveService {
 		Member member = memberRepository.findById(memberId).orElseThrow(() -> {
 			throw MemberException.notFoundMember(memberId);
 		});
-		log.info("1 {}", member.getId());
-		log.info("1 {}", member.getName());
-		for (PrescriptionSaveRequest prescription : prescriptions) {
-			log.info("========");
-			log.info("2 {}", prescription.TREATDATE());
-		}
 		int lastUpdateTime = LocalDateTimeUtil.localTo8format(member.getMyDataLoadUpdateTime());
 		member.changeMyDataLoadUpdateTime(LocalDateTime.now());
 
