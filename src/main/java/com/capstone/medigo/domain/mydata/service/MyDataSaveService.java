@@ -124,9 +124,9 @@ public class MyDataSaveService {
 					.medicine(medicine)
 					.makingCompany(medicineInfo.MAKINGCOMPANY())
 					.productNm(changeStringBracket(medicineInfo.PRODUCTNM()))
-					.medicineGroup(medicineInfo.MEDICINEGROUP())
+					.medicineGroup(changeStringBracket(medicineInfo.MEDICINEGROUP()))
 					.salesCompany(medicineInfo.SALESCOMPANY())
-					.payInfo(medicineInfo.ADMINISTERPATH())
+					.payInfo(medicineInfo.PAYINFO())
 					.shape(medicineInfo.SHAPE())
 					.singleYn(medicineInfo.SINGLEYN())
 					.specialYn(medicineInfo.SPECIALYN())
@@ -143,9 +143,9 @@ public class MyDataSaveService {
 		durs.forEach(dur -> {
 			durRepository.save(Dur.builder()
 				.medicineInfo(medicineInfo)
-				.ageTaboo(dur.AGETABOO())
+				.ageTaboo(changeDURStringBracket(dur.AGETABOO()))
 				.pregnantTaboo(changePregnantInfo(changeDURStringBracket(dur.PREGNANTTABOO())))
-				.combinedTaboo(dur.COMBINEDTABOO())
+				.combinedTaboo(changeDURStringBracket(dur.COMBINEDTABOO()))
 				.build()
 			);
 		});

@@ -63,8 +63,8 @@ public class MyDataCalendarService {
 		});
 
 		int dateWith8format = (int)(date * 100);
-		List<Prescription> prescriptions = prescriptionRepository.findByEndDateWhichBiggerThanDate(
-			member, dateWith8format);
+		List<Prescription> prescriptions = prescriptionRepository.findByEndDateWhichBiggerThanDate(member,
+			dateWith8format);
 
 		Map<Integer, List<DetailPrescriptionCase>> dateMap = new HashMap<>();
 		for (Prescription prescription : prescriptions) {
@@ -82,12 +82,12 @@ public class MyDataCalendarService {
 
 	private void checkIntervalAndAddDateMap(int dateWith8format, Map<Integer, List<DetailPrescriptionCase>> dateMap,
 		Prescription prescription, DetailPrescriptionCase detailPrescriptionCase) {
-		LocalDateTime date = LocalDateTimeUtil.eightToLocalFormat(dateWith8format+1);
+		LocalDateTime date = LocalDateTimeUtil.eightToLocalFormat(dateWith8format);
 		LocalDateTime treatDate = LocalDateTimeUtil.eightToLocalFormat(prescription.getTreatDate());
 		LocalDateTime endDate = LocalDateTimeUtil.eightToLocalFormat(prescription.getEndDate());
 		int interval = prescription.getAdministerInterval();
 
-		if(isDifferenceOver1Year(date, endDate, interval)){
+		if (isDifferenceOver1Year(date, endDate, interval)) {
 			return;
 		}
 
@@ -96,7 +96,7 @@ public class MyDataCalendarService {
 				break;
 			}
 
-			if(isDifferentYearOrMonth(date, endDate)){
+			if (isDifferentYearOrMonth(date, endDate)) {
 				endDate = endDate.minus(Period.ofDays(interval));
 				continue;
 			}
