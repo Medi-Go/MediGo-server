@@ -54,6 +54,7 @@ public class MyDataSaveService {
 	public void save(String myDataValue, Long memberId) {
 		ObjectMapper mapper = new ObjectMapper();
 		MyDataSaveRequest myDataSaveRequest;
+		log.info("save 시작");
 
 		try {
 			myDataSaveRequest = mapper.readValue(myDataValue, MyDataSaveRequest.class);

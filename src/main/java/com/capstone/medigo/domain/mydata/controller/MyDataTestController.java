@@ -742,8 +742,7 @@ public class MyDataTestController {
 	@Transactional
 	public String testData2() throws IOException {
 		Member save = memberRepository.findById(1L).get();
-
-
+		log.info("시작");
 
 		String result = "{\n"
 			+ "  \"errCode\": \"0000\",\n"
@@ -1435,7 +1434,9 @@ public class MyDataTestController {
 			+ "}";
 
 		myDataSaveService.save(result, save.getId());
+		log.info("????? 된건가");
 
-		return "success";
+
+		return "success!!!";
 	}
 }
