@@ -82,7 +82,7 @@ public class MyDataCalendarService {
 
 	private void checkIntervalAndAddDateMap(int dateWith8format, Map<Integer, List<DetailPrescriptionCase>> dateMap,
 		Prescription prescription, DetailPrescriptionCase detailPrescriptionCase) {
-		LocalDateTime date = LocalDateTimeUtil.eightToLocalFormat(dateWith8format);
+		LocalDateTime date = LocalDateTimeUtil.eightToLocalFormat(dateWith8format + 1);
 		LocalDateTime treatDate = LocalDateTimeUtil.eightToLocalFormat(prescription.getTreatDate());
 		LocalDateTime endDate = LocalDateTimeUtil.eightToLocalFormat(prescription.getEndDate());
 		int interval = prescription.getAdministerInterval();
@@ -91,7 +91,7 @@ public class MyDataCalendarService {
 			return;
 		}
 
-		while (endDate.isAfter(date)) {
+		while (endDate.isAfter(date) | endDate.isEqual(date)) {
 			if (endDate.isBefore(treatDate)) {
 				break;
 			}
