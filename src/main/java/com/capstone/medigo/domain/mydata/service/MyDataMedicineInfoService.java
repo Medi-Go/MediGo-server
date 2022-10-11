@@ -59,7 +59,7 @@ public class MyDataMedicineInfoService {
 		List<DurInfo> durInfos = new ArrayList<>();
 		List<Dur> durs = durRepository.findByMedicineInfo(medicineInfo);
 		for (Dur dur : durs) {
-			durInfos.add(new DurInfo(dur.getAgeTaboo(), dur.getPregnantTaboo(), dur.getCombinedTaboo()));
+			durInfos.add(new DurInfo(dur.getId(), dur.getAgeTaboo(), dur.getPregnantTaboo(), dur.getCombinedTaboo()));
 		}
 
 		return durInfos;
@@ -69,7 +69,7 @@ public class MyDataMedicineInfoService {
 		List<KpicInfo> kpicInfos = new ArrayList<>();
 		List<Kpic> kpics = kpicRepository.findByMedicineInfo(medicineInfo);
 		for (Kpic kpic : kpics) {
-			kpicInfos.add(new KpicInfo(kpic.getKpic()));
+			kpicInfos.add(new KpicInfo(kpic.getId(), kpic.getKpic()));
 		}
 
 		return kpicInfos;
@@ -79,7 +79,7 @@ public class MyDataMedicineInfoService {
 		List<Ingredient> ingredients = ingredientRepository.findByMedicineInfo(medicineInfo);
 		List<IngredientInfo> ingredientInfos = new ArrayList<>();
 		for (Ingredient ingredient : ingredients) {
-			ingredientInfos.add(new IngredientInfo(ingredient.getIngredientName()));
+			ingredientInfos.add(new IngredientInfo(ingredient.getId(), ingredient.getIngredientName()));
 		}
 
 		return ingredientInfos;
@@ -100,6 +100,7 @@ public class MyDataMedicineInfoService {
 		List<IngredientInfo> ingredientInfos, List<KpicInfo> kpicInfos, List<DurInfo> durInfos) {
 		medicineInfoCases.add(
 			MedicineInfoCase.builder()
+				.medicineId(medicineInfo.getId())
 				.makingCompany(medicineInfo.getMakingCompany())
 				.productName(medicineInfo.getProductNm())
 				.medicineGroup(medicineInfo.getMedicineGroup())

@@ -29,9 +29,9 @@ public class StringFormatUtil {
 		}
 		String grade = value.substring(0, 3);
 		if (grade.equals("1등급")) {
-			return "1등급 : 약물 복용 중단 권유";
+			return "약물 복용 중단 권유";
 		} else if (grade.equals("2등급")) {
-			return "2등급 : 의사와 상의 필요";
+			return "의사와 상의 필요";
 		} else {
 			return value;
 		}
@@ -53,5 +53,18 @@ public class StringFormatUtil {
 			}
 		}
 		return sb.toString();
+	}
+
+	public static String changeKPICInfo(String value) {
+		String[] nameAndType = value.split(":");
+		if (nameAndType.length < 2) {
+			return value;
+		}
+		String name = nameAndType[0].trim();
+		String types = nameAndType[1];
+		String[] typesArr = types.split("<");
+		String type = typesArr[typesArr.length - 1].trim();
+
+		return name + " : " + type;
 	}
 }
