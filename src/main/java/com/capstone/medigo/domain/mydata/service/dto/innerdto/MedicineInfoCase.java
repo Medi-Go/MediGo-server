@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.Builder;
 
 public record MedicineInfoCase(
+	Long medicineId,
 	String makingCompany,
 	String productName,
 	String medicineGroup,

@@ -159,7 +159,7 @@ public class MyDataSaveService {
 
 	private void saveKPICs(ArrayList<KPISaveRequest> KPIs, MedicineInfo medicineInfo) {
 		KPIs.forEach(KPI -> {
-			kpicRepository.save(new Kpic(medicineInfo, changeStringBracket(KPI.KPIC())));
+			kpicRepository.save(new Kpic(medicineInfo, changeKPICInfo(changeStringBracket(KPI.KPIC()))));
 		});
 	}
 }
