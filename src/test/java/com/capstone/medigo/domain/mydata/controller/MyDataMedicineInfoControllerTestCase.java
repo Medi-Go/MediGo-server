@@ -111,19 +111,19 @@ class MyDataMedicineInfoControllerTestCase extends TestConfig {
 								.ingredientInfos(
 									new ArrayList<>(
 										List.of(new IngredientInfo(
-											"록사티딘아세테이트염산염(Roxatidine Acetate Hydrochloride)mg"))
+											1L,"록사티딘아세테이트염산염(Roxatidine Acetate Hydrochloride)mg"))
 									)
 								)
 								.kpicInfos(
 									new ArrayList<>(
 										List.of(
-											new KpicInfo("아세트아미노펜(Acetaminophen) : 통증 질환< 비마약성 진통제<중추성 진통제"))
+											new KpicInfo(1L,"아세트아미노펜(Acetaminophen) : 통증 질환< 비마약성 진통제<중추성 진통제"))
 
 									)
 								)
 								.durInfos(
 									new ArrayList<>(
-										List.of(new DurInfo("[연령금기]12세미만", "[임부금기]없음", "[병용금기]없음"))
+										List.of(new DurInfo(1L,"[연령금기]12세미만", "[임부금기]없음", "[병용금기]없음"))
 									)
 								).build()
 						)

@@ -49,6 +49,7 @@ public class MyDataDetailService {
 				detailPrescriptionCaseList.add(detailPrescriptionCase);
 			}
 		}
+
 		return new MyDataDetail(detailPrescriptionCaseList);
 	}
 
