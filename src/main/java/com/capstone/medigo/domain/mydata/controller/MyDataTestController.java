@@ -250,7 +250,7 @@ public class MyDataTestController {
 			+ "        \"MEDICINECNT\": \"1\",\n"
 			+ "        \"TREATDSGB\": \"1\",\n"
 			+ "        \"PRESCRIBECNT\": \"0\",\n"
-			+ "        \"TREATMEDICALNM\": \"(한길의료재단)한길안과병원[부평구 부평대로]\",\n"
+			+ "        \"TREATMEDICALNM\": \"(한길의료재단)부평안과병원[부평구 부평대로]\",\n"
 			+ "        \"DETAILLIST\": [\n"
 			+ "          {\n"
 			+ "            \"TREATTYPE\": \"외래\",\n"
