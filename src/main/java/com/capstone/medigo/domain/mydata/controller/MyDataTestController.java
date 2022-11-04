@@ -41,7 +41,7 @@ public class MyDataTestController {
 		save.changeMyDataLoadUpdateTime(LocalDateTime.of(1970,01,01,00,00,00));
 		save.changeMyDataDetailUpdateTime(LocalDateTime.of(1970,01,01,00,00,00));
 
-		String result = getResult("20221007");
+		String result = getResult("20221103");
 
 		myDataSaveService.save(result, save.getId());
 
