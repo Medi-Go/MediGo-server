@@ -41,7 +41,7 @@ public class MyDataTestController {
 		save.changeMyDataLoadUpdateTime(LocalDateTime.of(1970,01,01,00,00,00));
 		save.changeMyDataDetailUpdateTime(LocalDateTime.of(1970,01,01,00,00,00));
 
-		String result = getResult("20221021");
+		String result = getResult("20221103");
 
 		myDataSaveService.save(result, save.getId());
 
@@ -52,7 +52,7 @@ public class MyDataTestController {
 	@Transactional
 	public String testData2() throws IOException {
 		Member save = memberRepository.findById(1L).get();
-		String result = getResult("20221104");
+		String result = getResult("20221105");
 
 		myDataSaveService.save(result, save.getId());
 
@@ -479,7 +479,7 @@ public class MyDataTestController {
 			+ "          {\n"
 			+ "            \"TREATTYPE\": \"약국\",\n"
 			+ "            \"MEDICINENM\": \"에소듀오정20/800mg (Eso Duo Tab. 20/800mg)\",\n"
-			+ "            \"TREATDATE\": \"20210615\",\n"
+			+ "            \"TREATDATE\": \""+date+"\",\n"
 			+ "            \"DRUGINFOLIST\": [\n"
 			+ "              {\n"
 			+ "                \"DUR\": [\n"
