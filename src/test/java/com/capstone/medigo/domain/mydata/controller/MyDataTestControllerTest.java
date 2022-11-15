@@ -61,7 +61,7 @@ class MyDataTestControllerTest {
 		save.changeMyDataLoadUpdateTime(LocalDateTime.of(1970,01,01,00,00,00));
 		save.changeMyDataDetailUpdateTime(LocalDateTime.of(1970,01,01,00,00,00));
 
-		String result = myDataTestController.getResult("20221110");
+		String result = myDataTestController.getResult("20221103");
 
 		myDataSaveService.save(result, save.getId());
 
@@ -134,6 +134,11 @@ class MyDataTestControllerTest {
 			// }
 		}
 		System.out.println("=====================");
+
+		// 5 추가 데이터 입력
+		result = myDataTestController.getResult("20221105");
+
+		myDataSaveService.save(result, save.getId());
 	}
 
 }
