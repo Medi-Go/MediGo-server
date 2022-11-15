@@ -1,5 +1,6 @@
 package com.capstone.medigo.domain.mydata.service;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,7 +75,9 @@ public class MyDataMainService {
 
 	private void calculateRemainCount(int now, List<MainMedicine> medicines, Medicine medicine) {
 		Prescription prescription = medicine.getPrescription();
-		int remainCount = (int)Math.ceil((prescription.getEndDate() - now) / prescription.getAdministerInterval());
+		LocalDateTime endDate = LocalDateTimeUtil.eightToLocalFormat(prescription.getEndDate());
+		LocalDateTime nowDate = LocalDateTimeUtil.eightToLocalFormat(now);
+		int remainCount = (int)Math.ceil(Duration.between(nowDate,endDate).toDays()/ prescription.getAdministerInterval()) * prescription.getDailyCount();
 		medicines.add(MyDataConverter.toMainMedicine(medicine, remainCount));
 	}
 

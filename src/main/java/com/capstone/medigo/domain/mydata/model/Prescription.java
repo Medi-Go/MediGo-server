@@ -10,6 +10,8 @@ import javax.persistence.*;
 
 import static lombok.AccessLevel.PROTECTED;
 
+import java.util.StringJoiner;
+
 @Getter
 @Entity
 @Table
@@ -90,5 +92,26 @@ public class Prescription extends BaseEntity {
 		this.endDate = LocalDateTimeUtil.localTo8format(
 			LocalDateTimeUtil.eightToLocalFormat(this.treatDate).plusDays(totalDayCount));
 		this.isUpdate = true;
+	}
+
+	@Override
+	public String toString() {
+		return new StringJoiner(", ", Prescription.class.getSimpleName() + "[", "]")
+			.add("id=" + id)
+			.add("member=" + member)
+			.add("treatType='" + treatType + "'")
+			.add("visitCnt='" + visitCnt + "'")
+			.add("treatDsnm='" + treatDsnm + "'")
+			.add("treatDate=" + treatDate)
+			.add("medicineCnt='" + medicineCnt + "'")
+			.add("treatdsgb='" + treatdsgb + "'")
+			.add("prescribeCnt='" + prescribeCnt + "'")
+			.add("treatMedicalnm='" + treatMedicalnm + "'")
+			.add("administerInterval=" + administerInterval)
+			.add("dailyCount=" + dailyCount)
+			.add("totalDayCount=" + totalDayCount)
+			.add("endDate=" + endDate)
+			.add("isUpdate=" + isUpdate)
+			.toString();
 	}
 }

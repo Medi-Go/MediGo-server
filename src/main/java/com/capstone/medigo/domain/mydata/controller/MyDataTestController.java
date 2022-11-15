@@ -60,7 +60,7 @@ public class MyDataTestController {
 		return "success!!!";
 	}
 
-	private String getResult(String date) {
+	public String getResult(String date) {
 		return "{\n"
 			+ "  \"errCode\": \"0000\",\n"
 			+ "  \"errMsg\": \"success\",\n"
