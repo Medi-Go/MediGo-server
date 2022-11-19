@@ -140,7 +140,7 @@ class MyDataTestControllerTest {
 		System.out.println("=====================");
 
 		// 5 추가 데이터 입력
-		result = myDataTestController.getResult("20221105");
+		result = myDataTestController.get1005("20221105");
 
 		myDataSaveService.save(result, save.getId());
 	}
