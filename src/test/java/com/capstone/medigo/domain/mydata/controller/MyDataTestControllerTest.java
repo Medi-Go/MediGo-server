@@ -69,7 +69,7 @@ class MyDataTestControllerTest {
 		List<Prescription> prescriptions = prescriptionRepository.findByMemberAfterTime(save, 20221015);
 		for (Prescription prescription : prescriptions) {
 			// 2일에 한번, 하루 2번, 100일동안 = 총 100번
-			prescription.changeDetail(2, 2, 100);
+			prescription.changeDetail(1, 1, 100);
 		}
 
 		// 잘 저장되었는지 체크
@@ -113,12 +113,16 @@ class MyDataTestControllerTest {
 		MyDataCalendarPrescription calendarMedicines = myDataCalendarService.getCalendarMedicines(save.getId(),
 			202211L);
 		List<CalendarPrescription> calendarPrescriptions = calendarMedicines.calendarPrescriptions();
+		int count = 0;
 		for (CalendarPrescription calendarPrescription : calendarPrescriptions) {
 			System.out.println(calendarPrescription.date());
 			List<DetailPrescriptionCase> prescriptions1 = calendarPrescription.prescriptions();
-			// for (DetailPrescriptionCase detailPrescriptionCase : prescriptions1) {
-			// 	System.out.println(detailPrescriptionCase);
-			// }
+			count++;
+			if(count==1){
+				for (DetailPrescriptionCase detailPrescriptionCase : prescriptions1) {
+					System.out.println(detailPrescriptionCase);
+				}
+			}
 		}
 		System.out.println("=====================");
 		System.out.println("=====================");

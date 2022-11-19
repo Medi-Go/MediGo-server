@@ -74,6 +74,10 @@ public class MyDataCalendarService {
 			DetailPrescriptionCase detailPrescriptionCase = MyDataConverter.toDetailPrescription(prescription,
 				detailList);
 
+			if(detailPrescriptionCase.medicineDetails().isEmpty()){
+				continue;
+			}
+
 			checkIntervalAndAddDateMap(dateWith8format, dateMap, prescription, detailPrescriptionCase);
 		}
 
