@@ -140,9 +140,79 @@ class MyDataTestControllerTest {
 		System.out.println("=====================");
 
 		// 5 추가 데이터 입력
-		result = myDataTestController.get1005("20221105");
+		result = myDataTestController.get1005("20221123");
 
 		myDataSaveService.save(result, save.getId());
+
+		// 6. 복용 횟수 입력
+		List<Prescription> byMemberAfterTime = prescriptionRepository.findByMemberAfterTime(save, 20221015);
+		for (Prescription prescription : byMemberAfterTime) {
+			// 2일에 한번, 하루 2번, 100일동안 = 총 100번
+			prescription.changeDetail(1, 1, 100);
+			System.out.println("?");
+		}
+		// 잘 저장되었는지 체크
+		System.out.println("=====================");
+		System.out.println("현재 복용중인 약물");
+		MyDataMain medicinesInUse2 = myDataMainService.findMedicinesInUse(save.getId());
+		List<MedicineEffect> medicineEffects2 = medicinesInUse2.medicineEffects();
+		for (MedicineEffect medicineEffect : medicineEffects2) {
+			System.out.println(medicineEffect.effect());
+			List<MainMedicine> medicines = medicineEffect.medicines();
+			for (MainMedicine medicine : medicines) {
+				System.out.println(medicine);
+			}
+		}
+		System.out.println("=====================");
+		System.out.println("중복약물");
+		List<DuplicatedMedicine> duplicatedMedicines2 = medicinesInUse2.duplicatedMedicines();
+		for (DuplicatedMedicine duplicatedMedicine : duplicatedMedicines2) {
+			System.out.println(duplicatedMedicine);
+		}
+		System.out.println("=====================");
+	}
+
+	@Test
+	void newTest () {
+		Member save = memberRepository.save(Member.builder()
+			.email("dldydgns530@gmail.com")
+			.profileImageUrl(
+				"https://lh3.googleusercontent.com/a-/AFdZucoPyEGN6Umu-dn2dwpvbdX_FMg6hzK0p3yVN_acNw=s96-c")
+			.nickName("test2")
+			.name("이용훈")
+			.jumin("19971107")
+			.carrier(Carrier.LG)
+			.phoneNumber("01011113333")
+			.build());
+
+		save.changeMyDataLoadUpdateTime(LocalDateTime.of(1970, 01, 01, 00, 00, 00));
+		save.changeMyDataDetailUpdateTime(LocalDateTime.of(1970, 01, 01, 00, 00, 00));
+
+		String result = myDataTestController.getResult("20221103");
+
+		myDataSaveService.save(result, save.getId());
+
+
+
+		/////
+		Member save1 = memberRepository.findById(1L).get();
+		String result1 = myDataTestController.get1005("20221123");
+
+		myDataSaveService.save(result1, save1.getId());
+
+
+		List<Prescription> prescriptions = prescriptionRepository.findByMemberAfterTime(save, 20221015);
+		for (Prescription prescription : prescriptions) {
+			// 2일에 한번, 하루 2번, 100일동안 = 총 100번
+			prescription.changeDetail(3, 1, 100);
+		}
+
+		//// main 보기
+		MyDataMain myDataMain = myDataMainService.findMedicinesInUse(save.getId());
+		List<DuplicatedMedicine> duplicatedMedicines = myDataMain.duplicatedMedicines();
+		for (DuplicatedMedicine duplicatedMedicine : duplicatedMedicines) {
+			System.out.println(duplicatedMedicine);
+		}
 	}
 
 }
