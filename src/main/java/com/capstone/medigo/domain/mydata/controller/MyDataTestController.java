@@ -41,7 +41,7 @@ public class MyDataTestController {
 		save.changeMyDataLoadUpdateTime(LocalDateTime.of(1970, 01, 01, 00, 00, 00));
 		save.changeMyDataDetailUpdateTime(LocalDateTime.of(1970, 01, 01, 00, 00, 00));
 
-		String result = getResult("20221103");
+		String result = getResult("20221202");
 
 		myDataSaveService.save(result, save.getId());
 
@@ -53,7 +53,7 @@ public class MyDataTestController {
 	public String testData2() throws IOException {
 		Member save = memberRepository.findById(1L).get();
 
-		String result = get1005("20221123");
+		String result = get1005("20221212");
 
 		myDataSaveService.save(result, save.getId());
 
